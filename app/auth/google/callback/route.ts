@@ -5,6 +5,8 @@ import bcrypt from "bcryptjs";
 import { env } from "@/lib/env";
 import { createSession, createUser, getUserByEmail } from "@/server/db";
 
+export const runtime = "nodejs";
+
 type GoogleTokenResponse = {
   id_token?: string;
   access_token?: string;

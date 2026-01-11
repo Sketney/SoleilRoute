@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { env } from "@/lib/env";
 
+export const runtime = "nodejs";
+
 export async function GET() {
   if (!env.GOOGLE_CLIENT_ID) {
     return NextResponse.redirect(new URL("/login", env.NEXT_PUBLIC_APP_URL));
