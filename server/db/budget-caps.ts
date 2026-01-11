@@ -105,14 +105,19 @@ export async function setBudgetCaps(
 
   await supabase.from("budget_caps").delete().eq("trip_id", tripId);
   if (createdCaps.length) {
-    const { data, error } = await supabase
-      .from("budget_caps")
-      .insert(createdCaps as unknown as Record<string, unknown>[])
-      .select("*");
-    if (error || !data) {
-      return [];
+    const insertedCaps: BudgetCapRecord[] = [];
+    for (const cap of createdCaps) {
+      const { data, error } = await supabase
+        .from("budget_caps")
+        .insert(cap)
+        .select("*")
+        .single();
+      if (error || !data) {
+        return [];
+      }
+      insertedCaps.push(data as BudgetCapRecord);
     }
-    return data.map((cap) => ({ ...(cap as BudgetCapRecord) }));
+    return insertedCaps.map((cap) => ({ ...cap }));
   }
 
   return [];
