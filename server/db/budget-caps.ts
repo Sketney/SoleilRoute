@@ -107,7 +107,7 @@ export async function setBudgetCaps(
   if (createdCaps.length) {
     const { data, error } = await supabase
       .from("budget_caps")
-      .insert(createdCaps)
+      .insert(createdCaps as unknown as Record<string, unknown>[])
       .select("*");
     if (error || !data) {
       return [];
