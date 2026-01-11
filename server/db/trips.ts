@@ -288,15 +288,15 @@ export async function createTrip(
     return { ...newTrip };
   }
 
-  const { data, error } = await supabase
+  const { data: createdTrip, error } = await supabase
     .from("trips")
     .insert(newTrip)
     .select("*")
     .single();
-  if (error || !data) {
+  if (error || !createdTrip) {
     throw new Error("FAILED_TO_CREATE_TRIP");
   }
-  return normalizeTrip(data as TripRecord) as TripRecord;
+  return normalizeTrip(createdTrip as TripRecord) as TripRecord;
 }
 
 export async function updateTrip(
