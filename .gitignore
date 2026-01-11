@@ -23,6 +23,16 @@
 # misc
 .DS_Store
 *.pem
+*.log
+*.zip
+*.docx
+
+# local content
+/public/uploads
+/server/data
+/soleilroute-travel-planner
+/supabase/.branches
+/supabase/.temp
 
 # debug
 npm-debug.log*
