@@ -150,8 +150,3 @@ input[type="date"] {
 .dark input[type="date"] {
   color-scheme: dark;
 }
-
-.dark input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(1);
-  opacity: 1;
-}
