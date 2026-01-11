@@ -42,7 +42,7 @@ export function DashboardShell({
         <div className="mt-auto text-xs text-stone-500 dark:text-stone-400">
           {t.dashboard.needHelp}
           <br />
-          {publicEnv.NEXT_PUBLIC_SUPPORT_EMAIL ?? "support@soleilroute.app"}
+          {publicEnv.NEXT_PUBLIC_SUPPORT_EMAIL ?? "team@soleilroute.net"}
         </div>
       </aside>
       <div className="flex flex-col overflow-hidden">
