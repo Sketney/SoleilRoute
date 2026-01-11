@@ -1,6 +1,6 @@
 import { cache } from "react";
 import { cookies } from "next/headers";
-import { deleteSession, getSessionWithUser } from "@/server/db";
+import { getSessionWithUser } from "@/server/db";
 import { isAdminEmail } from "@/lib/auth/roles";
 
 export type AppSession = {
@@ -22,10 +22,9 @@ export const getServerSession = cache(async (): Promise<AppSession | null> => {
     return null;
   }
 
-  const session = getSessionWithUser(token);
+  const session = await getSessionWithUser(token);
 
   if (!session) {
-    cookieStore.delete("session_token");
     return null;
   }
 

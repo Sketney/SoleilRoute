@@ -17,7 +17,7 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const user = getUserById(session.user.id);
+  const user = await getUserById(session.user.id);
   if (!user) {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
@@ -41,7 +41,7 @@ export async function PATCH(request: Request) {
   }
 
   try {
-    const updated = updateUserNotificationPreferences(
+    const updated = await updateUserNotificationPreferences(
       session.user.id,
       parsed.data,
     );

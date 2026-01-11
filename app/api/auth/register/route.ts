@@ -20,7 +20,7 @@ export async function POST(request: Request) {
 
   const { email, password } = parsed.data;
 
-  if (getUserByEmail(email)) {
+  if (await getUserByEmail(email)) {
     return apiError("USER_EXISTS", "User already exists", 409);
   }
 
@@ -28,7 +28,7 @@ export async function POST(request: Request) {
   let user;
 
   try {
-    user = createUser(email, passwordHash);
+    user = await createUser(email, passwordHash);
   } catch (error: unknown) {
     if (error instanceof Error && error.message === "USER_ALREADY_EXISTS") {
       return apiError("USER_EXISTS", "User already exists", 409);
@@ -36,7 +36,7 @@ export async function POST(request: Request) {
     throw error;
   }
 
-  const session = createSession(user.id);
+  const session = await createSession(user.id);
   const cookieStore = await cookies();
 
   cookieStore.set("session_token", session.token, {

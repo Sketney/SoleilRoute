@@ -19,7 +19,7 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const user = getUserById(session.user.id);
+  const user = await getUserById(session.user.id);
   if (!user) {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
@@ -69,7 +69,7 @@ export async function PATCH(request: Request) {
 
   try {
     if (updates.email) {
-      updateUserEmail(user.id, updates.email);
+      await updateUserEmail(user.id, updates.email);
     }
 
     let avatarUrl = parsed.data.avatarUrl;
@@ -93,13 +93,13 @@ export async function PATCH(request: Request) {
       parsed.data.displayName !== undefined ||
       avatarUrl !== undefined
     ) {
-      updateUserProfile(user.id, {
+      await updateUserProfile(user.id, {
         displayName: parsed.data.displayName ?? user.display_name ?? "",
         avatarUrl: avatarUrl ?? user.avatar_url ?? "",
       });
     }
 
-    const refreshed = getUserById(user.id);
+    const refreshed = await getUserById(user.id);
     return NextResponse.json({
       email: refreshed?.email ?? user.email,
       displayName: refreshed?.display_name ?? "",

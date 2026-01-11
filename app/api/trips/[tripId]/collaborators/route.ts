@@ -38,13 +38,13 @@ export async function GET(
   }
 
   const { tripId } = await params;
-  const access = getTripAccess(tripId, session.user.id);
+  const access = await getTripAccess(tripId, session.user.id);
   if (!access) {
     return NextResponse.json({ error: "Trip not found" }, { status: 404 });
   }
 
-  const owner = getUserById(access.trip.user_id);
-  const collaborators = listTripCollaborators(tripId);
+  const owner = await getUserById(access.trip.user_id);
+  const collaborators = await listTripCollaborators(tripId);
 
   const payload = [
     {
@@ -54,16 +54,18 @@ export async function GET(
       role: "owner",
       addedAt: access.trip.created_at,
     },
-    ...collaborators.map((entry) => {
-      const user = getUserById(entry.user_id);
-      return {
-        id: entry.id,
-        userId: entry.user_id,
-        email: user?.email ?? "unknown",
-        role: entry.role,
-        addedAt: entry.created_at,
-      };
-    }),
+    ...(await Promise.all(
+      collaborators.map(async (entry) => {
+        const user = await getUserById(entry.user_id);
+        return {
+          id: entry.id,
+          userId: entry.user_id,
+          email: user?.email ?? "unknown",
+          role: entry.role,
+          addedAt: entry.created_at,
+        };
+      }),
+    )),
   ];
 
   return NextResponse.json({ collaborators: payload });
@@ -79,7 +81,7 @@ export async function POST(
   }
 
   const { tripId } = await params;
-  const access = getTripAccess(tripId, session.user.id);
+  const access = await getTripAccess(tripId, session.user.id);
   if (!access) {
     return NextResponse.json({ error: "Trip not found" }, { status: 404 });
   }
@@ -93,7 +95,7 @@ export async function POST(
     return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
   }
 
-  const user = getUserByEmail(parsed.data.email);
+  const user = await getUserByEmail(parsed.data.email);
   if (!user) {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
@@ -101,14 +103,14 @@ export async function POST(
     return NextResponse.json({ error: "User already owns trip" }, { status: 400 });
   }
 
-  const existing = listTripCollaborators(tripId).find(
+  const existing = (await listTripCollaborators(tripId)).find(
     (entry) => entry.user_id === user.id,
   );
   if (existing) {
     return NextResponse.json({ error: "Already added" }, { status: 409 });
   }
 
-  const pendingInvite = listInvitationsByTrip(tripId).find(
+  const pendingInvite = (await listInvitationsByTrip(tripId)).find(
     (entry) =>
       entry.invitee_user_id === user.id && entry.status === "pending",
   );
@@ -116,7 +118,7 @@ export async function POST(
     return NextResponse.json({ error: "Invite already pending" }, { status: 409 });
   }
 
-  const invitation = createInvitation(
+  const invitation = await createInvitation(
     tripId,
     user.id,
     user.email,
@@ -124,7 +126,7 @@ export async function POST(
     parsed.data.role,
   );
 
-  createNotification(user.id, {
+  await createNotification(user.id, {
     title: "Trip invitation received",
     message: `${session.user.email ?? "A teammate"} invited you to ${access.trip.name}.`,
     type: "info",
@@ -156,7 +158,7 @@ export async function PATCH(
   }
 
   const { tripId } = await params;
-  const access = getTripAccess(tripId, session.user.id);
+  const access = await getTripAccess(tripId, session.user.id);
   if (!access) {
     return NextResponse.json({ error: "Trip not found" }, { status: 404 });
   }
@@ -174,7 +176,7 @@ export async function PATCH(
     return NextResponse.json({ error: "Cannot edit owner role" }, { status: 400 });
   }
 
-  updateTripCollaboratorRole(tripId, parsed.data.userId, parsed.data.role);
+  await updateTripCollaboratorRole(tripId, parsed.data.userId, parsed.data.role);
 
   return NextResponse.json({ success: true });
 }
@@ -189,7 +191,7 @@ export async function DELETE(
   }
 
   const { tripId } = await params;
-  const access = getTripAccess(tripId, session.user.id);
+  const access = await getTripAccess(tripId, session.user.id);
   if (!access) {
     return NextResponse.json({ error: "Trip not found" }, { status: 404 });
   }
@@ -207,7 +209,7 @@ export async function DELETE(
     return NextResponse.json({ error: "Cannot remove owner" }, { status: 400 });
   }
 
-  removeTripCollaborator(tripId, parsed.data.userId);
+  await removeTripCollaborator(tripId, parsed.data.userId);
 
   return NextResponse.json({ success: true });
 }

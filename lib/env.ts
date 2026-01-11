@@ -19,6 +19,10 @@ const serverEnvSchema = z.object({
   SENTRY_ENVIRONMENT: z.string().default("development"),
   GOOGLE_CLIENT_ID: z.string().optional(),
   GOOGLE_CLIENT_SECRET: z.string().optional(),
+  SUPABASE_URL: z.string().url().optional(),
+  SUPABASE_ANON_KEY: z.string().optional(),
+  SUPABASE_SERVICE_ROLE_KEY: z.string().optional(),
+  SUPABASE_STORAGE_BUCKET: z.string().optional(),
 });
 
 const clientEnv = clientEnvSchema.parse({
@@ -41,6 +45,10 @@ const serverEnv = isServer
       SENTRY_ENVIRONMENT: process.env.SENTRY_ENVIRONMENT,
       GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
       GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+      SUPABASE_URL: process.env.SUPABASE_URL,
+      SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY,
+      SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
+      SUPABASE_STORAGE_BUCKET: process.env.SUPABASE_STORAGE_BUCKET,
     })
   : ({} as z.infer<typeof serverEnvSchema>);
 

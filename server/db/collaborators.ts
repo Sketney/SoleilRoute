@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import { readDatabase, updateDatabase } from "@/server/db/client";
+import { getSupabaseAdmin } from "@/server/db/supabase";
 
 export type TripCollaboratorRole = "editor" | "viewer";
 
@@ -24,45 +25,91 @@ function cloneCollaborator(
     : null;
 }
 
-export function listTripCollaborators(tripId: string): TripCollaboratorRecord[] {
-  const db = readDatabase();
-  return db.trip_collaborators
-    .filter((entry) => entry.trip_id === tripId)
-    .map((entry) => ({
-      ...entry,
-      role: normalizeRole(entry.role),
-    }));
+export async function listTripCollaborators(
+  tripId: string,
+): Promise<TripCollaboratorRecord[]> {
+  const supabase = getSupabaseAdmin();
+  if (!supabase) {
+    const db = readDatabase();
+    return db.trip_collaborators
+      .filter((entry) => entry.trip_id === tripId)
+      .map((entry) => ({
+        ...entry,
+        role: normalizeRole(entry.role),
+      }));
+  }
+
+  const { data, error } = await supabase
+    .from("trip_collaborators")
+    .select("*")
+    .eq("trip_id", tripId);
+  if (error || !data) {
+    return [];
+  }
+  return data.map((entry) => ({
+    ...(entry as TripCollaboratorRecord),
+    role: normalizeRole((entry as TripCollaboratorRecord).role),
+  }));
 }
 
-export function listCollaborationsByUser(
+export async function listCollaborationsByUser(
   userId: string,
-): TripCollaboratorRecord[] {
-  const db = readDatabase();
-  return db.trip_collaborators
-    .filter((entry) => entry.user_id === userId)
-    .map((entry) => ({
-      ...entry,
-      role: normalizeRole(entry.role),
-    }));
+): Promise<TripCollaboratorRecord[]> {
+  const supabase = getSupabaseAdmin();
+  if (!supabase) {
+    const db = readDatabase();
+    return db.trip_collaborators
+      .filter((entry) => entry.user_id === userId)
+      .map((entry) => ({
+        ...entry,
+        role: normalizeRole(entry.role),
+      }));
+  }
+
+  const { data, error } = await supabase
+    .from("trip_collaborators")
+    .select("*")
+    .eq("user_id", userId);
+  if (error || !data) {
+    return [];
+  }
+  return data.map((entry) => ({
+    ...(entry as TripCollaboratorRecord),
+    role: normalizeRole((entry as TripCollaboratorRecord).role),
+  }));
 }
 
-export function getTripCollaborator(
+export async function getTripCollaborator(
   tripId: string,
   userId: string,
-): TripCollaboratorRecord | null {
-  const db = readDatabase();
-  const collaborator = db.trip_collaborators.find(
-    (entry) => entry.trip_id === tripId && entry.user_id === userId,
-  );
-  return cloneCollaborator(collaborator);
+): Promise<TripCollaboratorRecord | null> {
+  const supabase = getSupabaseAdmin();
+  if (!supabase) {
+    const db = readDatabase();
+    const collaborator = db.trip_collaborators.find(
+      (entry) => entry.trip_id === tripId && entry.user_id === userId,
+    );
+    return cloneCollaborator(collaborator);
+  }
+
+  const { data, error } = await supabase
+    .from("trip_collaborators")
+    .select("*")
+    .eq("trip_id", tripId)
+    .eq("user_id", userId)
+    .maybeSingle();
+  if (error || !data) {
+    return null;
+  }
+  return cloneCollaborator(data as TripCollaboratorRecord);
 }
 
-export function addTripCollaborator(
+export async function addTripCollaborator(
   tripId: string,
   userId: string,
   role: TripCollaboratorRole,
   addedBy: string,
-): TripCollaboratorRecord {
+): Promise<TripCollaboratorRecord> {
   const record: TripCollaboratorRecord = {
     id: crypto.randomUUID(),
     trip_id: tripId,
@@ -72,33 +119,72 @@ export function addTripCollaborator(
     created_at: new Date().toISOString(),
   };
 
-  updateDatabase((db) => {
-    db.trip_collaborators.push(record);
-  });
+  const supabase = getSupabaseAdmin();
+  if (!supabase) {
+    updateDatabase((db) => {
+      db.trip_collaborators.push(record);
+    });
+    return { ...record };
+  }
 
-  return { ...record };
+  const { data, error } = await supabase
+    .from("trip_collaborators")
+    .insert(record)
+    .select("*")
+    .single();
+  if (error || !data) {
+    throw new Error("FAILED_TO_ADD_COLLABORATOR");
+  }
+
+  return {
+    ...(data as TripCollaboratorRecord),
+    role: normalizeRole((data as TripCollaboratorRecord).role),
+  };
 }
 
-export function updateTripCollaboratorRole(
+export async function updateTripCollaboratorRole(
   tripId: string,
   userId: string,
   role: TripCollaboratorRole,
 ) {
-  updateDatabase((db) => {
-    const target = db.trip_collaborators.find(
-      (entry) => entry.trip_id === tripId && entry.user_id === userId,
-    );
-    if (!target) {
-      return;
-    }
-    target.role = normalizeRole(role);
-  });
+  const supabase = getSupabaseAdmin();
+  if (!supabase) {
+    updateDatabase((db) => {
+      const target = db.trip_collaborators.find(
+        (entry) => entry.trip_id === tripId && entry.user_id === userId,
+      );
+      if (!target) {
+        return;
+      }
+      target.role = normalizeRole(role);
+    });
+    return;
+  }
+
+  await supabase
+    .from("trip_collaborators")
+    .update({ role: normalizeRole(role) })
+    .eq("trip_id", tripId)
+    .eq("user_id", userId);
 }
 
-export function removeTripCollaborator(tripId: string, userId: string) {
-  updateDatabase((db) => {
-    db.trip_collaborators = db.trip_collaborators.filter(
-      (entry) => !(entry.trip_id === tripId && entry.user_id === userId),
-    );
-  });
+export async function removeTripCollaborator(
+  tripId: string,
+  userId: string,
+) {
+  const supabase = getSupabaseAdmin();
+  if (!supabase) {
+    updateDatabase((db) => {
+      db.trip_collaborators = db.trip_collaborators.filter(
+        (entry) => !(entry.trip_id === tripId && entry.user_id === userId),
+      );
+    });
+    return;
+  }
+
+  await supabase
+    .from("trip_collaborators")
+    .delete()
+    .eq("trip_id", tripId)
+    .eq("user_id", userId);
 }

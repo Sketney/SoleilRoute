@@ -52,7 +52,7 @@ export async function convertCurrency(
   const baseCurrency = fromCurrency.toUpperCase();
   const targetCurrency = toCurrency.toUpperCase();
 
-  const cached = getCachedRates(baseCurrency);
+  const cached = await getCachedRates(baseCurrency);
   let rates = cached?.rates;
 
   if (!rates || !cached || !isCacheFresh(cached.fetched_at)) {

@@ -19,7 +19,7 @@ export async function POST(request: Request) {
   }
 
   const { email, password } = parsed.data;
-  const user = getUserByEmail(email);
+  const user = await getUserByEmail(email);
 
   if (!user) {
     return apiError("INVALID_CREDENTIALS", "Invalid credentials", 401);
@@ -33,16 +33,16 @@ export async function POST(request: Request) {
   const cookieStore = await cookies();
   const existingToken = cookieStore.get("session_token")?.value;
   if (existingToken) {
-    const session = getSessionWithUser(existingToken);
+    const session = await getSessionWithUser(existingToken);
     if (session?.user_id === user.id) {
       return NextResponse.json({
         user: { id: user.id, email: user.email },
       });
     }
-    deleteSession(existingToken);
+    await deleteSession(existingToken);
   }
 
-  const session = createSession(user.id);
+  const session = await createSession(user.id);
 
   cookieStore.set("session_token", session.token, {
     httpOnly: true,

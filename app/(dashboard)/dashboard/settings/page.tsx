@@ -22,12 +22,12 @@ export default async function SettingsPage() {
   const locale = await getRequestLocale();
   const t = getTranslations(locale);
 
-  const user = getUserById(session.user.id);
+  const user = await getUserById(session.user.id);
   if (!user) {
     redirect("/login");
   }
 
-  const activeSessions = listSessionsByUser(user.id).length;
+  const activeSessions = (await listSessionsByUser(user.id)).length;
 
   return (
     <section className="space-y-6">

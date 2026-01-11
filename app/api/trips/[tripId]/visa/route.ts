@@ -25,7 +25,7 @@ export async function PATCH(
   }
 
   const { tripId } = await params;
-  const access = getTripAccess(tripId, session.user.id);
+  const access = await getTripAccess(tripId, session.user.id);
   if (!access) {
     return NextResponse.json({ error: "Trip not found" }, { status: 404 });
   }
@@ -39,7 +39,7 @@ export async function PATCH(
     return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
   }
 
-  const updated = updateTrip(access.trip.id, {
+  const updated = await updateTrip(access.trip.id, {
     visa_status: parsed.data.status,
     visa_last_checked: new Date().toISOString(),
   });
@@ -51,7 +51,7 @@ export async function PATCH(
     );
   }
 
-  createNotification(session.user.id, {
+  await createNotification(session.user.id, {
     title: "Visa status updated",
     message: `Visa status for ${access.trip.destination_country} is now ${parsed.data.status.replace("_", " ")}.`,
     type: "info",

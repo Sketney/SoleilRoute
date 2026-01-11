@@ -48,7 +48,7 @@ export default async function TripOverviewPage({
     notFound();
   }
 
-  const access = getTripAccess(tripId, session.user.id);
+  const access = await getTripAccess(tripId, session.user.id);
 
   if (!access) {
     notFound();
@@ -58,7 +58,7 @@ export default async function TripOverviewPage({
   const canEdit = canEditTrip(access.role);
   const canManage = access.role === "owner";
 
-  const budgetItems = listBudgetItems(trip.id);
+  const budgetItems = await listBudgetItems(trip.id);
   const paidAmount = budgetItems
     .filter((item) => item.is_paid)
     .reduce((acc, item) => acc + item.amount, 0);
@@ -74,13 +74,13 @@ export default async function TripOverviewPage({
     plannedByCategory[key] = (plannedByCategory[key] ?? 0) + item.amount;
   });
 
-  const caps = listBudgetCaps(trip.id).map((cap) => ({
+  const caps = (await listBudgetCaps(trip.id)).map((cap) => ({
     id: cap.id,
     category: cap.category as BudgetCategoryId,
     limit: cap.limit_amount,
     currency: cap.currency,
   }));
-  const timelineItems = listTimelineItems(trip.id).map((item) => ({
+  const timelineItems = (await listTimelineItems(trip.id)).map((item) => ({
     id: item.id,
     title: item.title,
     dueDate: item.due_date,
@@ -90,19 +90,21 @@ export default async function TripOverviewPage({
     amount: item.amount ?? null,
     currency: item.currency ?? null,
   }));
-  const owner = getUserById(trip.user_id);
-  const collaborators = listTripCollaborators(trip.id);
-  const pendingInvites = listInvitationsByTrip(trip.id)
-    .filter((invite) => invite.status === "pending")
-    .map((invite) => {
-      const invitee = getUserById(invite.invitee_user_id);
-      return {
-        id: invite.id,
-        email: invitee?.email ?? invite.invitee_email,
-        role: invite.role,
-        createdAt: invite.created_at,
-      };
-    });
+  const owner = await getUserById(trip.user_id);
+  const collaborators = await listTripCollaborators(trip.id);
+  const pendingInvites = await Promise.all(
+    (await listInvitationsByTrip(trip.id))
+      .filter((invite) => invite.status === "pending")
+      .map(async (invite) => {
+        const invitee = await getUserById(invite.invitee_user_id);
+        return {
+          id: invite.id,
+          email: invitee?.email ?? invite.invitee_email,
+          role: invite.role,
+          createdAt: invite.created_at,
+        };
+      }),
+  );
   const collaboratorsList = [
     {
       id: "owner",
@@ -111,16 +113,18 @@ export default async function TripOverviewPage({
       role: "owner" as const,
       addedAt: trip.created_at,
     },
-    ...collaborators.map((entry) => {
-      const user = getUserById(entry.user_id);
-      return {
-        id: entry.id,
-        userId: entry.user_id,
-        email: user?.email ?? t.tripOverview.collaboratorUnknown,
-        role: entry.role,
-        addedAt: entry.created_at,
-      };
-    }),
+    ...(await Promise.all(
+      collaborators.map(async (entry) => {
+        const user = await getUserById(entry.user_id);
+        return {
+          id: entry.id,
+          userId: entry.user_id,
+          email: user?.email ?? t.tripOverview.collaboratorUnknown,
+          role: entry.role,
+          addedAt: entry.created_at,
+        };
+      }),
+    )),
   ];
 
   const editorValues = {

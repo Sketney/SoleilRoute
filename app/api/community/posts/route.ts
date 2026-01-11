@@ -26,26 +26,27 @@ export const runtime = "nodejs";
 
 const maxImageBytes = 10 * 1024 * 1024;
 
-function enrichPosts(posts: CommunityPost[], viewerId: string) {
-  return posts.map((post) => {
-    const author = getUserById(post.author_id);
-    const fallbackName =
-      author?.email?.split("@")[0] ||
-      post.author_email?.split("@")[0] ||
-      post.author_email;
-    const likeCount = listLikesByPost(post.id).length;
-    const saveCount = listSavesByPost(post.id).length;
-    return {
-      ...post,
-      author_name:
-        author?.display_name?.trim() || fallbackName,
-      author_avatar_url: author?.avatar_url ?? "",
-      like_count: likeCount,
-      save_count: saveCount,
-      liked_by_me: hasUserLiked(post.id, viewerId),
-      saved_by_me: hasUserSaved(post.id, viewerId),
-    };
-  });
+async function enrichPosts(posts: CommunityPost[], viewerId: string) {
+  return Promise.all(
+    posts.map(async (post) => {
+      const author = await getUserById(post.author_id);
+      const fallbackName =
+        author?.email?.split("@")[0] ||
+        post.author_email?.split("@")[0] ||
+        post.author_email;
+      const likeCount = (await listLikesByPost(post.id)).length;
+      const saveCount = (await listSavesByPost(post.id)).length;
+      return {
+        ...post,
+        author_name: author?.display_name?.trim() || fallbackName,
+        author_avatar_url: author?.avatar_url ?? "",
+        like_count: likeCount,
+        save_count: saveCount,
+        liked_by_me: await hasUserLiked(post.id, viewerId),
+        saved_by_me: await hasUserSaved(post.id, viewerId),
+      };
+    }),
+  );
 }
 
 export async function GET(request: Request) {
@@ -63,20 +64,26 @@ export async function GET(request: Request) {
     : 50;
 
   if (scope === "mine") {
-    const posts = listPostsByAuthor(session.user.id, limit);
-    return NextResponse.json({ posts: enrichPosts(posts, session.user.id) });
+    const posts = await listPostsByAuthor(session.user.id, limit);
+    return NextResponse.json({
+      posts: await enrichPosts(posts, session.user.id),
+    });
   }
 
   if (scope === "saved") {
-    const savedIds = listSavedPostIdsByUser(session.user.id);
-    const posts = listPostsByIds(savedIds)
+    const savedIds = await listSavedPostIdsByUser(session.user.id);
+    const posts = (await listPostsByIds(savedIds))
       .sort((a, b) => b.created_at.localeCompare(a.created_at))
       .slice(0, limit);
-    return NextResponse.json({ posts: enrichPosts(posts, session.user.id) });
+    return NextResponse.json({
+      posts: await enrichPosts(posts, session.user.id),
+    });
   }
 
-  const posts = listApprovedPosts(limit);
-  return NextResponse.json({ posts: enrichPosts(posts, session.user.id) });
+  const posts = await listApprovedPosts(limit);
+  return NextResponse.json({
+    posts: await enrichPosts(posts, session.user.id),
+  });
 }
 
 export async function POST(request: Request) {
@@ -85,7 +92,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const user = getUserById(session.user.id);
+  const user = await getUserById(session.user.id);
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -145,7 +152,7 @@ export async function POST(request: Request) {
   const safeTag = tagCheck.value ?? "other";
   const safeText = textCheck.value ?? textValue.trim();
   const safeMapUrl = hasMap ? (mapCheck.value ?? "") : undefined;
-  const post = createCommunityPost(session.user.id, user.email, {
+  const post = await createCommunityPost(session.user.id, user.email, {
     tag: safeTag,
     text: safeText,
     image_url: imageUrl,

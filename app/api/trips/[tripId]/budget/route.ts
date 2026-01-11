@@ -63,7 +63,7 @@ export async function POST(
   }
 
   const { tripId } = await params;
-  const access = getTripAccess(tripId, session.user.id);
+  const access = await getTripAccess(tripId, session.user.id);
 
   if (!access) {
     return apiError("NOT_FOUND", "Trip not found", 404);
@@ -80,26 +80,24 @@ export async function POST(
   const normalizedDescription = description?.trim();
   const normalizedCurrency = currency ?? access.trip.currency;
 
-  const itemId = (() => {
-    try {
-      return insertBudgetItem(access.trip.id, {
-        category,
-        description: normalizedDescription ? normalizedDescription : null,
-        amount,
-        currency: normalizedCurrency,
-        is_paid: isPaid ?? false,
-      });
-    } catch (error) {
-      console.error("Failed to insert budget item", error);
-      return null;
-    }
-  })();
+  let itemId: string | null = null;
+  try {
+    itemId = await insertBudgetItem(access.trip.id, {
+      category,
+      description: normalizedDescription ? normalizedDescription : null,
+      amount,
+      currency: normalizedCurrency,
+      is_paid: isPaid ?? false,
+    });
+  } catch (error) {
+    console.error("Failed to insert budget item", error);
+  }
 
   if (!itemId) {
     return apiError("CREATE_FAILED", "Unable to add budget item", 500);
   }
 
-  createNotification(session.user.id, {
+  await createNotification(session.user.id, {
     title: "Budget item added",
     message: `${category} - ${amount} ${normalizedCurrency}`,
     type: "info",
@@ -138,7 +136,7 @@ export async function PATCH(
   }
 
   const { tripId } = await params;
-  const access = getTripAccess(tripId, session.user.id);
+  const access = await getTripAccess(tripId, session.user.id);
   if (!access) {
     return apiError("NOT_FOUND", "Trip not found", 404);
   }
@@ -172,13 +170,13 @@ export async function PATCH(
     return apiError("NO_UPDATES", "No updates provided", 400);
   }
 
-  const item = getBudgetItemById(itemId);
+  const item = await getBudgetItemById(itemId);
   if (!item || item.trip_id !== access.trip.id) {
     return apiError("NOT_FOUND", "Budget item not found", 404);
   }
 
   try {
-    updateBudgetItem(item.id, updates);
+    await updateBudgetItem(item.id, updates);
   } catch (error) {
     console.error("Failed to update budget item", error);
     return apiError("UPDATE_FAILED", "Unable to update budget item", 500);
@@ -214,7 +212,7 @@ export async function DELETE(
   }
 
   const { tripId } = await params;
-  const access = getTripAccess(tripId, session.user.id);
+  const access = await getTripAccess(tripId, session.user.id);
   if (!access) {
     return apiError("NOT_FOUND", "Trip not found", 404);
   }
@@ -222,13 +220,13 @@ export async function DELETE(
     return apiError("FORBIDDEN", "Forbidden", 403);
   }
 
-  const item = getBudgetItemById(parsed.data.id);
+  const item = await getBudgetItemById(parsed.data.id);
   if (!item || item.trip_id !== access.trip.id) {
     return apiError("NOT_FOUND", "Budget item not found", 404);
   }
 
   try {
-    deleteBudgetItem(item.id);
+    await deleteBudgetItem(item.id);
   } catch (error) {
     console.error("Failed to delete budget item", error);
     return apiError("DELETE_FAILED", "Unable to delete budget item", 500);

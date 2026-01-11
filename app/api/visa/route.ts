@@ -26,7 +26,7 @@ export async function POST(request: Request) {
   const insights = lookup.insights;
 
   if (session) {
-    createVisaCheck(session.user.id, {
+    await createVisaCheck(session.user.id, {
       citizenship,
       destination,
       found: Boolean(result),

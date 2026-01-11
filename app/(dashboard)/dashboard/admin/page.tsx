@@ -9,7 +9,7 @@ export default async function AdminPage() {
   if (!session) {
     return null;
   }
-  const user = getUserById(session.user.id);
+  const user = await getUserById(session.user.id);
   if (!isAdminEmail(user?.email ?? null)) {
     return (
       <Card className="border-border/70">

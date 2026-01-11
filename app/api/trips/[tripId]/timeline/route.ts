@@ -47,12 +47,12 @@ export async function GET(
   }
 
   const { tripId } = await params;
-  const access = getTripAccess(tripId, session.user.id);
+  const access = await getTripAccess(tripId, session.user.id);
   if (!access) {
     return NextResponse.json({ error: "Trip not found" }, { status: 404 });
   }
 
-  const items = listTimelineItems(tripId);
+  const items = await listTimelineItems(tripId);
   return NextResponse.json({
     items: items.map((item) => ({
       id: item.id,
@@ -77,7 +77,7 @@ export async function POST(
   }
 
   const { tripId } = await params;
-  const access = getTripAccess(tripId, session.user.id);
+  const access = await getTripAccess(tripId, session.user.id);
   if (!access) {
     return NextResponse.json({ error: "Trip not found" }, { status: 404 });
   }
@@ -96,7 +96,7 @@ export async function POST(
     return NextResponse.json({ error: "Invalid date" }, { status: 400 });
   }
 
-  const created = createTimelineItem(tripId, {
+  const created = await createTimelineItem(tripId, {
     title: parsed.data.title.trim(),
     due_date: dueDate,
     type: parsed.data.type,
@@ -106,7 +106,7 @@ export async function POST(
     currency: parsed.data.amount ? access.trip.currency : null,
   });
 
-  createNotification(session.user.id, {
+  await createNotification(session.user.id, {
     title:
       created.type === "payment"
         ? "Payment reminder added"
@@ -143,7 +143,7 @@ export async function PATCH(
   }
 
   const { tripId } = await params;
-  const access = getTripAccess(tripId, session.user.id);
+  const access = await getTripAccess(tripId, session.user.id);
   if (!access) {
     return NextResponse.json({ error: "Trip not found" }, { status: 404 });
   }
@@ -157,7 +157,7 @@ export async function PATCH(
     return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
   }
 
-  const item = getTimelineItemById(parsed.data.id);
+  const item = await getTimelineItemById(parsed.data.id);
   if (!item || item.trip_id !== tripId) {
     return NextResponse.json({ error: "Item not found" }, { status: 404 });
   }
@@ -196,13 +196,13 @@ export async function PATCH(
     updates.currency = parsed.data.amount ? access.trip.currency : null;
   }
 
-  const updated = updateTimelineItem(item.id, updates);
+  const updated = await updateTimelineItem(item.id, updates);
   if (!updated) {
     return NextResponse.json({ error: "Unable to update item" }, { status: 500 });
   }
 
   if (item.status !== "completed" && updated.status === "completed") {
-    createNotification(session.user.id, {
+    await createNotification(session.user.id, {
       title:
         updated.type === "payment"
           ? "Payment marked complete"
@@ -237,7 +237,7 @@ export async function DELETE(
   }
 
   const { tripId } = await params;
-  const access = getTripAccess(tripId, session.user.id);
+  const access = await getTripAccess(tripId, session.user.id);
   if (!access) {
     return NextResponse.json({ error: "Trip not found" }, { status: 404 });
   }
@@ -251,12 +251,12 @@ export async function DELETE(
     return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
   }
 
-  const item = getTimelineItemById(parsed.data.id);
+  const item = await getTimelineItemById(parsed.data.id);
   if (!item || item.trip_id !== tripId) {
     return NextResponse.json({ error: "Item not found" }, { status: 404 });
   }
 
-  deleteTimelineItem(item.id);
+  await deleteTimelineItem(item.id);
 
   return NextResponse.json({ success: true });
 }

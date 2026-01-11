@@ -16,7 +16,7 @@ export default async function DashboardLayout({
     redirect("/login");
   }
 
-  const user = getUserById(session.user.id);
+  const user = await getUserById(session.user.id);
 
   const showAdmin = isAdminEmail(user?.email ?? null);
   const showModeration = isModerator(user);

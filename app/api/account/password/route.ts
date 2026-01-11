@@ -21,7 +21,7 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
   }
 
-  const user = getUserById(session.user.id);
+  const user = await getUserById(session.user.id);
   if (!user) {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
@@ -38,7 +38,7 @@ export async function PATCH(request: Request) {
   }
 
   const passwordHash = await bcrypt.hash(parsed.data.newPassword, 12);
-  updateUserPassword(user.id, passwordHash);
+  await updateUserPassword(user.id, passwordHash);
 
   return NextResponse.json({ success: true });
 }

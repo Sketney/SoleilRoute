@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import { readDatabase, updateDatabase } from "@/server/db/client";
+import { getSupabaseAdmin } from "@/server/db/supabase";
 
 export type TimelineItemType = "milestone" | "payment";
 export type TimelineItemStatus = "pending" | "completed";
@@ -24,24 +25,54 @@ function cloneTimelineItem(
   return item ? { ...item } : null;
 }
 
-export function listTimelineItems(tripId: string): TimelineItemRecord[] {
-  const db = readDatabase();
-  return db.timeline_items
-    .filter((entry) => entry.trip_id === tripId)
-    .sort((a, b) => a.due_date.localeCompare(b.due_date))
-    .map((entry) => ({ ...entry }));
+export async function listTimelineItems(
+  tripId: string,
+): Promise<TimelineItemRecord[]> {
+  const supabase = getSupabaseAdmin();
+  if (!supabase) {
+    const db = readDatabase();
+    return db.timeline_items
+      .filter((entry) => entry.trip_id === tripId)
+      .sort((a, b) => a.due_date.localeCompare(b.due_date))
+      .map((entry) => ({ ...entry }));
+  }
+
+  const { data, error } = await supabase
+    .from("timeline_items")
+    .select("*")
+    .eq("trip_id", tripId)
+    .order("due_date", { ascending: true });
+  if (error || !data) {
+    return [];
+  }
+  return data.map((entry) => ({ ...(entry as TimelineItemRecord) }));
 }
 
-export function getTimelineItemById(itemId: string): TimelineItemRecord | null {
-  const db = readDatabase();
-  const item = db.timeline_items.find((entry) => entry.id === itemId);
-  return cloneTimelineItem(item);
+export async function getTimelineItemById(
+  itemId: string,
+): Promise<TimelineItemRecord | null> {
+  const supabase = getSupabaseAdmin();
+  if (!supabase) {
+    const db = readDatabase();
+    const item = db.timeline_items.find((entry) => entry.id === itemId);
+    return cloneTimelineItem(item);
+  }
+
+  const { data, error } = await supabase
+    .from("timeline_items")
+    .select("*")
+    .eq("id", itemId)
+    .maybeSingle();
+  if (error || !data) {
+    return null;
+  }
+  return cloneTimelineItem(data as TimelineItemRecord);
 }
 
-export function createTimelineItem(
+export async function createTimelineItem(
   tripId: string,
   data: Omit<TimelineItemRecord, "id" | "trip_id" | "created_at" | "updated_at">,
-): TimelineItemRecord {
+): Promise<TimelineItemRecord> {
   const now = new Date().toISOString();
   const record: TimelineItemRecord = {
     id: crypto.randomUUID(),
@@ -57,14 +88,27 @@ export function createTimelineItem(
     updated_at: now,
   };
 
-  updateDatabase((db) => {
-    db.timeline_items.push(record);
-  });
+  const supabase = getSupabaseAdmin();
+  if (!supabase) {
+    updateDatabase((db) => {
+      db.timeline_items.push(record);
+    });
+    return { ...record };
+  }
 
-  return { ...record };
+  const { data: created, error } = await supabase
+    .from("timeline_items")
+    .insert(record)
+    .select("*")
+    .single();
+  if (error || !created) {
+    throw new Error("FAILED_TO_CREATE_TIMELINE_ITEM");
+  }
+
+  return { ...(created as TimelineItemRecord) };
 }
 
-export function updateTimelineItem(
+export async function updateTimelineItem(
   itemId: string,
   updates: Partial<
     Pick<
@@ -72,47 +116,70 @@ export function updateTimelineItem(
       "title" | "due_date" | "type" | "status" | "notes" | "amount" | "currency"
     >
   >,
-): TimelineItemRecord | null {
-  let updated: TimelineItemRecord | null = null;
+): Promise<TimelineItemRecord | null> {
+  const supabase = getSupabaseAdmin();
+  if (!supabase) {
+    let updated: TimelineItemRecord | null = null;
+    updateDatabase((db) => {
+      const target = db.timeline_items.find((entry) => entry.id === itemId);
+      if (!target) {
+        return;
+      }
+      if (updates.title !== undefined) {
+        target.title = updates.title;
+      }
+      if (updates.due_date !== undefined) {
+        target.due_date = updates.due_date;
+      }
+      if (updates.type !== undefined) {
+        target.type = updates.type;
+      }
+      if (updates.status !== undefined) {
+        target.status = updates.status;
+      }
+      if (updates.notes !== undefined) {
+        target.notes = updates.notes;
+      }
+      if (updates.amount !== undefined) {
+        target.amount = updates.amount;
+      }
+      if (updates.currency !== undefined) {
+        target.currency = updates.currency;
+      }
 
-  updateDatabase((db) => {
-    const target = db.timeline_items.find((entry) => entry.id === itemId);
-    if (!target) {
-      return;
-    }
-    if (updates.title !== undefined) {
-      target.title = updates.title;
-    }
-    if (updates.due_date !== undefined) {
-      target.due_date = updates.due_date;
-    }
-    if (updates.type !== undefined) {
-      target.type = updates.type;
-    }
-    if (updates.status !== undefined) {
-      target.status = updates.status;
-    }
-    if (updates.notes !== undefined) {
-      target.notes = updates.notes;
-    }
-    if (updates.amount !== undefined) {
-      target.amount = updates.amount;
-    }
-    if (updates.currency !== undefined) {
-      target.currency = updates.currency;
-    }
+      target.updated_at = new Date().toISOString();
+      updated = { ...target };
+    });
 
-    target.updated_at = new Date().toISOString();
-    updated = { ...target };
-  });
+    return updated;
+  }
 
-  return updated;
+  const payload = {
+    ...updates,
+    updated_at: new Date().toISOString(),
+  };
+  const { data, error } = await supabase
+    .from("timeline_items")
+    .update(payload)
+    .eq("id", itemId)
+    .select("*")
+    .maybeSingle();
+  if (error || !data) {
+    return null;
+  }
+  return { ...(data as TimelineItemRecord) };
 }
 
-export function deleteTimelineItem(itemId: string) {
-  updateDatabase((db) => {
-    db.timeline_items = db.timeline_items.filter(
-      (entry) => entry.id !== itemId,
-    );
-  });
+export async function deleteTimelineItem(itemId: string) {
+  const supabase = getSupabaseAdmin();
+  if (!supabase) {
+    updateDatabase((db) => {
+      db.timeline_items = db.timeline_items.filter(
+        (entry) => entry.id !== itemId,
+      );
+    });
+    return;
+  }
+
+  await supabase.from("timeline_items").delete().eq("id", itemId);
 }

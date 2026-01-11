@@ -2,6 +2,8 @@ import path from "path";
 import fs from "fs";
 import { containsProhibitedLanguage } from "@/lib/moderation/bad-words";
 import { communityTags, type CommunityTag } from "@/lib/moderation/tags";
+import { env } from "@/lib/env";
+import { getSupabaseAdmin } from "@/server/db/supabase";
 
 const allowedImageTypes = new Map([
   ["image/jpeg", ".jpg"],
@@ -96,10 +98,28 @@ export async function savePostImage(
     return { ok: false, error: "IMAGE_TYPE_INVALID" };
   }
 
-  fs.mkdirSync(destinationDir, { recursive: true });
   const filename = `${filenameBase}${extension}`;
-  const filePath = path.join(destinationDir, filename);
   const buffer = Buffer.from(await file.arrayBuffer());
+
+  const supabase = getSupabaseAdmin();
+  const bucket = env.SUPABASE_STORAGE_BUCKET;
+  if (supabase && bucket) {
+    const objectPath = `posts/${filename}`;
+    const { error } = await supabase.storage
+      .from(bucket)
+      .upload(objectPath, buffer, {
+        contentType: file.type,
+        upsert: true,
+      });
+    if (error) {
+      return { ok: false, error: "IMAGE_UPLOAD_FAILED" };
+    }
+    const { data } = supabase.storage.from(bucket).getPublicUrl(objectPath);
+    return { ok: true, url: data.publicUrl };
+  }
+
+  fs.mkdirSync(destinationDir, { recursive: true });
+  const filePath = path.join(destinationDir, filename);
   fs.writeFileSync(filePath, buffer);
   return { ok: true, url: `${publicPath}/${filename}` };
 }

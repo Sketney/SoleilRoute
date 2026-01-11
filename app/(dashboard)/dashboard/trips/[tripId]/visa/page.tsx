@@ -36,7 +36,7 @@ export default async function TripVisaPage({
     notFound();
   }
 
-  const access = getTripAccess(tripId, session.user.id);
+  const access = await getTripAccess(tripId, session.user.id);
 
   if (!access) {
     notFound();

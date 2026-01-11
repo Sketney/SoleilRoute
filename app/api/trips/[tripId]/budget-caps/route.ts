@@ -37,12 +37,12 @@ export async function GET(
   }
 
   const { tripId } = await params;
-  const access = getTripAccess(tripId, session.user.id);
+  const access = await getTripAccess(tripId, session.user.id);
   if (!access) {
     return NextResponse.json({ error: "Trip not found" }, { status: 404 });
   }
 
-  const caps = listBudgetCaps(tripId);
+  const caps = await listBudgetCaps(tripId);
   return NextResponse.json({
     caps: caps.map((cap) => ({
       id: cap.id,
@@ -63,7 +63,7 @@ export async function PUT(
   }
 
   const { tripId } = await params;
-  const access = getTripAccess(tripId, session.user.id);
+  const access = await getTripAccess(tripId, session.user.id);
   if (!access) {
     return NextResponse.json({ error: "Trip not found" }, { status: 404 });
   }
@@ -85,7 +85,7 @@ export async function PUT(
       currency: access.trip.currency,
     }));
 
-  const updated = setBudgetCaps(tripId, normalizedCaps);
+  const updated = await setBudgetCaps(tripId, normalizedCaps);
 
   return NextResponse.json({
     caps: updated.map((cap) => ({

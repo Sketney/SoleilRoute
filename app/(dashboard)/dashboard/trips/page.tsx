@@ -20,9 +20,11 @@ export default async function TripsPage() {
   const locale = await getRequestLocale();
   const t = getTranslations(locale);
 
-  const tripsWithAccess = listTripsWithAccess(session.user.id);
+  const tripsWithAccess = await listTripsWithAccess(session.user.id);
   const trips = tripsWithAccess.map((entry) => entry.trip);
-  const budgetItems = trips.flatMap((trip) => listBudgetItems(trip.id));
+  const budgetItems = (
+    await Promise.all(trips.map((trip) => listBudgetItems(trip.id)))
+  ).flat();
 
   const dashboardTrips: DashboardTrip[] = tripsWithAccess.map(({ trip, role }) => {
     const budgets = budgetItems.filter((item) => item.trip_id === trip.id);

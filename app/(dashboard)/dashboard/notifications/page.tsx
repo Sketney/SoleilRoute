@@ -26,27 +26,29 @@ export default async function NotificationsPage() {
   const locale = await getRequestLocale();
   const t = getTranslations(locale);
 
-  const user = getUserById(session.user.id);
+  const user = await getUserById(session.user.id);
   if (!user) {
     redirect("/login");
   }
 
-  const notifications = listNotificationsByUser(user.id, 200);
-  const invitations = listInvitationsByUser(user.id, "pending").map((invite) => {
-    const trip = getTripById(invite.trip_id);
-    const inviter = getUserById(invite.invited_by);
-    return {
-      id: invite.id,
-      tripId: invite.trip_id,
-      tripName: trip?.name ?? t.notifications.tripFallback,
-      destination: trip
-        ? `${trip.destination_city}, ${trip.destination_country}`
-        : t.notifications.unknownDestination,
-      role: invite.role,
-      invitedBy: inviter?.email ?? null,
-      createdAt: invite.created_at,
-    };
-  });
+  const notifications = await listNotificationsByUser(user.id, 200);
+  const invitations = await Promise.all(
+    (await listInvitationsByUser(user.id, "pending")).map(async (invite) => {
+      const trip = await getTripById(invite.trip_id);
+      const inviter = await getUserById(invite.invited_by);
+      return {
+        id: invite.id,
+        tripId: invite.trip_id,
+        tripName: trip?.name ?? t.notifications.tripFallback,
+        destination: trip
+          ? `${trip.destination_city}, ${trip.destination_country}`
+          : t.notifications.unknownDestination,
+        role: invite.role,
+        invitedBy: inviter?.email ?? null,
+        createdAt: invite.created_at,
+      };
+    }),
+  );
 
   return (
     <section className="space-y-6">

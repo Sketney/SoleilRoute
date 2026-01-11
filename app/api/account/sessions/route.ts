@@ -11,7 +11,7 @@ export async function DELETE() {
 
   const cookieStore = await cookies();
   const currentToken = cookieStore.get("session_token")?.value;
-  const revoked = deleteSessionsByUser(session.user.id, currentToken);
+  const revoked = await deleteSessionsByUser(session.user.id, currentToken);
 
   return NextResponse.json({ revoked });
 }

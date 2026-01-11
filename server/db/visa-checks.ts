@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import { readDatabase, updateDatabase } from "@/server/db/client";
+import { getSupabaseAdmin } from "@/server/db/supabase";
 
 export type VisaCheckRecord = {
   id: string;
@@ -19,7 +20,7 @@ export type VisaCheckRecord = {
   checked_at: string;
 };
 
-export function createVisaCheck(
+export async function createVisaCheck(
   userId: string,
   data: Omit<VisaCheckRecord, "id" | "user_id" | "checked_at"> & {
     checked_at?: string;
@@ -43,35 +44,79 @@ export function createVisaCheck(
     checked_at: data.checked_at ?? new Date().toISOString(),
   };
 
-  updateDatabase((db) => {
-    db.visa_checks.push(record);
-  });
+  const supabase = getSupabaseAdmin();
+  if (!supabase) {
+    updateDatabase((db) => {
+      db.visa_checks.push(record);
+    });
+    return { ...record };
+  }
 
-  return { ...record };
+  const { data: created, error } = await supabase
+    .from("visa_checks")
+    .insert(record)
+    .select("*")
+    .single();
+  if (error || !created) {
+    throw new Error("FAILED_TO_CREATE_VISA_CHECK");
+  }
+
+  return { ...(created as VisaCheckRecord) };
 }
 
-export function listVisaChecksByUser(userId: string, limit = 50) {
-  const db = readDatabase();
-  return db.visa_checks
-    .filter((entry) => entry.user_id === userId)
-    .sort((a, b) => b.checked_at.localeCompare(a.checked_at))
-    .slice(0, limit)
-    .map((entry) => ({ ...entry }));
+export async function listVisaChecksByUser(userId: string, limit = 50) {
+  const supabase = getSupabaseAdmin();
+  if (!supabase) {
+    const db = readDatabase();
+    return db.visa_checks
+      .filter((entry) => entry.user_id === userId)
+      .sort((a, b) => b.checked_at.localeCompare(a.checked_at))
+      .slice(0, limit)
+      .map((entry) => ({ ...entry }));
+  }
+
+  const { data, error } = await supabase
+    .from("visa_checks")
+    .select("*")
+    .eq("user_id", userId)
+    .order("checked_at", { ascending: false })
+    .limit(limit);
+  if (error || !data) {
+    return [];
+  }
+  return data.map((entry) => ({ ...(entry as VisaCheckRecord) }));
 }
 
-export function getLatestVisaCheck(
+export async function getLatestVisaCheck(
   userId: string,
   citizenship: string,
   destination: string,
 ) {
-  const db = readDatabase();
-  const match = db.visa_checks
-    .filter(
-      (entry) =>
-        entry.user_id === userId &&
-        entry.citizenship === citizenship &&
-        entry.destination === destination,
-    )
-    .sort((a, b) => b.checked_at.localeCompare(a.checked_at))[0];
-  return match ? { ...match } : null;
+  const supabase = getSupabaseAdmin();
+  if (!supabase) {
+    const db = readDatabase();
+    const match = db.visa_checks
+      .filter(
+        (entry) =>
+          entry.user_id === userId &&
+          entry.citizenship === citizenship &&
+          entry.destination === destination,
+      )
+      .sort((a, b) => b.checked_at.localeCompare(a.checked_at))[0];
+    return match ? { ...match } : null;
+  }
+
+  const { data, error } = await supabase
+    .from("visa_checks")
+    .select("*")
+    .eq("user_id", userId)
+    .eq("citizenship", citizenship)
+    .eq("destination", destination)
+    .order("checked_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  if (error || !data) {
+    return null;
+  }
+  return { ...(data as VisaCheckRecord) };
 }

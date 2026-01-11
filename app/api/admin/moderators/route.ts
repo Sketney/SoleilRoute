@@ -15,12 +15,12 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const user = getUserById(session.user.id);
+  const user = await getUserById(session.user.id);
   if (!isAdminEmail(user?.email ?? null)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
-  const users = listUsers().map((entry) => ({
+  const users = (await listUsers()).map((entry) => ({
     id: entry.id,
     email: entry.email,
     is_moderator: entry.is_moderator ?? false,
@@ -34,7 +34,7 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const user = getUserById(session.user.id);
+  const user = await getUserById(session.user.id);
   if (!isAdminEmail(user?.email ?? null)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
@@ -45,7 +45,7 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
   }
 
-  const updated = setUserModerator(parsed.data.userId, parsed.data.enabled);
+  const updated = await setUserModerator(parsed.data.userId, parsed.data.enabled);
   return NextResponse.json({
     user: {
       id: updated.id,

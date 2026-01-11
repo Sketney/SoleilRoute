@@ -33,26 +33,26 @@ export async function POST(
   }
 
   const { postId } = await params;
-  const post = getCommunityPostById(postId);
+  const post = await getCommunityPostById(postId);
   if (!post) {
     return NextResponse.json({ error: "Post not found" }, { status: 404 });
   }
 
   if (parsed.data.action === "like") {
-    const alreadyLiked = hasUserLiked(postId, session.user.id);
-    toggleLike(postId, session.user.id, parsed.data.enabled);
+    const alreadyLiked = await hasUserLiked(postId, session.user.id);
+    await toggleLike(postId, session.user.id, parsed.data.enabled);
     if (
       parsed.data.enabled &&
       !alreadyLiked &&
       post.author_id !== session.user.id
     ) {
-      const actor = getUserById(session.user.id);
+      const actor = await getUserById(session.user.id);
       const actorName =
         actor?.display_name?.trim() ||
         actor?.email?.split("@")[0] ||
         actor?.email ||
         "Someone";
-      createNotification(post.author_id, {
+      await createNotification(post.author_id, {
         title: "New like",
         message: `${actorName} liked your post.`,
         type: "info",
@@ -60,11 +60,11 @@ export async function POST(
       });
     }
   } else {
-    toggleSave(postId, session.user.id, parsed.data.enabled);
+    await toggleSave(postId, session.user.id, parsed.data.enabled);
   }
 
-  const likeCount = listLikesByPost(postId).length;
-  const saveCount = listSavesByPost(postId).length;
+  const likeCount = (await listLikesByPost(postId)).length;
+  const saveCount = (await listSavesByPost(postId)).length;
   return NextResponse.json({
     like_count: likeCount,
     save_count: saveCount,

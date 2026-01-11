@@ -22,7 +22,7 @@ export async function GET() {
     return apiError("UNAUTHORIZED", "Unauthorized", 401);
   }
 
-  const trips = listTripsByUser(session.user.id);
+  const trips = await listTripsByUser(session.user.id);
 
   return NextResponse.json({
     trips: trips.map((trip) => ({
@@ -85,7 +85,7 @@ export async function POST(request: Request) {
     console.warn("Visa lookup skipped", error);
   }
 
-  const trip = createTrip(session.user.id, {
+  const trip = await createTrip(session.user.id, {
     name: form.name,
     destination_country: form.destinationCountry,
     destination_city: form.destinationCity,
@@ -102,7 +102,7 @@ export async function POST(request: Request) {
     visa_last_checked: visaCheckedAt,
   });
 
-  createNotification(session.user.id, {
+  await createNotification(session.user.id, {
     title: "Trip created",
     message: `Your trip to ${trip.destination_city} is ready.`,
     type: "success",
@@ -116,15 +116,17 @@ export async function POST(request: Request) {
       ? { excludeCategories: ["visa"], includeExcluded: true }
       : undefined,
   );
-  split.forEach((item) => {
-    insertBudgetItem(trip.id, {
+  await Promise.all(
+    split.map((item) =>
+      insertBudgetItem(trip.id, {
       category: item.category,
       description: null,
       amount: item.amount,
       currency: form.currency,
       is_paid: false,
-    });
-  });
+      }),
+    ),
+  );
 
   if (session.user.email) {
     await sendTripSummaryEmail({
@@ -143,7 +145,7 @@ export async function POST(request: Request) {
     });
   }
 
-  const refreshedBudget = listBudgetItems(trip.id);
+  const refreshedBudget = await listBudgetItems(trip.id);
 
   return NextResponse.json(
     {

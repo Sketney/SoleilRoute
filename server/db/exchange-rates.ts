@@ -1,4 +1,5 @@
 import { readDatabase, updateDatabase } from "@/server/db/client";
+import { getSupabaseAdmin } from "@/server/db/supabase";
 
 export type ExchangeRateRecord = {
   base_currency: string;
@@ -7,15 +8,30 @@ export type ExchangeRateRecord = {
   provider: string;
 };
 
-export function getCachedRates(baseCurrency: string): ExchangeRateRecord | null {
-  const db = readDatabase();
-  const record = db.exchange_rates.find(
-    (entry) => entry.base_currency === baseCurrency.toUpperCase(),
-  );
-  return record ? { ...record } : null;
+export async function getCachedRates(
+  baseCurrency: string,
+): Promise<ExchangeRateRecord | null> {
+  const supabase = getSupabaseAdmin();
+  if (!supabase) {
+    const db = readDatabase();
+    const record = db.exchange_rates.find(
+      (entry) => entry.base_currency === baseCurrency.toUpperCase(),
+    );
+    return record ? { ...record } : null;
+  }
+
+  const { data, error } = await supabase
+    .from("exchange_rates")
+    .select("*")
+    .eq("base_currency", baseCurrency.toUpperCase())
+    .maybeSingle();
+  if (error || !data) {
+    return null;
+  }
+  return { ...(data as ExchangeRateRecord) };
 }
 
-export function saveRates(
+export async function saveRates(
   baseCurrency: string,
   rates: Record<string, number>,
   provider: string,
@@ -28,14 +44,22 @@ export function saveRates(
     provider,
   };
 
-  updateDatabase((db) => {
-    const existingIndex = db.exchange_rates.findIndex(
-      (entry) => entry.base_currency === upper,
-    );
-    if (existingIndex >= 0) {
-      db.exchange_rates[existingIndex] = payload;
-    } else {
-      db.exchange_rates.push(payload);
-    }
+  const supabase = getSupabaseAdmin();
+  if (!supabase) {
+    updateDatabase((db) => {
+      const existingIndex = db.exchange_rates.findIndex(
+        (entry) => entry.base_currency === upper,
+      );
+      if (existingIndex >= 0) {
+        db.exchange_rates[existingIndex] = payload;
+      } else {
+        db.exchange_rates.push(payload);
+      }
+    });
+    return;
+  }
+
+  await supabase.from("exchange_rates").upsert(payload, {
+    onConflict: "base_currency",
   });
 }

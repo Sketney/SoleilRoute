@@ -9,11 +9,11 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const user = getUserById(session.user.id);
+  const user = await getUserById(session.user.id);
   if (!isModerator(user)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
-  const posts = listPendingPosts(200);
+  const posts = await listPendingPosts(200);
   return NextResponse.json({ posts });
 }

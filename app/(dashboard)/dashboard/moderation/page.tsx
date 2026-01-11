@@ -9,7 +9,7 @@ export default async function ModerationPage() {
   if (!session) {
     return null;
   }
-  const user = getUserById(session.user.id);
+  const user = await getUserById(session.user.id);
   if (!isModerator(user)) {
     return (
       <Card className="border-border/70">

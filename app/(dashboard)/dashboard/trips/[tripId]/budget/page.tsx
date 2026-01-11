@@ -32,7 +32,7 @@ export default async function TripBudgetPage({
     notFound();
   }
 
-  const access = getTripAccess(tripId, session.user.id);
+  const access = await getTripAccess(tripId, session.user.id);
 
   if (!access) {
     notFound();
@@ -40,7 +40,7 @@ export default async function TripBudgetPage({
   const trip = access.trip;
   const canEdit = canEditTrip(access.role);
 
-  const budgetItems = listBudgetItems(trip.id).map((item) => ({
+  const budgetItems = (await listBudgetItems(trip.id)).map((item) => ({
     id: item.id,
     category: item.category as BudgetCategoryId,
     description: item.description,

@@ -34,7 +34,7 @@ export async function PATCH(
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const user = getUserById(session.user.id);
+  const user = await getUserById(session.user.id);
   if (!isModerator(user)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
@@ -46,7 +46,7 @@ export async function PATCH(
   }
 
   const { postId } = await params;
-  const post = getCommunityPostById(postId);
+  const post = await getCommunityPostById(postId);
   if (!post) {
     return NextResponse.json({ error: "Post not found" }, { status: 404 });
   }
@@ -86,14 +86,14 @@ export async function PATCH(
     return NextResponse.json({ error: "No updates provided" }, { status: 400 });
   }
 
-  const updated = updateCommunityPost(postId, updates);
-  const author = getUserById(updated.author_id);
+  const updated = await updateCommunityPost(postId, updates);
+  const author = await getUserById(updated.author_id);
   const fallbackName =
     author?.email?.split("@")[0] ||
     updated.author_email?.split("@")[0] ||
     updated.author_email;
-  const likeCount = listLikesByPost(postId).length;
-  const saveCount = listSavesByPost(postId).length;
+  const likeCount = (await listLikesByPost(postId)).length;
+  const saveCount = (await listSavesByPost(postId)).length;
   return NextResponse.json({
     post: {
       ...updated,
@@ -101,8 +101,8 @@ export async function PATCH(
       author_avatar_url: author?.avatar_url ?? "",
       like_count: likeCount,
       save_count: saveCount,
-      liked_by_me: hasUserLiked(postId, session.user.id),
-      saved_by_me: hasUserSaved(postId, session.user.id),
+      liked_by_me: await hasUserLiked(postId, session.user.id),
+      saved_by_me: await hasUserSaved(postId, session.user.id),
     },
   });
 }
@@ -116,15 +116,15 @@ export async function DELETE(
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const user = getUserById(session.user.id);
+  const user = await getUserById(session.user.id);
   if (!isModerator(user)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
   const { postId } = await params;
-  const removed = deleteCommunityPost(postId);
+  const removed = await deleteCommunityPost(postId);
 
-  createNotification(removed.author_id, {
+  await createNotification(removed.author_id, {
     title: "Post removed",
     message: "Your community post was removed by a moderator.",
     type: "warning",

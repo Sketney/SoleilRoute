@@ -27,7 +27,7 @@ export async function GET(request: Request) {
     ? Math.min(Math.max(parsedLimit, 1), 200)
     : 20;
 
-  const notifications = listNotificationsByUser(session.user.id, limit);
+  const notifications = await listNotificationsByUser(session.user.id, limit);
   const unreadCount = notifications.filter((item) => !item.read_at).length;
 
   return NextResponse.json({ notifications, unreadCount });
@@ -46,9 +46,9 @@ export async function PATCH(request: Request) {
   }
 
   if (parsed.data.all) {
-    markAllNotificationsRead(session.user.id);
+    await markAllNotificationsRead(session.user.id);
   } else if (parsed.data.id) {
-    markNotificationRead(parsed.data.id);
+    await markNotificationRead(parsed.data.id);
   }
 
   return NextResponse.json({ success: true });

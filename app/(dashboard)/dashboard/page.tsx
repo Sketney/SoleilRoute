@@ -27,9 +27,11 @@ export default async function DashboardPage() {
   const locale = await getRequestLocale();
   const t = getTranslations(locale);
 
-  const tripsWithAccess = listTripsWithAccess(session.user.id);
+  const tripsWithAccess = await listTripsWithAccess(session.user.id);
   const trips = tripsWithAccess.map((entry) => entry.trip);
-  const budgetItems = trips.flatMap((trip) => listBudgetItems(trip.id));
+  const budgetItems = (
+    await Promise.all(trips.map((trip) => listBudgetItems(trip.id)))
+  ).flat();
   const plannedByTrip = budgetItems.reduce((acc, item) => {
     const current = acc.get(item.trip_id) ?? 0;
     acc.set(item.trip_id, current + (item.amount ?? 0));
@@ -155,7 +157,7 @@ function aggregateBudgetForTrip(
     trip_id: string;
     category: string;
     amount: number;
-    is_paid: number;
+    is_paid: boolean;
   }>,
   totalBudget: number,
 ): BudgetItemSummary[] {

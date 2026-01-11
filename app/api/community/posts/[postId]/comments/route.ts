@@ -20,7 +20,7 @@ export async function GET(
   }
 
   const { postId } = await params;
-  const post = getCommunityPostById(postId);
+  const post = await getCommunityPostById(postId);
   if (!post) {
     return NextResponse.json({ error: "Post not found" }, { status: 404 });
   }
@@ -32,7 +32,7 @@ export async function GET(
     ? Math.min(Math.max(parsedLimit, 1), 50)
     : 10;
 
-  const comments = listCommentsByPost(postId, limit);
+  const comments = await listCommentsByPost(postId, limit);
   return NextResponse.json({ comments });
 }
 
@@ -45,13 +45,13 @@ export async function POST(
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const user = getUserById(session.user.id);
+  const user = await getUserById(session.user.id);
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const { postId } = await params;
-  const post = getCommunityPostById(postId);
+  const post = await getCommunityPostById(postId);
   if (!post) {
     return NextResponse.json({ error: "Post not found" }, { status: 404 });
   }
@@ -67,14 +67,14 @@ export async function POST(
   }
 
   if (parentId) {
-    const parent = getCommunityCommentById(parentId);
+    const parent = await getCommunityCommentById(parentId);
     if (!parent || parent.post_id !== postId) {
       return NextResponse.json({ error: "Invalid parent comment" }, { status: 400 });
     }
   }
 
   const commentText = textCheck.value ?? textValue.trim();
-  const comment = createCommunityComment(
+  const comment = await createCommunityComment(
     session.user.id,
     user.email,
     postId,
@@ -85,7 +85,7 @@ export async function POST(
   if (post.author_id !== session.user.id) {
     const actorName =
       user.display_name?.trim() || user.email.split("@")[0] || user.email;
-    createNotification(post.author_id, {
+    await createNotification(post.author_id, {
       title: "New comment",
       message: `${actorName} commented on your post.`,
       type: "info",

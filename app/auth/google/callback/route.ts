@@ -85,14 +85,14 @@ export async function GET(request: Request) {
     return NextResponse.redirect(new URL("/login", env.NEXT_PUBLIC_APP_URL));
   }
 
-  let user = getUserByEmail(email);
+  let user = await getUserByEmail(email);
   if (!user) {
     const randomPassword = crypto.randomBytes(32).toString("hex");
     const passwordHash = await bcrypt.hash(randomPassword, 12);
-    user = createUser(email, passwordHash);
+    user = await createUser(email, passwordHash);
   }
 
-  const session = createSession(user.id);
+  const session = await createSession(user.id);
   cookieStore.set("session_token", session.token, {
     httpOnly: true,
     sameSite: "lax",

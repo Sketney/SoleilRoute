@@ -25,7 +25,7 @@ export async function PATCH(
   }
 
   const { inviteId } = await params;
-  const invitation = getInvitationById(inviteId);
+  const invitation = await getInvitationById(inviteId);
   if (!invitation || invitation.invitee_user_id !== session.user.id) {
     return NextResponse.json({ error: "Invitation not found" }, { status: 404 });
   }
@@ -40,27 +40,30 @@ export async function PATCH(
     return NextResponse.json({ error: "Invitation already handled" }, { status: 409 });
   }
 
-  const trip = getTripById(invitation.trip_id);
+  const trip = await getTripById(invitation.trip_id);
   if (!trip) {
-    updateInvitationStatus(invitation.id, "declined");
+    await updateInvitationStatus(invitation.id, "declined");
     return NextResponse.json({ error: "Trip not found" }, { status: 404 });
   }
 
   if (parsed.data.action === "accept") {
-    const existingAccess = getTripAccess(invitation.trip_id, session.user.id);
+    const existingAccess = await getTripAccess(
+      invitation.trip_id,
+      session.user.id,
+    );
     if (!existingAccess) {
-      addTripCollaborator(
+      await addTripCollaborator(
         invitation.trip_id,
         session.user.id,
         invitation.role,
         invitation.invited_by,
       );
     }
-    updateInvitationStatus(invitation.id, "accepted");
+    await updateInvitationStatus(invitation.id, "accepted");
 
-    const inviter = getUserById(invitation.invited_by);
+    const inviter = await getUserById(invitation.invited_by);
     if (inviter) {
-      createNotification(inviter.id, {
+      await createNotification(inviter.id, {
         title: "Invitation accepted",
         message: `${session.user.email ?? "A teammate"} joined ${trip.name}.`,
         type: "success",
@@ -71,10 +74,10 @@ export async function PATCH(
     return NextResponse.json({ success: true, status: "accepted" });
   }
 
-  updateInvitationStatus(invitation.id, "declined");
-  const inviter = getUserById(invitation.invited_by);
+  await updateInvitationStatus(invitation.id, "declined");
+  const inviter = await getUserById(invitation.invited_by);
   if (inviter) {
-    createNotification(inviter.id, {
+    await createNotification(inviter.id, {
       title: "Invitation declined",
       message: `${session.user.email ?? "A teammate"} declined ${trip.name}.`,
       type: "warning",

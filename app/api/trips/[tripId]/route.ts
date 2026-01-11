@@ -17,7 +17,7 @@ export async function PATCH(
   }
 
   const { tripId } = await params;
-  const access = getTripAccess(tripId, session.user.id);
+  const access = await getTripAccess(tripId, session.user.id);
   if (!access) {
     return apiError("NOT_FOUND", "Trip not found", 404);
   }
@@ -77,7 +77,7 @@ export async function PATCH(
     }
   }
 
-  const updated = updateTrip(access.trip.id, {
+  const updated = await updateTrip(access.trip.id, {
     name: form.name,
     destination_country: form.destinationCountry,
     destination_city: form.destinationCity,
@@ -130,7 +130,7 @@ export async function DELETE(
   }
 
   const { tripId } = await params;
-  const access = getTripAccess(tripId, session.user.id);
+  const access = await getTripAccess(tripId, session.user.id);
   if (!access) {
     return apiError("NOT_FOUND", "Trip not found", 404);
   }
@@ -139,7 +139,7 @@ export async function DELETE(
   }
 
   try {
-    deleteTrip(access.trip.id);
+    await deleteTrip(access.trip.id);
   } catch (error) {
     console.error("Failed to delete trip", error);
     return apiError("DELETE_FAILED", "Unable to delete trip", 500);

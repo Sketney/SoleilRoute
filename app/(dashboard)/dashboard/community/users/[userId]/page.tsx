@@ -25,7 +25,7 @@ export default async function CommunityUserProfilePage({
   const viewerId = session?.user.id ?? "";
 
   const { userId } = await params;
-  const profileUser = getUserById(userId);
+  const profileUser = await getUserById(userId);
   if (!profileUser) {
     notFound();
   }
@@ -37,24 +37,26 @@ export default async function CommunityUserProfilePage({
   const canSeeAll =
     viewerId === profileUser.id || Boolean(session?.user.is_moderator);
 
-  const posts = listPostsByAuthor(profileUser.id, 200);
+  const posts = await listPostsByAuthor(profileUser.id, 200);
   const visiblePosts = canSeeAll
     ? posts
     : posts.filter((post) => post.status === "approved");
 
-  const enrichedPosts: CommunityPost[] = visiblePosts.map((post) => {
-    const likeCount = listLikesByPost(post.id).length;
-    const saveCount = listSavesByPost(post.id).length;
-    return {
-      ...post,
-      author_name: displayName,
-      author_avatar_url: profileUser.avatar_url ?? "",
-      like_count: likeCount,
-      save_count: saveCount,
-      liked_by_me: viewerId ? hasUserLiked(post.id, viewerId) : false,
-      saved_by_me: viewerId ? hasUserSaved(post.id, viewerId) : false,
-    };
-  });
+  const enrichedPosts: CommunityPost[] = await Promise.all(
+    visiblePosts.map(async (post) => {
+      const likeCount = (await listLikesByPost(post.id)).length;
+      const saveCount = (await listSavesByPost(post.id)).length;
+      return {
+        ...post,
+        author_name: displayName,
+        author_avatar_url: profileUser.avatar_url ?? "",
+        like_count: likeCount,
+        save_count: saveCount,
+        liked_by_me: viewerId ? await hasUserLiked(post.id, viewerId) : false,
+        saved_by_me: viewerId ? await hasUserSaved(post.id, viewerId) : false,
+      };
+    }),
+  );
 
   return (
     <section className="space-y-6">

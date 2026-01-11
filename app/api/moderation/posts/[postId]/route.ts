@@ -22,7 +22,7 @@ export async function PATCH(
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const user = getUserById(session.user.id);
+  const user = await getUserById(session.user.id);
   if (!isModerator(user)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
@@ -34,7 +34,7 @@ export async function PATCH(
   }
 
   const { postId } = await params;
-  const updated = updateCommunityPostStatus(
+  const updated = await updateCommunityPostStatus(
     postId,
     parsed.data.status,
     session.user.id,
@@ -53,7 +53,7 @@ export async function PATCH(
         ? `Your post was rejected. Reason: ${parsed.data.reason}`
         : "Your post was rejected by the moderation team.";
 
-  createNotification(updated.author_id, {
+  await createNotification(updated.author_id, {
     title,
     message,
     type: parsed.data.status === "approved" ? "success" : "warning",

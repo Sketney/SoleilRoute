@@ -12,12 +12,11 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const invites = listInvitationsByUser(session.user.id, "pending");
-
-  return NextResponse.json({
-    invitations: invites.map((invite) => {
-      const trip = getTripById(invite.trip_id);
-      const inviter = getUserById(invite.invited_by);
+  const invites = await listInvitationsByUser(session.user.id, "pending");
+  const invitations = await Promise.all(
+    invites.map(async (invite) => {
+      const trip = await getTripById(invite.trip_id);
+      const inviter = await getUserById(invite.invited_by);
       return {
         id: invite.id,
         tripId: invite.trip_id,
@@ -30,5 +29,9 @@ export async function GET() {
         createdAt: invite.created_at,
       };
     }),
+  );
+
+  return NextResponse.json({
+    invitations,
   });
 }
