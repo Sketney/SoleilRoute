@@ -51,6 +51,9 @@ function resolveDbDirectory() {
       path.join(os.homedir(), ".soleilroute");
     return path.join(base, "SoleilRoute");
   }
+  if (process.env.VERCEL) {
+    return path.join(os.tmpdir(), "SoleilRoute");
+  }
   return legacyDbDirectory;
 }
 
