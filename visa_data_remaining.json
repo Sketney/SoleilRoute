@@ -8,7 +8,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://france-visas.gouv.fr/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
@@ -20,7 +20,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "",
+    "embassyUrl": "https://www.exteriores.gob.es/",
     "notes": ""
   },
   {
@@ -32,19 +32,19 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://www.esteri.it/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
     "citizenship": "Spain",
     "destination": "United Kingdom",
     "visaRequired": false,
-    "visaType": "Visa\u2011free/ETA",
+    "visaType": "Visa‑free/ETA",
     "validity": "Up to 6 months",
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://www.gov.uk/visiting-the-uk",
+    "embassyUrl": "https://www.gov.uk/uk-visas-immigration",
     "notes": "Short tourist/business trips without visa; Electronic Travel Authorisation may be required."
   },
   {
@@ -56,7 +56,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://www.auswaertiges-amt.de/en/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
@@ -68,32 +68,32 @@
     "processingTime": "Up to 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "Citizens of Visa Waiver Program countries must obtain ESTA authorization before travel."
   },
   {
     "citizenship": "Spain",
     "destination": "Turkey",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days within 180 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa",
-    "notes": "Ordinary passport holders may stay in T\u00fcrkiye without a visa."
+    "embassyUrl": "https://www.mfa.gov.tr/",
+    "notes": "Ordinary passport holders may stay in Türkiye without a visa."
   },
   {
     "citizenship": "Spain",
     "destination": "UAE",
     "visaRequired": false,
     "visaType": "Visa on arrival",
-    "validity": "90\u2011day stay (multiple entry) within 6 months",
+    "validity": "90‑day stay (multiple entry) within 6 months",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.emirates.com/us/english/before-you-fly/visa-passport-information/uae-visa-information/",
-    "notes": "90\u2011day visa on arrival for eligible European passport holders."
+    "embassyUrl": "https://www.mofa.gov.ae/",
+    "notes": "90‑day visa on arrival for eligible European passport holders."
   },
   {
     "citizenship": "Spain",
@@ -104,43 +104,43 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.thaiembassy.com/thailand-visa/thailand-visa-exemption-program",
-    "notes": "Visa\u2011free entry under Thailand visa exemption programme; can extend once."
+    "embassyUrl": "https://www.mfa.go.th/",
+    "notes": "Visa‑free entry under Thailand visa exemption programme; can extend once."
   },
   {
     "citizenship": "Spain",
     "destination": "Japan",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://france-visas.gouv.fr/en/japan",
-    "notes": "Reciprocal visa\u2011exemption arrangement; passport valid for entire stay."
+    "embassyUrl": "https://www.mofa.go.jp/",
+    "notes": "Reciprocal visa‑exemption arrangement; passport valid for entire stay."
   },
   {
     "citizenship": "Spain",
     "destination": "China",
     "visaRequired": false,
-    "visaType": "Visa\u2011free (temporary)",
+    "visaType": "Visa‑free (temporary)",
     "validity": "Up to 30 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
     "embassyUrl": "https://www.mfa.gov.cn/",
-    "notes": "30\u2011day visa\u2011free entry during China's visa\u2011free pilot programme."
+    "notes": "30‑day visa‑free entry during China's visa‑free pilot programme."
   },
   {
     "citizenship": "Spain",
     "destination": "Singapore",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://singapur.diplo.de/sg-en/service/05-visaeinreise/1225488-1225488",
+    "embassyUrl": "https://www.mfa.gov.sg/",
     "notes": "Passport holders are exempt from visa; entry pass issued on arrival."
   },
   {
@@ -148,24 +148,24 @@
     "destination": "Indonesia (Bali)",
     "visaRequired": true,
     "visaType": "Visa on Arrival",
-    "validity": "30\u2011day stay (visa valid 90 days)",
+    "validity": "30‑day stay (visa valid 90 days)",
     "processingTime": "On arrival",
     "cost": 500000,
     "currency": "IDR",
-    "embassyUrl": "https://molina.imigrasi.go.id/",
-    "notes": "Purchase e\u2011VOA or VOA on arrival; extendable once."
+    "embassyUrl": "https://kemlu.go.id/",
+    "notes": "Purchase e‑VOA or VOA on arrival; extendable once."
   },
   {
     "citizenship": "Spain",
     "destination": "Vietnam",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 45 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://vietnam.travel/visa-exemption",
-    "notes": "Vietnam grants 45\u2011day visa\u2011free entry to several European nationals."
+    "embassyUrl": "https://www.mofa.gov.vn/",
+    "notes": "Vietnam grants 45‑day visa‑free entry to several European nationals."
   },
   {
     "citizenship": "Spain",
@@ -176,7 +176,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://www.mfa.gr/en/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
@@ -188,7 +188,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://vistos.mne.gov.pt/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
@@ -200,7 +200,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://www.netherlandsworldwide.nl/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
@@ -212,7 +212,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://www.bmeia.gv.at/en/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
@@ -224,19 +224,19 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://www.eda.admin.ch/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
     "citizenship": "Spain",
     "destination": "Mexico",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 180 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://mexiko.diplo.de/resource/blob/2558240/630f5128ed34d401142b94c038f8ab05/mb-schengenundtransit-eng-data.pdf",
+    "embassyUrl": "https://www.gob.mx/sre",
     "notes": "Passport holders do not need a visa for tourism/business visits."
   },
   {
@@ -248,56 +248,56 @@
     "processingTime": "Immediate (online)",
     "cost": 7,
     "currency": "CAD",
-    "embassyUrl": "https://canada.diplo.de/ca-en/consular-services/visa/2653576-2653576",
+    "embassyUrl": "https://www.international.gc.ca/",
     "notes": "Apply online for eTA before boarding; valid for 5 years."
   },
   {
     "citizenship": "Spain",
     "destination": "Australia",
     "visaRequired": true,
-    "visaType": "eVisitor (subclass\u00a0651)",
+    "visaType": "eVisitor (subclass 651)",
     "validity": "Multiple visits; 3 months per visit",
     "processingTime": "Minutes to days",
     "cost": 0,
     "currency": "AUD",
-    "embassyUrl": "https://australien.diplo.de/au-en/service/visa/short-term-visa-2073662",
+    "embassyUrl": "https://www.dfat.gov.au/",
     "notes": "Apply online for eVisitor; free of charge."
   },
   {
     "citizenship": "Spain",
     "destination": "Egypt",
     "visaRequired": true,
-    "visaType": "Visa on arrival or e\u2011Visa",
+    "visaType": "Visa on arrival or e‑Visa",
     "validity": "30 days",
     "processingTime": "On arrival",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://turismodeegipto.org/",
-    "notes": "Single\u2011entry tourist visa available on arrival or online."
+    "embassyUrl": "https://www.mfa.gov.eg/",
+    "notes": "Single‑entry tourist visa available on arrival or online."
   },
   {
     "citizenship": "Spain",
     "destination": "Morocco",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.gov.uk/foreign-travel-advice/morocco/entry-requirements",
-    "notes": "Passport holders may visit Morocco visa\u2011free for up to 90 days."
+    "embassyUrl": "https://www.diplomatie.ma/",
+    "notes": "Passport holders may visit Morocco visa‑free for up to 90 days."
   },
   {
     "citizenship": "Spain",
     "destination": "South Korea",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.koreatraveleasy.com/en/blog/keta-waiver-countries/",
-    "notes": "South Korea temporarily exempts EU nationals from K\u2011ETA; stays up to 90 days."
+    "embassyUrl": "https://www.mofa.go.kr/",
+    "notes": "South Korea temporarily exempts EU nationals from K‑ETA; stays up to 90 days."
   },
   {
     "citizenship": "Italy",
@@ -308,7 +308,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://france-visas.gouv.fr/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
@@ -320,7 +320,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://www.exteriores.gob.es/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
@@ -332,19 +332,19 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "",
+    "embassyUrl": "https://www.esteri.it/",
     "notes": ""
   },
   {
     "citizenship": "Italy",
     "destination": "United Kingdom",
     "visaRequired": false,
-    "visaType": "Visa\u2011free/ETA",
+    "visaType": "Visa‑free/ETA",
     "validity": "Up to 6 months",
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://www.gov.uk/visiting-the-uk",
+    "embassyUrl": "https://www.gov.uk/uk-visas-immigration",
     "notes": "Short tourist/business trips without visa; Electronic Travel Authorisation may be required."
   },
   {
@@ -356,7 +356,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://www.auswaertiges-amt.de/en/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
@@ -368,32 +368,32 @@
     "processingTime": "Up to 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "Citizens of Visa Waiver Program countries must obtain ESTA authorization before travel."
   },
   {
     "citizenship": "Italy",
     "destination": "Turkey",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days within 180 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa",
-    "notes": "Ordinary passport holders may stay in T\u00fcrkiye without a visa."
+    "embassyUrl": "https://www.mfa.gov.tr/",
+    "notes": "Ordinary passport holders may stay in Türkiye without a visa."
   },
   {
     "citizenship": "Italy",
     "destination": "UAE",
     "visaRequired": false,
     "visaType": "Visa on arrival",
-    "validity": "90\u2011day stay (multiple entry) within 6 months",
+    "validity": "90‑day stay (multiple entry) within 6 months",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.emirates.com/us/english/before-you-fly/visa-passport-information/uae-visa-information/",
-    "notes": "90\u2011day visa on arrival for eligible European passport holders."
+    "embassyUrl": "https://www.mofa.gov.ae/",
+    "notes": "90‑day visa on arrival for eligible European passport holders."
   },
   {
     "citizenship": "Italy",
@@ -404,43 +404,43 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.thaiembassy.com/thailand-visa/thailand-visa-exemption-program",
-    "notes": "Visa\u2011free entry under Thailand visa exemption programme; can extend once."
+    "embassyUrl": "https://www.mfa.go.th/",
+    "notes": "Visa‑free entry under Thailand visa exemption programme; can extend once."
   },
   {
     "citizenship": "Italy",
     "destination": "Japan",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://france-visas.gouv.fr/en/japan",
-    "notes": "Reciprocal visa\u2011exemption arrangement; passport valid for entire stay."
+    "embassyUrl": "https://www.mofa.go.jp/",
+    "notes": "Reciprocal visa‑exemption arrangement; passport valid for entire stay."
   },
   {
     "citizenship": "Italy",
     "destination": "China",
     "visaRequired": false,
-    "visaType": "Visa\u2011free (temporary)",
+    "visaType": "Visa‑free (temporary)",
     "validity": "Up to 30 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
     "embassyUrl": "https://www.mfa.gov.cn/",
-    "notes": "30\u2011day visa\u2011free entry during China's visa\u2011free pilot programme."
+    "notes": "30‑day visa‑free entry during China's visa‑free pilot programme."
   },
   {
     "citizenship": "Italy",
     "destination": "Singapore",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://singapur.diplo.de/sg-en/service/05-visaeinreise/1225488-1225488",
+    "embassyUrl": "https://www.mfa.gov.sg/",
     "notes": "Passport holders are exempt from visa; entry pass issued on arrival."
   },
   {
@@ -448,24 +448,24 @@
     "destination": "Indonesia (Bali)",
     "visaRequired": true,
     "visaType": "Visa on Arrival",
-    "validity": "30\u2011day stay (visa valid 90 days)",
+    "validity": "30‑day stay (visa valid 90 days)",
     "processingTime": "On arrival",
     "cost": 500000,
     "currency": "IDR",
-    "embassyUrl": "https://molina.imigrasi.go.id/",
-    "notes": "Purchase e\u2011VOA or VOA on arrival; extendable once."
+    "embassyUrl": "https://kemlu.go.id/",
+    "notes": "Purchase e‑VOA or VOA on arrival; extendable once."
   },
   {
     "citizenship": "Italy",
     "destination": "Vietnam",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 45 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://vietnam.travel/visa-exemption",
-    "notes": "Vietnam grants 45\u2011day visa\u2011free entry to several European nationals."
+    "embassyUrl": "https://www.mofa.gov.vn/",
+    "notes": "Vietnam grants 45‑day visa‑free entry to several European nationals."
   },
   {
     "citizenship": "Italy",
@@ -476,7 +476,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://www.mfa.gr/en/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
@@ -488,7 +488,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://vistos.mne.gov.pt/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
@@ -500,7 +500,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://www.netherlandsworldwide.nl/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
@@ -512,7 +512,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://www.bmeia.gv.at/en/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
@@ -524,19 +524,19 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://www.eda.admin.ch/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
     "citizenship": "Italy",
     "destination": "Mexico",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 180 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://mexiko.diplo.de/resource/blob/2558240/630f5128ed34d401142b94c038f8ab05/mb-schengenundtransit-eng-data.pdf",
+    "embassyUrl": "https://www.gob.mx/sre",
     "notes": "Passport holders do not need a visa for tourism/business visits."
   },
   {
@@ -548,56 +548,56 @@
     "processingTime": "Immediate (online)",
     "cost": 7,
     "currency": "CAD",
-    "embassyUrl": "https://canada.diplo.de/ca-en/consular-services/visa/2653576-2653576",
+    "embassyUrl": "https://www.international.gc.ca/",
     "notes": "Apply online for eTA before boarding; valid for 5 years."
   },
   {
     "citizenship": "Italy",
     "destination": "Australia",
     "visaRequired": true,
-    "visaType": "eVisitor (subclass\u00a0651)",
+    "visaType": "eVisitor (subclass 651)",
     "validity": "Multiple visits; 3 months per visit",
     "processingTime": "Minutes to days",
     "cost": 0,
     "currency": "AUD",
-    "embassyUrl": "https://australien.diplo.de/au-en/service/visa/short-term-visa-2073662",
+    "embassyUrl": "https://www.dfat.gov.au/",
     "notes": "Apply online for eVisitor; free of charge."
   },
   {
     "citizenship": "Italy",
     "destination": "Egypt",
     "visaRequired": true,
-    "visaType": "Visa on arrival or e\u2011Visa",
+    "visaType": "Visa on arrival or e‑Visa",
     "validity": "30 days",
     "processingTime": "On arrival",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://turismodeegipto.org/",
-    "notes": "Single\u2011entry tourist visa available on arrival or online."
+    "embassyUrl": "https://www.mfa.gov.eg/",
+    "notes": "Single‑entry tourist visa available on arrival or online."
   },
   {
     "citizenship": "Italy",
     "destination": "Morocco",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.gov.uk/foreign-travel-advice/morocco/entry-requirements",
-    "notes": "Passport holders may visit Morocco visa\u2011free for up to 90 days."
+    "embassyUrl": "https://www.diplomatie.ma/",
+    "notes": "Passport holders may visit Morocco visa‑free for up to 90 days."
   },
   {
     "citizenship": "Italy",
     "destination": "South Korea",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.koreatraveleasy.com/en/blog/keta-waiver-countries/",
-    "notes": "South Korea temporarily exempts EU nationals from K\u2011ETA; stays up to 90 days."
+    "embassyUrl": "https://www.mofa.go.kr/",
+    "notes": "South Korea temporarily exempts EU nationals from K‑ETA; stays up to 90 days."
   },
   {
     "citizenship": "Germany",
@@ -608,7 +608,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://france-visas.gouv.fr/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
@@ -620,7 +620,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://www.exteriores.gob.es/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
@@ -632,19 +632,19 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://www.esteri.it/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
     "citizenship": "Germany",
     "destination": "United Kingdom",
     "visaRequired": false,
-    "visaType": "Visa\u2011free/ETA",
+    "visaType": "Visa‑free/ETA",
     "validity": "Up to 6 months",
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://www.gov.uk/visiting-the-uk",
+    "embassyUrl": "https://www.gov.uk/uk-visas-immigration",
     "notes": "Short tourist/business trips without visa; Electronic Travel Authorisation may be required."
   },
   {
@@ -656,7 +656,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "",
+    "embassyUrl": "https://www.auswaertiges-amt.de/en/",
     "notes": ""
   },
   {
@@ -668,32 +668,32 @@
     "processingTime": "Up to 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "Citizens of Visa Waiver Program countries must obtain ESTA authorization before travel."
   },
   {
     "citizenship": "Germany",
     "destination": "Turkey",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days within 180 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa",
-    "notes": "Ordinary passport holders may stay in T\u00fcrkiye without a visa."
+    "embassyUrl": "https://www.mfa.gov.tr/",
+    "notes": "Ordinary passport holders may stay in Türkiye without a visa."
   },
   {
     "citizenship": "Germany",
     "destination": "UAE",
     "visaRequired": false,
     "visaType": "Visa on arrival",
-    "validity": "90\u2011day stay (multiple entry) within 6 months",
+    "validity": "90‑day stay (multiple entry) within 6 months",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.emirates.com/us/english/before-you-fly/visa-passport-information/uae-visa-information/",
-    "notes": "90\u2011day visa on arrival for eligible European passport holders."
+    "embassyUrl": "https://www.mofa.gov.ae/",
+    "notes": "90‑day visa on arrival for eligible European passport holders."
   },
   {
     "citizenship": "Germany",
@@ -704,43 +704,43 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.thaiembassy.com/thailand-visa/thailand-visa-exemption-program",
-    "notes": "Visa\u2011free entry under Thailand visa exemption programme; can extend once."
+    "embassyUrl": "https://www.mfa.go.th/",
+    "notes": "Visa‑free entry under Thailand visa exemption programme; can extend once."
   },
   {
     "citizenship": "Germany",
     "destination": "Japan",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://france-visas.gouv.fr/en/japan",
-    "notes": "Reciprocal visa\u2011exemption arrangement; passport valid for entire stay."
+    "embassyUrl": "https://www.mofa.go.jp/",
+    "notes": "Reciprocal visa‑exemption arrangement; passport valid for entire stay."
   },
   {
     "citizenship": "Germany",
     "destination": "China",
     "visaRequired": false,
-    "visaType": "Visa\u2011free (temporary)",
+    "visaType": "Visa‑free (temporary)",
     "validity": "Up to 30 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
     "embassyUrl": "https://www.mfa.gov.cn/",
-    "notes": "30\u2011day visa\u2011free entry during China's visa\u2011free pilot programme."
+    "notes": "30‑day visa‑free entry during China's visa‑free pilot programme."
   },
   {
     "citizenship": "Germany",
     "destination": "Singapore",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://singapur.diplo.de/sg-en/service/05-visaeinreise/1225488-1225488",
+    "embassyUrl": "https://www.mfa.gov.sg/",
     "notes": "Passport holders are exempt from visa; entry pass issued on arrival."
   },
   {
@@ -748,24 +748,24 @@
     "destination": "Indonesia (Bali)",
     "visaRequired": true,
     "visaType": "Visa on Arrival",
-    "validity": "30\u2011day stay (visa valid 90 days)",
+    "validity": "30‑day stay (visa valid 90 days)",
     "processingTime": "On arrival",
     "cost": 500000,
     "currency": "IDR",
-    "embassyUrl": "https://molina.imigrasi.go.id/",
-    "notes": "Purchase e\u2011VOA or VOA on arrival; extendable once."
+    "embassyUrl": "https://kemlu.go.id/",
+    "notes": "Purchase e‑VOA or VOA on arrival; extendable once."
   },
   {
     "citizenship": "Germany",
     "destination": "Vietnam",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 45 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://vietnam.travel/visa-exemption",
-    "notes": "Vietnam grants 45\u2011day visa\u2011free entry to several European nationals."
+    "embassyUrl": "https://www.mofa.gov.vn/",
+    "notes": "Vietnam grants 45‑day visa‑free entry to several European nationals."
   },
   {
     "citizenship": "Germany",
@@ -776,7 +776,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://www.mfa.gr/en/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
@@ -788,7 +788,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://vistos.mne.gov.pt/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
@@ -800,7 +800,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://www.netherlandsworldwide.nl/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
@@ -812,7 +812,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://www.bmeia.gv.at/en/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
@@ -824,19 +824,19 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm",
+    "embassyUrl": "https://www.eda.admin.ch/",
     "notes": "EU citizens can travel freely within the EU/Schengen area."
   },
   {
     "citizenship": "Germany",
     "destination": "Mexico",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 180 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://mexiko.diplo.de/resource/blob/2558240/630f5128ed34d401142b94c038f8ab05/mb-schengenundtransit-eng-data.pdf",
+    "embassyUrl": "https://www.gob.mx/sre",
     "notes": "Passport holders do not need a visa for tourism/business visits."
   },
   {
@@ -848,56 +848,56 @@
     "processingTime": "Immediate (online)",
     "cost": 7,
     "currency": "CAD",
-    "embassyUrl": "https://canada.diplo.de/ca-en/consular-services/visa/2653576-2653576",
+    "embassyUrl": "https://www.international.gc.ca/",
     "notes": "Apply online for eTA before boarding; valid for 5 years."
   },
   {
     "citizenship": "Germany",
     "destination": "Australia",
     "visaRequired": true,
-    "visaType": "eVisitor (subclass\u00a0651)",
+    "visaType": "eVisitor (subclass 651)",
     "validity": "Multiple visits; 3 months per visit",
     "processingTime": "Minutes to days",
     "cost": 0,
     "currency": "AUD",
-    "embassyUrl": "https://australien.diplo.de/au-en/service/visa/short-term-visa-2073662",
+    "embassyUrl": "https://www.dfat.gov.au/",
     "notes": "Apply online for eVisitor; free of charge."
   },
   {
     "citizenship": "Germany",
     "destination": "Egypt",
     "visaRequired": true,
-    "visaType": "Visa on arrival or e\u2011Visa",
+    "visaType": "Visa on arrival or e‑Visa",
     "validity": "30 days",
     "processingTime": "On arrival",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://turismodeegipto.org/",
-    "notes": "Single\u2011entry tourist visa available on arrival or online."
+    "embassyUrl": "https://www.mfa.gov.eg/",
+    "notes": "Single‑entry tourist visa available on arrival or online."
   },
   {
     "citizenship": "Germany",
     "destination": "Morocco",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.gov.uk/foreign-travel-advice/morocco/entry-requirements",
-    "notes": "Passport holders may visit Morocco visa\u2011free for up to 90 days."
+    "embassyUrl": "https://www.diplomatie.ma/",
+    "notes": "Passport holders may visit Morocco visa‑free for up to 90 days."
   },
   {
     "citizenship": "Germany",
     "destination": "South Korea",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.koreatraveleasy.com/en/blog/keta-waiver-countries/",
-    "notes": "South Korea temporarily exempts EU nationals from K\u2011ETA; stays up to 90 days."
+    "embassyUrl": "https://www.mofa.go.kr/",
+    "notes": "South Korea temporarily exempts EU nationals from K‑ETA; stays up to 90 days."
   },
   {
     "citizenship": "Thailand",
@@ -908,8 +908,8 @@
     "processingTime": "Approx. 15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://visa.vfsglobal.com/",
-    "notes": "Thai citizens require a Schengen short\u2011stay visa."
+    "embassyUrl": "https://france-visas.gouv.fr/",
+    "notes": "Thai citizens require a Schengen short‑stay visa."
   },
   {
     "citizenship": "Thailand",
@@ -920,8 +920,8 @@
     "processingTime": "Approx. 15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://visa.vfsglobal.com/",
-    "notes": "Thai citizens require a Schengen short\u2011stay visa."
+    "embassyUrl": "https://www.exteriores.gob.es/",
+    "notes": "Thai citizens require a Schengen short‑stay visa."
   },
   {
     "citizenship": "Thailand",
@@ -932,8 +932,8 @@
     "processingTime": "Approx. 15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://visa.vfsglobal.com/",
-    "notes": "Thai citizens require a Schengen short\u2011stay visa."
+    "embassyUrl": "https://www.esteri.it/",
+    "notes": "Thai citizens require a Schengen short‑stay visa."
   },
   {
     "citizenship": "Thailand",
@@ -944,7 +944,7 @@
     "processingTime": "Around 3 weeks",
     "cost": 127,
     "currency": "GBP",
-    "embassyUrl": "https://www.gov.uk/standard-visitor",
+    "embassyUrl": "https://www.gov.uk/uk-visas-immigration",
     "notes": "Thai citizens must apply for a UK Standard Visitor visa."
   },
   {
@@ -956,15 +956,15 @@
     "processingTime": "Approx. 15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://visa.vfsglobal.com/",
-    "notes": "Thai citizens require a Schengen short\u2011stay visa."
+    "embassyUrl": "https://www.auswaertiges-amt.de/en/",
+    "notes": "Thai citizens require a Schengen short‑stay visa."
   },
   {
     "citizenship": "Thailand",
     "destination": "USA",
     "visaRequired": true,
     "visaType": "B1/B2 visitor visa",
-    "validity": "Typically 10\u2011year validity; stay up to 180 days",
+    "validity": "Typically 10‑year validity; stay up to 180 days",
     "processingTime": "Varies (several weeks)",
     "cost": 185,
     "currency": "USD",
@@ -975,13 +975,13 @@
     "citizenship": "Thailand",
     "destination": "Turkey",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 30 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "THB",
-    "embassyUrl": "https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa",
-    "notes": "Thai ordinary passport holders may visit Turkey visa\u2011free for 30 days\u301010309123930121\u2020L935-L937\u3011."
+    "embassyUrl": "https://www.mfa.gov.tr/",
+    "notes": "Thai ordinary passport holders may visit Turkey visa‑free for 30 days【10309123930121†L935-L937】."
   },
   {
     "citizenship": "Thailand",
@@ -992,8 +992,8 @@
     "processingTime": "Few days",
     "cost": 90,
     "currency": "USD",
-    "embassyUrl": "https://www.emirates.com/us/english/before-you-fly/visa-passport-information/uae-visa-information/",
-    "notes": "Thai citizens must obtain a tourist e\u2011visa for up to 30 days."
+    "embassyUrl": "https://www.mofa.gov.ae/",
+    "notes": "Thai citizens must obtain a tourist e‑visa for up to 30 days."
   },
   {
     "citizenship": "Thailand",
@@ -1004,7 +1004,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "",
+    "embassyUrl": "https://www.mfa.go.th/",
     "notes": ""
   },
   {
@@ -1017,7 +1017,7 @@
     "cost": 0,
     "currency": "JPY",
     "embassyUrl": "https://www.mofa.go.jp/",
-    "notes": "Thai citizens require a Japanese visa; some exemptions apply for e\u2011Passport holders."
+    "notes": "Thai citizens require a Japanese visa; some exemptions apply for e‑Passport holders."
   },
   {
     "citizenship": "Thailand",
@@ -1025,23 +1025,23 @@
     "visaRequired": true,
     "visaType": "Visa required",
     "validity": "Up to 30 days",
-    "processingTime": "4\u20137 days",
+    "processingTime": "4–7 days",
     "cost": 0,
     "currency": "CNY",
-    "embassyUrl": "https://www.visaforchina.org/",
+    "embassyUrl": "https://www.mfa.gov.cn/",
     "notes": "Thai nationals need a Chinese visa."
   },
   {
     "citizenship": "Thailand",
     "destination": "Singapore",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 30 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "THB",
-    "embassyUrl": "https://www.ica.gov.sg/",
-    "notes": "Thai passport holders may enter Singapore visa\u2011free for 30 days."
+    "embassyUrl": "https://www.mfa.gov.sg/",
+    "notes": "Thai passport holders may enter Singapore visa‑free for 30 days."
   },
   {
     "citizenship": "Thailand",
@@ -1052,20 +1052,20 @@
     "processingTime": "On arrival",
     "cost": 500000,
     "currency": "IDR",
-    "embassyUrl": "https://molina.imigrasi.go.id/",
-    "notes": "Thai citizens need an e\u2011VOA or VOA for Indonesia, valid for 30 days."
+    "embassyUrl": "https://kemlu.go.id/",
+    "notes": "Thai citizens need an e‑VOA or VOA for Indonesia, valid for 30 days."
   },
   {
     "citizenship": "Thailand",
     "destination": "Vietnam",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 45 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "THB",
-    "embassyUrl": "https://vietnam.travel/visa-exemption",
-    "notes": "Thailand is an ASEAN member; Thai citizens can stay visa\u2011free up to 30 days in Vietnam."
+    "embassyUrl": "https://www.mofa.gov.vn/",
+    "notes": "Thailand is an ASEAN member; Thai citizens can stay visa‑free up to 30 days in Vietnam."
   },
   {
     "citizenship": "Thailand",
@@ -1076,8 +1076,8 @@
     "processingTime": "Approx. 15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://visa.vfsglobal.com/",
-    "notes": "Thai citizens require a Schengen short\u2011stay visa."
+    "embassyUrl": "https://www.mfa.gr/en/",
+    "notes": "Thai citizens require a Schengen short‑stay visa."
   },
   {
     "citizenship": "Thailand",
@@ -1088,8 +1088,8 @@
     "processingTime": "Approx. 15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://visa.vfsglobal.com/",
-    "notes": "Thai citizens require a Schengen short\u2011stay visa."
+    "embassyUrl": "https://vistos.mne.gov.pt/",
+    "notes": "Thai citizens require a Schengen short‑stay visa."
   },
   {
     "citizenship": "Thailand",
@@ -1100,8 +1100,8 @@
     "processingTime": "Approx. 15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://visa.vfsglobal.com/",
-    "notes": "Thai citizens require a Schengen short\u2011stay visa."
+    "embassyUrl": "https://www.netherlandsworldwide.nl/",
+    "notes": "Thai citizens require a Schengen short‑stay visa."
   },
   {
     "citizenship": "Thailand",
@@ -1112,8 +1112,8 @@
     "processingTime": "Approx. 15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://visa.vfsglobal.com/",
-    "notes": "Thai citizens require a Schengen short\u2011stay visa."
+    "embassyUrl": "https://www.bmeia.gv.at/en/",
+    "notes": "Thai citizens require a Schengen short‑stay visa."
   },
   {
     "citizenship": "Thailand",
@@ -1124,8 +1124,8 @@
     "processingTime": "Approx. 15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://visa.vfsglobal.com/",
-    "notes": "Thai citizens require a Schengen short\u2011stay visa."
+    "embassyUrl": "https://www.eda.admin.ch/",
+    "notes": "Thai citizens require a Schengen short‑stay visa."
   },
   {
     "citizenship": "Thailand",
@@ -1136,7 +1136,7 @@
     "processingTime": "Varies",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://embamex.sre.gob.mx/",
+    "embassyUrl": "https://www.gob.mx/sre",
     "notes": "Thai citizens need a Mexican visa or electronic authorization."
   },
   {
@@ -1148,19 +1148,19 @@
     "processingTime": "Varies",
     "cost": 100,
     "currency": "CAD",
-    "embassyUrl": "https://www.canada.ca/",
+    "embassyUrl": "https://www.international.gc.ca/",
     "notes": "Thai citizens require a Canadian visitor visa (TRV)."
   },
   {
     "citizenship": "Thailand",
     "destination": "Australia",
     "visaRequired": true,
-    "visaType": "Visitor visa (subclass\u00a0600)",
+    "visaType": "Visitor visa (subclass 600)",
     "validity": "Stay up to 3 months",
-    "processingTime": "20\u201333 days",
+    "processingTime": "20–33 days",
     "cost": 195,
     "currency": "AUD",
-    "embassyUrl": "https://immi.homeaffairs.gov.au/",
+    "embassyUrl": "https://www.dfat.gov.au/",
     "notes": "Thai citizens require an Australian visitor visa."
   },
   {
@@ -1172,7 +1172,7 @@
     "processingTime": "On arrival",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://turismodeegipto.org/",
+    "embassyUrl": "https://www.mfa.gov.eg/",
     "notes": "Thai nationals can obtain a visa on arrival for tourism."
   },
   {
@@ -1184,79 +1184,79 @@
     "processingTime": "Varies",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://consulat.ma/",
+    "embassyUrl": "https://www.diplomatie.ma/",
     "notes": "Thai citizens must apply for a Moroccan visa."
   },
   {
     "citizenship": "Thailand",
     "destination": "South Korea",
     "visaRequired": false,
-    "visaType": "K\u2011ETA",
+    "visaType": "K‑ETA",
     "validity": "Up to 30 or 90 days",
     "processingTime": "Within 72 hours",
     "cost": 10,
     "currency": "USD",
-    "embassyUrl": "https://www.koreatraveleasy.com/en/blog/keta-waiver-countries/",
-    "notes": "Thai citizens need a K\u2011ETA for short visits to South Korea."
+    "embassyUrl": "https://www.mofa.go.kr/",
+    "notes": "Thai citizens need a K‑ETA for short visits to South Korea."
   },
   {
     "citizenship": "Japan",
     "destination": "France",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://france-visas.gouv.fr/en/japan",
+    "embassyUrl": "https://france-visas.gouv.fr/",
     "notes": "Japanese citizens do not need a Schengen visa for short stays."
   },
   {
     "citizenship": "Japan",
     "destination": "Spain",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://france-visas.gouv.fr/en/japan",
+    "embassyUrl": "https://www.exteriores.gob.es/",
     "notes": "Japanese citizens do not need a Schengen visa for short stays."
   },
   {
     "citizenship": "Japan",
     "destination": "Italy",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://france-visas.gouv.fr/en/japan",
+    "embassyUrl": "https://www.esteri.it/",
     "notes": "Japanese citizens do not need a Schengen visa for short stays."
   },
   {
     "citizenship": "Japan",
     "destination": "United Kingdom",
     "visaRequired": false,
-    "visaType": "Visa\u2011free/ETA",
+    "visaType": "Visa‑free/ETA",
     "validity": "Up to 6 months",
     "processingTime": "N/A",
     "cost": 0,
     "currency": "GBP",
-    "embassyUrl": "https://www.gov.uk/visiting-the-uk",
+    "embassyUrl": "https://www.gov.uk/uk-visas-immigration",
     "notes": "Japanese tourists can visit the UK for up to 6 months without a visa; may need an ETA."
   },
   {
     "citizenship": "Japan",
     "destination": "Germany",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://france-visas.gouv.fr/en/japan",
+    "embassyUrl": "https://www.auswaertiges-amt.de/en/",
     "notes": "Japanese citizens do not need a Schengen visa for short stays."
   },
   {
@@ -1268,19 +1268,19 @@
     "processingTime": "Up to 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "Japan is a Visa Waiver Program country; ESTA required."
   },
   {
     "citizenship": "Japan",
     "destination": "Turkey",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa",
+    "embassyUrl": "https://www.mfa.gov.tr/",
     "notes": "Japanese ordinary passport holders are exempt from visa for 90 days within 180 days."
   },
   {
@@ -1292,19 +1292,19 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://www.emirates.com/us/english/before-you-fly/visa-passport-information/uae-visa-information/",
-    "notes": "Japanese citizens receive a free 30\u2011day visa on arrival in the UAE."
+    "embassyUrl": "https://www.mofa.gov.ae/",
+    "notes": "Japanese citizens receive a free 30‑day visa on arrival in the UAE."
   },
   {
     "citizenship": "Japan",
     "destination": "Thailand",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 30 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://www.thaiembassy.com/thailand-visa/thailand-visa-exemption-program",
+    "embassyUrl": "https://www.mfa.go.th/",
     "notes": "Japanese passport holders can enter Thailand without a visa for 30 days."
   },
   {
@@ -1316,127 +1316,127 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "",
+    "embassyUrl": "https://www.mofa.go.jp/",
     "notes": ""
   },
   {
     "citizenship": "Japan",
     "destination": "China",
     "visaRequired": false,
-    "visaType": "Visa\u2011free (trial)",
+    "visaType": "Visa‑free (trial)",
     "validity": "Up to 15 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "JPY",
     "embassyUrl": "https://www.mfa.gov.cn/",
-    "notes": "Japan is among countries eligible for China\u2019s visa\u2011free trial (15 days)."
+    "notes": "Japan is among countries eligible for China’s visa‑free trial (15 days)."
   },
   {
     "citizenship": "Japan",
     "destination": "Singapore",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 30 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://singapur.diplo.de/sg-en/service/05-visaeinreise/1225488-1225488",
+    "embassyUrl": "https://www.mfa.gov.sg/",
     "notes": "Japanese citizens do not require a visa for visits up to 30 days."
   },
   {
     "citizenship": "Japan",
     "destination": "Indonesia (Bali)",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 30 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "IDR",
-    "embassyUrl": "https://molina.imigrasi.go.id/",
-    "notes": "Japanese passport holders can enter Indonesia visa\u2011free for 30 days."
+    "embassyUrl": "https://kemlu.go.id/",
+    "notes": "Japanese passport holders can enter Indonesia visa‑free for 30 days."
   },
   {
     "citizenship": "Japan",
     "destination": "Vietnam",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 45 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://vietnam.travel/visa-exemption",
-    "notes": "Japanese citizens can enter Vietnam visa\u2011free for 45 days."
+    "embassyUrl": "https://www.mofa.gov.vn/",
+    "notes": "Japanese citizens can enter Vietnam visa‑free for 45 days."
   },
   {
     "citizenship": "Japan",
     "destination": "Greece",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://france-visas.gouv.fr/en/japan",
+    "embassyUrl": "https://www.mfa.gr/en/",
     "notes": "Japanese citizens do not need a Schengen visa for short stays."
   },
   {
     "citizenship": "Japan",
     "destination": "Portugal",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://france-visas.gouv.fr/en/japan",
+    "embassyUrl": "https://vistos.mne.gov.pt/",
     "notes": "Japanese citizens do not need a Schengen visa for short stays."
   },
   {
     "citizenship": "Japan",
     "destination": "Netherlands",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://france-visas.gouv.fr/en/japan",
+    "embassyUrl": "https://www.netherlandsworldwide.nl/",
     "notes": "Japanese citizens do not need a Schengen visa for short stays."
   },
   {
     "citizenship": "Japan",
     "destination": "Austria",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://france-visas.gouv.fr/en/japan",
+    "embassyUrl": "https://www.bmeia.gv.at/en/",
     "notes": "Japanese citizens do not need a Schengen visa for short stays."
   },
   {
     "citizenship": "Japan",
     "destination": "Switzerland",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://france-visas.gouv.fr/en/japan",
+    "embassyUrl": "https://www.eda.admin.ch/",
     "notes": "Japanese citizens do not need a Schengen visa for short stays."
   },
   {
     "citizenship": "Japan",
     "destination": "Mexico",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 180 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://mexiko.diplo.de/resource/blob/2558240/630f5128ed34d401142b94c038f8ab05/mb-schengenundtransit-eng-data.pdf",
+    "embassyUrl": "https://www.gob.mx/sre",
     "notes": "Japanese citizens do not require a visa for tourist/business visits to Mexico."
   },
   {
@@ -1448,7 +1448,7 @@
     "processingTime": "Instant",
     "cost": 7,
     "currency": "CAD",
-    "embassyUrl": "https://canada.diplo.de/ca-en/consular-services/visa/2653576-2653576",
+    "embassyUrl": "https://www.international.gc.ca/",
     "notes": "Japanese travellers need an eTA to board a flight to Canada; stays up to 6 months."
   },
   {
@@ -1460,7 +1460,7 @@
     "processingTime": "Minutes",
     "cost": 0,
     "currency": "AUD",
-    "embassyUrl": "https://australien.diplo.de/au-en/service/visa/short-term-visa-2073662",
+    "embassyUrl": "https://www.dfat.gov.au/",
     "notes": "Japanese citizens can apply for an Electronic Travel Authority (ETA) for short visits."
   },
   {
@@ -1472,32 +1472,32 @@
     "processingTime": "On arrival",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://turismodeegipto.org/",
+    "embassyUrl": "https://www.mfa.gov.eg/",
     "notes": "Japanese travellers can obtain a visa on arrival in Egypt."
   },
   {
     "citizenship": "Japan",
     "destination": "Morocco",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://www.gov.uk/foreign-travel-advice/morocco/entry-requirements",
+    "embassyUrl": "https://www.diplomatie.ma/",
     "notes": "Japanese citizens may visit Morocco without a visa for up to 90 days."
   },
   {
     "citizenship": "Japan",
     "destination": "South Korea",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://www.koreatraveleasy.com/en/blog/keta-waiver-countries/",
-    "notes": "Japan and South Korea have mutual visa\u2011exemption (90 days)."
+    "embassyUrl": "https://www.mofa.go.kr/",
+    "notes": "Japan and South Korea have mutual visa‑exemption (90 days)."
   },
   {
     "citizenship": "China",
@@ -1508,8 +1508,8 @@
     "processingTime": "~15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://www.vfsglobal.com/",
-    "notes": "Chinese citizens need a Schengen short\u2011stay visa."
+    "embassyUrl": "https://france-visas.gouv.fr/",
+    "notes": "Chinese citizens need a Schengen short‑stay visa."
   },
   {
     "citizenship": "China",
@@ -1520,8 +1520,8 @@
     "processingTime": "~15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://www.vfsglobal.com/",
-    "notes": "Chinese citizens need a Schengen short\u2011stay visa."
+    "embassyUrl": "https://www.exteriores.gob.es/",
+    "notes": "Chinese citizens need a Schengen short‑stay visa."
   },
   {
     "citizenship": "China",
@@ -1532,8 +1532,8 @@
     "processingTime": "~15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://www.vfsglobal.com/",
-    "notes": "Chinese citizens need a Schengen short\u2011stay visa."
+    "embassyUrl": "https://www.esteri.it/",
+    "notes": "Chinese citizens need a Schengen short‑stay visa."
   },
   {
     "citizenship": "China",
@@ -1544,7 +1544,7 @@
     "processingTime": "~3 weeks",
     "cost": 127,
     "currency": "GBP",
-    "embassyUrl": "https://www.gov.uk/standard-visitor",
+    "embassyUrl": "https://www.gov.uk/uk-visas-immigration",
     "notes": "Chinese nationals require a UK visitor visa."
   },
   {
@@ -1556,15 +1556,15 @@
     "processingTime": "~15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://www.vfsglobal.com/",
-    "notes": "Chinese citizens need a Schengen short\u2011stay visa."
+    "embassyUrl": "https://www.auswaertiges-amt.de/en/",
+    "notes": "Chinese citizens need a Schengen short‑stay visa."
   },
   {
     "citizenship": "China",
     "destination": "USA",
     "visaRequired": true,
     "visaType": "B1/B2 visa",
-    "validity": "10\u2011year visa; stays up to 180 days",
+    "validity": "10‑year visa; stays up to 180 days",
     "processingTime": "Varies",
     "cost": 185,
     "currency": "USD",
@@ -1575,13 +1575,13 @@
     "citizenship": "China",
     "destination": "Turkey",
     "visaRequired": true,
-    "visaType": "e\u2011Visa",
+    "visaType": "e‑Visa",
     "validity": "30 days",
     "processingTime": "Instant",
     "cost": 60,
     "currency": "USD",
-    "embassyUrl": "https://www.evisa.gov.tr/",
-    "notes": "Chinese citizens can obtain a single\u2011entry e\u2011Visa for Turkey valid 30 days."
+    "embassyUrl": "https://www.mfa.gov.tr/",
+    "notes": "Chinese citizens can obtain a single‑entry e‑Visa for Turkey valid 30 days."
   },
   {
     "citizenship": "China",
@@ -1592,20 +1592,20 @@
     "processingTime": "Few days",
     "cost": 90,
     "currency": "USD",
-    "embassyUrl": "https://www.emirates.com/us/english/before-you-fly/visa-passport-information/uae-visa-information/",
-    "notes": "Chinese citizens require a UAE tourist visa; may obtain e\u2011visa."
+    "embassyUrl": "https://www.mofa.gov.ae/",
+    "notes": "Chinese citizens require a UAE tourist visa; may obtain e‑visa."
   },
   {
     "citizenship": "China",
     "destination": "Thailand",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 60 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "CNY",
-    "embassyUrl": "https://www.thaiembassy.com/thailand-visa/thailand-visa-exemption-program",
-    "notes": "China enjoys visa\u2011free entry to Thailand for up to 60 days under bilateral agreement."
+    "embassyUrl": "https://www.mfa.go.th/",
+    "notes": "China enjoys visa‑free entry to Thailand for up to 60 days under bilateral agreement."
   },
   {
     "citizenship": "China",
@@ -1617,7 +1617,7 @@
     "cost": 0,
     "currency": "JPY",
     "embassyUrl": "https://www.mofa.go.jp/",
-    "notes": "Chinese citizens need a Japanese visa; some categories eligible for 15\u2011day visa\u2011free group tours."
+    "notes": "Chinese citizens need a Japanese visa; some categories eligible for 15‑day visa‑free group tours."
   },
   {
     "citizenship": "China",
@@ -1628,7 +1628,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "",
+    "embassyUrl": "https://www.mfa.gov.cn/",
     "notes": ""
   },
   {
@@ -1640,7 +1640,7 @@
     "processingTime": "3 days",
     "cost": 30,
     "currency": "SGD",
-    "embassyUrl": "https://www.ica.gov.sg/",
+    "embassyUrl": "https://www.mfa.gov.sg/",
     "notes": "Chinese citizens need a Singapore visa (tourist/business)."
   },
   {
@@ -1652,20 +1652,20 @@
     "processingTime": "On arrival",
     "cost": 500000,
     "currency": "IDR",
-    "embassyUrl": "https://molina.imigrasi.go.id/",
-    "notes": "Chinese citizens must obtain a VOA or e\u2011VOA for Indonesia (30 days)."
+    "embassyUrl": "https://kemlu.go.id/",
+    "notes": "Chinese citizens must obtain a VOA or e‑VOA for Indonesia (30 days)."
   },
   {
     "citizenship": "China",
     "destination": "Vietnam",
     "visaRequired": false,
-    "visaType": "Visa\u2011free (temporary)",
+    "visaType": "Visa‑free (temporary)",
     "validity": "Up to 15 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "CNY",
-    "embassyUrl": "https://vietnam.travel/visa-exemption",
-    "notes": "Vietnam grants Chinese citizens 15\u2011day visa\u2011free entry (pilot)."
+    "embassyUrl": "https://www.mofa.gov.vn/",
+    "notes": "Vietnam grants Chinese citizens 15‑day visa‑free entry (pilot)."
   },
   {
     "citizenship": "China",
@@ -1676,8 +1676,8 @@
     "processingTime": "~15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://www.vfsglobal.com/",
-    "notes": "Chinese citizens need a Schengen short\u2011stay visa."
+    "embassyUrl": "https://www.mfa.gr/en/",
+    "notes": "Chinese citizens need a Schengen short‑stay visa."
   },
   {
     "citizenship": "China",
@@ -1688,8 +1688,8 @@
     "processingTime": "~15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://www.vfsglobal.com/",
-    "notes": "Chinese citizens need a Schengen short\u2011stay visa."
+    "embassyUrl": "https://vistos.mne.gov.pt/",
+    "notes": "Chinese citizens need a Schengen short‑stay visa."
   },
   {
     "citizenship": "China",
@@ -1700,8 +1700,8 @@
     "processingTime": "~15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://www.vfsglobal.com/",
-    "notes": "Chinese citizens need a Schengen short\u2011stay visa."
+    "embassyUrl": "https://www.netherlandsworldwide.nl/",
+    "notes": "Chinese citizens need a Schengen short‑stay visa."
   },
   {
     "citizenship": "China",
@@ -1712,8 +1712,8 @@
     "processingTime": "~15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://www.vfsglobal.com/",
-    "notes": "Chinese citizens need a Schengen short\u2011stay visa."
+    "embassyUrl": "https://www.bmeia.gv.at/en/",
+    "notes": "Chinese citizens need a Schengen short‑stay visa."
   },
   {
     "citizenship": "China",
@@ -1724,8 +1724,8 @@
     "processingTime": "~15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://www.vfsglobal.com/",
-    "notes": "Chinese citizens need a Schengen short\u2011stay visa."
+    "embassyUrl": "https://www.eda.admin.ch/",
+    "notes": "Chinese citizens need a Schengen short‑stay visa."
   },
   {
     "citizenship": "China",
@@ -1736,7 +1736,7 @@
     "processingTime": "Varies",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://embamex.sre.gob.mx/",
+    "embassyUrl": "https://www.gob.mx/sre",
     "notes": "Chinese citizens need a Mexican visa or valid US visa/residence permit."
   },
   {
@@ -1748,19 +1748,19 @@
     "processingTime": "Varies",
     "cost": 100,
     "currency": "CAD",
-    "embassyUrl": "https://www.canada.ca/",
+    "embassyUrl": "https://www.international.gc.ca/",
     "notes": "Chinese citizens require a Canadian visitor visa (TRV)."
   },
   {
     "citizenship": "China",
     "destination": "Australia",
     "visaRequired": true,
-    "visaType": "Visitor visa (subclass\u00a0600)",
+    "visaType": "Visitor visa (subclass 600)",
     "validity": "Up to 3 months",
-    "processingTime": "~20\u201333 days",
+    "processingTime": "~20–33 days",
     "cost": 150,
     "currency": "AUD",
-    "embassyUrl": "https://immi.homeaffairs.gov.au/",
+    "embassyUrl": "https://www.dfat.gov.au/",
     "notes": "Chinese citizens need an Australian visitor visa."
   },
   {
@@ -1772,8 +1772,8 @@
     "processingTime": "On arrival",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://turismodeegipto.org/",
-    "notes": "Chinese citizens can obtain a single\u2011entry tourist visa on arrival in Egypt."
+    "embassyUrl": "https://www.mfa.gov.eg/",
+    "notes": "Chinese citizens can obtain a single‑entry tourist visa on arrival in Egypt."
   },
   {
     "citizenship": "China",
@@ -1784,80 +1784,80 @@
     "processingTime": "Varies",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://www.consulat.ma/",
+    "embassyUrl": "https://www.diplomatie.ma/",
     "notes": "Chinese citizens must apply for a Moroccan visa."
   },
   {
     "citizenship": "China",
     "destination": "South Korea",
     "visaRequired": true,
-    "visaType": "K\u2011ETA",
+    "visaType": "K‑ETA",
     "validity": "Up to 30 days",
-    "processingTime": "1\u20133 days",
+    "processingTime": "1–3 days",
     "cost": 10,
     "currency": "KRW",
-    "embassyUrl": "https://www.koreatraveleasy.com/en/blog/keta-waiver-countries/",
-    "notes": "Chinese citizens need a K\u2011ETA and visa for South Korea."
+    "embassyUrl": "https://www.mofa.go.kr/",
+    "notes": "Chinese citizens need a K‑ETA and visa for South Korea."
   },
   {
     "citizenship": "Singapore",
     "destination": "France",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://singapur.diplo.de/sg-en/service/05-visaeinreise/1225488-1225488",
-    "notes": "Singapore citizens do not require a visa to visit the Schengen area for up to 90 days\u3010127875633459785\u2020L103-L105\u3011."
+    "embassyUrl": "https://france-visas.gouv.fr/",
+    "notes": "Singapore citizens do not require a visa to visit the Schengen area for up to 90 days【127875633459785†L103-L105】."
   },
   {
     "citizenship": "Singapore",
     "destination": "Spain",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://singapur.diplo.de/sg-en/service/05-visaeinreise/1225488-1225488",
-    "notes": "Singapore citizens do not require a visa to visit the Schengen area for up to 90 days\u3010127875633459785\u2020L103-L105\u3011."
+    "embassyUrl": "https://www.exteriores.gob.es/",
+    "notes": "Singapore citizens do not require a visa to visit the Schengen area for up to 90 days【127875633459785†L103-L105】."
   },
   {
     "citizenship": "Singapore",
     "destination": "Italy",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://singapur.diplo.de/sg-en/service/05-visaeinreise/1225488-1225488",
-    "notes": "Singapore citizens do not require a visa to visit the Schengen area for up to 90 days\u3010127875633459785\u2020L103-L105\u3011."
+    "embassyUrl": "https://www.esteri.it/",
+    "notes": "Singapore citizens do not require a visa to visit the Schengen area for up to 90 days【127875633459785†L103-L105】."
   },
   {
     "citizenship": "Singapore",
     "destination": "United Kingdom",
     "visaRequired": false,
-    "visaType": "Visa\u2011free/ETA",
+    "visaType": "Visa‑free/ETA",
     "validity": "Up to 6 months",
     "processingTime": "N/A",
     "cost": 0,
     "currency": "GBP",
-    "embassyUrl": "https://www.gov.uk/visiting-the-uk",
+    "embassyUrl": "https://www.gov.uk/uk-visas-immigration",
     "notes": "Singaporean nationals may visit the UK for up to 6 months without a visa; ETA required."
   },
   {
     "citizenship": "Singapore",
     "destination": "Germany",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://singapur.diplo.de/sg-en/service/05-visaeinreise/1225488-1225488",
-    "notes": "Singapore citizens do not require a visa to visit the Schengen area for up to 90 days\u3010127875633459785\u2020L103-L105\u3011."
+    "embassyUrl": "https://www.auswaertiges-amt.de/en/",
+    "notes": "Singapore citizens do not require a visa to visit the Schengen area for up to 90 days【127875633459785†L103-L105】."
   },
   {
     "citizenship": "Singapore",
@@ -1868,19 +1868,19 @@
     "processingTime": "Up to 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "Singapore is part of the U.S. Visa Waiver Program; ESTA necessary."
   },
   {
     "citizenship": "Singapore",
     "destination": "Turkey",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa",
+    "embassyUrl": "https://www.mfa.gov.tr/",
     "notes": "Singapore passport holders are exempt from Turkish visas for up to 90 days."
   },
   {
@@ -1892,44 +1892,44 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://www.emirates.com/us/english/before-you-fly/visa-passport-information/uae-visa-information/",
-    "notes": "Singapore citizens receive a 30\u2011day visa on arrival in the UAE."
+    "embassyUrl": "https://www.mofa.gov.ae/",
+    "notes": "Singapore citizens receive a 30‑day visa on arrival in the UAE."
   },
   {
     "citizenship": "Singapore",
     "destination": "Thailand",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 30 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://www.thaiembassy.com/thailand-visa/thailand-visa-exemption-program",
+    "embassyUrl": "https://www.mfa.go.th/",
     "notes": "Singaporeans may visit Thailand without a visa for 30 days."
   },
   {
     "citizenship": "Singapore",
     "destination": "Japan",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://france-visas.gouv.fr/en/japan",
+    "embassyUrl": "https://www.mofa.go.jp/",
     "notes": "Singapore passport holders do not need a visa for Japan."
   },
   {
     "citizenship": "Singapore",
     "destination": "China",
     "visaRequired": false,
-    "visaType": "Visa\u2011free (trial)",
+    "visaType": "Visa‑free (trial)",
     "validity": "Up to 30 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "SGD",
     "embassyUrl": "https://www.mfa.gov.cn/",
-    "notes": "China grants 30\u2011day visa\u2011free entry to Singapore citizens during trial."
+    "notes": "China grants 30‑day visa‑free entry to Singapore citizens during trial."
   },
   {
     "citizenship": "Singapore",
@@ -1940,7 +1940,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "",
+    "embassyUrl": "https://www.mfa.gov.sg/",
     "notes": ""
   },
   {
@@ -1952,92 +1952,92 @@
     "processingTime": "On arrival",
     "cost": 500000,
     "currency": "IDR",
-    "embassyUrl": "https://molina.imigrasi.go.id/",
+    "embassyUrl": "https://kemlu.go.id/",
     "notes": "Singaporeans require a VOA for Indonesia (30 days)."
   },
   {
     "citizenship": "Singapore",
     "destination": "Vietnam",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 30 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://vietnam.travel/visa-exemption",
-    "notes": "Singapore citizens may enter Vietnam visa\u2011free for 30 days."
+    "embassyUrl": "https://www.mofa.gov.vn/",
+    "notes": "Singapore citizens may enter Vietnam visa‑free for 30 days."
   },
   {
     "citizenship": "Singapore",
     "destination": "Greece",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://singapur.diplo.de/sg-en/service/05-visaeinreise/1225488-1225488",
-    "notes": "Singapore citizens do not require a visa to visit the Schengen area for up to 90 days\u3010127875633459785\u2020L103-L105\u3011."
+    "embassyUrl": "https://www.mfa.gr/en/",
+    "notes": "Singapore citizens do not require a visa to visit the Schengen area for up to 90 days【127875633459785†L103-L105】."
   },
   {
     "citizenship": "Singapore",
     "destination": "Portugal",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://singapur.diplo.de/sg-en/service/05-visaeinreise/1225488-1225488",
-    "notes": "Singapore citizens do not require a visa to visit the Schengen area for up to 90 days\u3010127875633459785\u2020L103-L105\u3011."
+    "embassyUrl": "https://vistos.mne.gov.pt/",
+    "notes": "Singapore citizens do not require a visa to visit the Schengen area for up to 90 days【127875633459785†L103-L105】."
   },
   {
     "citizenship": "Singapore",
     "destination": "Netherlands",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://singapur.diplo.de/sg-en/service/05-visaeinreise/1225488-1225488",
-    "notes": "Singapore citizens do not require a visa to visit the Schengen area for up to 90 days\u3010127875633459785\u2020L103-L105\u3011."
+    "embassyUrl": "https://www.netherlandsworldwide.nl/",
+    "notes": "Singapore citizens do not require a visa to visit the Schengen area for up to 90 days【127875633459785†L103-L105】."
   },
   {
     "citizenship": "Singapore",
     "destination": "Austria",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://singapur.diplo.de/sg-en/service/05-visaeinreise/1225488-1225488",
-    "notes": "Singapore citizens do not require a visa to visit the Schengen area for up to 90 days\u3010127875633459785\u2020L103-L105\u3011."
+    "embassyUrl": "https://www.bmeia.gv.at/en/",
+    "notes": "Singapore citizens do not require a visa to visit the Schengen area for up to 90 days【127875633459785†L103-L105】."
   },
   {
     "citizenship": "Singapore",
     "destination": "Switzerland",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://singapur.diplo.de/sg-en/service/05-visaeinreise/1225488-1225488",
-    "notes": "Singapore citizens do not require a visa to visit the Schengen area for up to 90 days\u3010127875633459785\u2020L103-L105\u3011."
+    "embassyUrl": "https://www.eda.admin.ch/",
+    "notes": "Singapore citizens do not require a visa to visit the Schengen area for up to 90 days【127875633459785†L103-L105】."
   },
   {
     "citizenship": "Singapore",
     "destination": "Mexico",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 180 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://mexiko.diplo.de/resource/blob/2558240/630f5128ed34d401142b94c038f8ab05/mb-schengenundtransit-eng-data.pdf",
-    "notes": "Singapore passport holders can visit Mexico visa\u2011free for tourism/business."
+    "embassyUrl": "https://www.gob.mx/sre",
+    "notes": "Singapore passport holders can visit Mexico visa‑free for tourism/business."
   },
   {
     "citizenship": "Singapore",
@@ -2048,7 +2048,7 @@
     "processingTime": "Instant",
     "cost": 7,
     "currency": "CAD",
-    "embassyUrl": "https://canada.diplo.de/ca-en/consular-services/visa/2653576-2653576",
+    "embassyUrl": "https://www.international.gc.ca/",
     "notes": "Singaporeans need an eTA when flying to Canada; valid 5 years."
   },
   {
@@ -2060,7 +2060,7 @@
     "processingTime": "Minutes",
     "cost": 0,
     "currency": "AUD",
-    "embassyUrl": "https://australien.diplo.de/au-en/service/visa/short-term-visa-2073662",
+    "embassyUrl": "https://www.dfat.gov.au/",
     "notes": "Singapore citizens can apply for ETA for short visits to Australia."
   },
   {
@@ -2072,32 +2072,32 @@
     "processingTime": "On arrival",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://turismodeegipto.org/",
+    "embassyUrl": "https://www.mfa.gov.eg/",
     "notes": "Singaporeans need an Egyptian visa; can obtain on arrival."
   },
   {
     "citizenship": "Singapore",
     "destination": "Morocco",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://www.gov.uk/foreign-travel-advice/morocco/entry-requirements",
-    "notes": "Singapore citizens may travel to Morocco visa\u2011free for 90 days."
+    "embassyUrl": "https://www.diplomatie.ma/",
+    "notes": "Singapore citizens may travel to Morocco visa‑free for 90 days."
   },
   {
     "citizenship": "Singapore",
     "destination": "South Korea",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 90 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://www.koreatraveleasy.com/en/blog/keta-waiver-countries/",
-    "notes": "Singapore and South Korea have visa\u2011free arrangements."
+    "embassyUrl": "https://www.mofa.go.kr/",
+    "notes": "Singapore and South Korea have visa‑free arrangements."
   },
   {
     "citizenship": "Indonesia (Bali)",
@@ -2108,7 +2108,7 @@
     "processingTime": "~15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://www.vfsglobal.com/",
+    "embassyUrl": "https://france-visas.gouv.fr/",
     "notes": "Indonesian citizens must apply for a Schengen visa."
   },
   {
@@ -2120,7 +2120,7 @@
     "processingTime": "~15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://www.vfsglobal.com/",
+    "embassyUrl": "https://www.exteriores.gob.es/",
     "notes": "Indonesian citizens must apply for a Schengen visa."
   },
   {
@@ -2132,7 +2132,7 @@
     "processingTime": "~15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://www.vfsglobal.com/",
+    "embassyUrl": "https://www.esteri.it/",
     "notes": "Indonesian citizens must apply for a Schengen visa."
   },
   {
@@ -2144,7 +2144,7 @@
     "processingTime": "~3 weeks",
     "cost": 127,
     "currency": "GBP",
-    "embassyUrl": "https://www.gov.uk/standard-visitor",
+    "embassyUrl": "https://www.gov.uk/uk-visas-immigration",
     "notes": "Indonesian passport holders require a UK visitor visa."
   },
   {
@@ -2156,7 +2156,7 @@
     "processingTime": "~15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://www.vfsglobal.com/",
+    "embassyUrl": "https://www.auswaertiges-amt.de/en/",
     "notes": "Indonesian citizens must apply for a Schengen visa."
   },
   {
@@ -2164,7 +2164,7 @@
     "destination": "USA",
     "visaRequired": true,
     "visaType": "B1/B2 visa",
-    "validity": "10\u2011year validity; stays up to 180 days",
+    "validity": "10‑year validity; stays up to 180 days",
     "processingTime": "Varies",
     "cost": 185,
     "currency": "USD",
@@ -2175,13 +2175,13 @@
     "citizenship": "Indonesia (Bali)",
     "destination": "Turkey",
     "visaRequired": true,
-    "visaType": "e\u2011Visa",
+    "visaType": "e‑Visa",
     "validity": "30 days",
     "processingTime": "Instant",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://www.evisa.gov.tr/",
-    "notes": "Indonesian citizens can apply online for a 30\u2011day Turkish e\u2011Visa."
+    "embassyUrl": "https://www.mfa.gov.tr/",
+    "notes": "Indonesian citizens can apply online for a 30‑day Turkish e‑Visa."
   },
   {
     "citizenship": "Indonesia (Bali)",
@@ -2192,20 +2192,20 @@
     "processingTime": "Few days",
     "cost": 90,
     "currency": "USD",
-    "embassyUrl": "https://www.emirates.com/us/english/before-you-fly/visa-passport-information/uae-visa-information/",
+    "embassyUrl": "https://www.mofa.gov.ae/",
     "notes": "Indonesian citizens require a UAE tourist visa."
   },
   {
     "citizenship": "Indonesia (Bali)",
     "destination": "Thailand",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 30 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "IDR",
-    "embassyUrl": "https://www.thaiembassy.com/thailand-visa/thailand-visa-exemption-program",
-    "notes": "Indonesian nationals enjoy visa\u2011free entry to Thailand for 30 days."
+    "embassyUrl": "https://www.mfa.go.th/",
+    "notes": "Indonesian nationals enjoy visa‑free entry to Thailand for 30 days."
   },
   {
     "citizenship": "Indonesia (Bali)",
@@ -2217,7 +2217,7 @@
     "cost": 0,
     "currency": "JPY",
     "embassyUrl": "https://www.mofa.go.jp/",
-    "notes": "Indonesian citizens need a Japanese visa; some may obtain visa waiver with e\u2011Passport."
+    "notes": "Indonesian citizens need a Japanese visa; some may obtain visa waiver with e‑Passport."
   },
   {
     "citizenship": "Indonesia (Bali)",
@@ -2225,23 +2225,23 @@
     "visaRequired": true,
     "visaType": "Visa required",
     "validity": "Up to 30 days",
-    "processingTime": "4\u20137 days",
+    "processingTime": "4–7 days",
     "cost": 0,
     "currency": "CNY",
-    "embassyUrl": "https://www.visaforchina.org/",
+    "embassyUrl": "https://www.mfa.gov.cn/",
     "notes": "Indonesia citizens must apply for a Chinese visa."
   },
   {
     "citizenship": "Indonesia (Bali)",
     "destination": "Singapore",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 30 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "IDR",
-    "embassyUrl": "https://singapur.diplo.de/sg-en/service/05-visaeinreise/1225488-1225488",
-    "notes": "Indonesians can enter Singapore visa\u2011free for 30 days."
+    "embassyUrl": "https://www.mfa.gov.sg/",
+    "notes": "Indonesians can enter Singapore visa‑free for 30 days."
   },
   {
     "citizenship": "Indonesia (Bali)",
@@ -2252,20 +2252,20 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "",
+    "embassyUrl": "https://kemlu.go.id/",
     "notes": ""
   },
   {
     "citizenship": "Indonesia (Bali)",
     "destination": "Vietnam",
     "visaRequired": false,
-    "visaType": "Visa\u2011free",
+    "visaType": "Visa‑free",
     "validity": "Up to 30 days",
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "IDR",
-    "embassyUrl": "https://vietnam.travel/visa-exemption",
-    "notes": "Indonesia and Vietnam are ASEAN members; 30\u2011day visa\u2011free."
+    "embassyUrl": "https://www.mofa.gov.vn/",
+    "notes": "Indonesia and Vietnam are ASEAN members; 30‑day visa‑free."
   },
   {
     "citizenship": "Indonesia (Bali)",
@@ -2276,7 +2276,7 @@
     "processingTime": "~15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://www.vfsglobal.com/",
+    "embassyUrl": "https://www.mfa.gr/en/",
     "notes": "Indonesian citizens must apply for a Schengen visa."
   },
   {
@@ -2288,7 +2288,7 @@
     "processingTime": "~15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://www.vfsglobal.com/",
+    "embassyUrl": "https://vistos.mne.gov.pt/",
     "notes": "Indonesian citizens must apply for a Schengen visa."
   },
   {
@@ -2300,7 +2300,7 @@
     "processingTime": "~15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://www.vfsglobal.com/",
+    "embassyUrl": "https://www.netherlandsworldwide.nl/",
     "notes": "Indonesian citizens must apply for a Schengen visa."
   },
   {
@@ -2312,7 +2312,7 @@
     "processingTime": "~15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://www.vfsglobal.com/",
+    "embassyUrl": "https://www.bmeia.gv.at/en/",
     "notes": "Indonesian citizens must apply for a Schengen visa."
   },
   {
@@ -2324,7 +2324,7 @@
     "processingTime": "~15 days",
     "cost": 90,
     "currency": "EUR",
-    "embassyUrl": "https://www.vfsglobal.com/",
+    "embassyUrl": "https://www.eda.admin.ch/",
     "notes": "Indonesian citizens must apply for a Schengen visa."
   },
   {
@@ -2336,7 +2336,7 @@
     "processingTime": "Varies",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://embamex.sre.gob.mx/",
+    "embassyUrl": "https://www.gob.mx/sre",
     "notes": "Indonesian citizens need a Mexican visa or valid US visa."
   },
   {
@@ -2348,19 +2348,19 @@
     "processingTime": "Varies",
     "cost": 100,
     "currency": "CAD",
-    "embassyUrl": "https://www.canada.ca/",
+    "embassyUrl": "https://www.international.gc.ca/",
     "notes": "Indonesian nationals require a Canadian visitor visa."
   },
   {
     "citizenship": "Indonesia (Bali)",
     "destination": "Australia",
     "visaRequired": true,
-    "visaType": "Visitor visa (subclass\u00a0600)",
+    "visaType": "Visitor visa (subclass 600)",
     "validity": "Up to 3 months",
-    "processingTime": "20\u201333 days",
+    "processingTime": "20–33 days",
     "cost": 150,
     "currency": "AUD",
-    "embassyUrl": "https://immi.homeaffairs.gov.au/",
+    "embassyUrl": "https://www.dfat.gov.au/",
     "notes": "Indonesian citizens need an Australian visitor visa."
   },
   {
@@ -2372,7 +2372,7 @@
     "processingTime": "On arrival",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://turismodeegipto.org/",
+    "embassyUrl": "https://www.mfa.gov.eg/",
     "notes": "Indonesian travellers require an Egyptian visa, available on arrival."
   },
   {
@@ -2384,19 +2384,19 @@
     "processingTime": "Varies",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "https://www.consulat.ma/",
+    "embassyUrl": "https://www.diplomatie.ma/",
     "notes": "Indonesian citizens must obtain a Moroccan visa."
   },
   {
     "citizenship": "Indonesia (Bali)",
     "destination": "South Korea",
     "visaRequired": true,
-    "visaType": "K\u2011ETA",
+    "visaType": "K‑ETA",
     "validity": "Up to 30 days",
-    "processingTime": "1\u20133 days",
+    "processingTime": "1–3 days",
     "cost": 10,
     "currency": "USD",
-    "embassyUrl": "https://www.koreatraveleasy.com/en/blog/keta-waiver-countries/",
-    "notes": "Indonesian nationals need a K\u2011ETA and visa for South Korea."
+    "embassyUrl": "https://www.mofa.go.kr/",
+    "notes": "Indonesian nationals need a K‑ETA and visa for South Korea."
   }
 ]

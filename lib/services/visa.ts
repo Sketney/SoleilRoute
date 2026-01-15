@@ -77,7 +77,7 @@ const baseVisaDataset: VisaRequirement[] = [
     processingTime: "Instant on arrival",
     cost: 0,
     currency: "USD",
-    embassyUrl: "https://www.us.emb-japan.go.jp/itprtop_en/index.html",
+    embassyUrl: "https://www.mofa.go.jp/",
     notes: "Passport must be valid for the entire stay and include proof of onward travel.",
   },
   {
@@ -89,7 +89,7 @@ const baseVisaDataset: VisaRequirement[] = [
     processingTime: "5-7 business days",
     cost: 38,
     currency: "USD",
-    embassyUrl: "https://www.in.emb-japan.go.jp/",
+    embassyUrl: "https://www.mofa.go.jp/",
   },
   {
     citizenship: "United Kingdom",
@@ -111,7 +111,7 @@ const baseVisaDataset: VisaRequirement[] = [
     processingTime: "Instant approval in most cases",
     cost: 20,
     currency: "AUD",
-    embassyUrl: "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/electronic-travel-authority-601",
+    embassyUrl: "https://www.dfat.gov.au/",
     notes: "Submit ETA application at least 72 hours before departure.",
   },
   {
@@ -123,7 +123,7 @@ const baseVisaDataset: VisaRequirement[] = [
     processingTime: "Instant to 72 hours",
     cost: 21,
     currency: "USD",
-    embassyUrl: "https://esta.cbp.dhs.gov/",
+    embassyUrl: "https://travel.state.gov/",
   },
 ];
 

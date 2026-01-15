@@ -8,7 +8,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "",
+    "embassyUrl": "https://france-visas.gouv.fr/",
     "notes": "Travel within your own country does not require a visa."
   },
   {
@@ -20,7 +20,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/",
+    "embassyUrl": "https://www.exteriores.gob.es/",
     "notes": "EU nationals may travel freely within the EU/Schengen area with a valid passport or national ID."
   },
   {
@@ -32,7 +32,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/",
+    "embassyUrl": "https://www.esteri.it/",
     "notes": "EU nationals may travel freely within the EU/Schengen area with a valid passport or national ID."
   },
   {
@@ -44,7 +44,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.gov.uk/visit-europe-visa",
+    "embassyUrl": "https://www.gov.uk/uk-visas-immigration",
     "notes": "UK citizens can visit Schengen countries for up to 90 days in any 180‑day period without a visa."
   },
   {
@@ -56,7 +56,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/",
+    "embassyUrl": "https://www.auswaertiges-amt.de/en/",
     "notes": "EU nationals may travel freely within the EU/Schengen area with a valid passport or national ID."
   },
   {
@@ -68,7 +68,7 @@
     "processingTime": "Typically within 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "Citizen of a Visa Waiver Program country; must apply for ESTA prior to travel."
   },
   {
@@ -80,7 +80,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa",
+    "embassyUrl": "https://www.mfa.gov.tr/",
     "notes": "Ordinary passport holders may stay in Türkiye for tourism/business without a visa."
   },
   {
@@ -92,7 +92,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "AED",
-    "embassyUrl": "https://www.emirates.com/ae/english/help/visa-passport-information/uae-visa-information/entry-permit-visa-on-arrival/",
+    "embassyUrl": "https://www.mofa.gov.ae/",
     "notes": "Passport must be valid at least six months; multiple entry allowed during validity period."
   },
   {
@@ -104,7 +104,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "THB",
-    "embassyUrl": "https://thaiembassy.com/thailand-visa/thai-visa-exemption",
+    "embassyUrl": "https://www.mfa.go.th/",
     "notes": "Nationals of many European countries may enter Thailand for 30 days without a visa and extend for another 30 days."
   },
   {
@@ -116,7 +116,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://www.mofa.go.jp/j_info/visit/visa/short/novisa.html",
+    "embassyUrl": "https://www.mofa.go.jp/",
     "notes": "Visa exemption applies to many countries for tourism and business visits; passport must be valid for the duration of stay."
   },
   {
@@ -128,7 +128,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "CNY",
-    "embassyUrl": "https://losangeles.china-consulate.gov.cn/eng/lsfw/visas/202311/t20231124_11262165.htm",
+    "embassyUrl": "https://www.mfa.gov.cn/",
     "notes": "Nationals of France, Germany, Italy, Spain and several other countries may enter China visa‑free for 30 days under a trial scheme valid until 31 Dec 2026."
   },
   {
@@ -140,7 +140,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://www.ica.gov.sg/",
+    "embassyUrl": "https://www.mfa.gov.sg/",
     "notes": "Nationals of EU countries, UK, USA and several other countries may enter Singapore visa‑free for 90 days; passport must be valid six months."
   },
   {
@@ -152,7 +152,7 @@
     "processingTime": "On arrival or online within a day",
     "cost": 500000,
     "currency": "IDR",
-    "embassyUrl": "https://molina.imigrasi.go.id/",
+    "embassyUrl": "https://kemlu.go.id/",
     "notes": "Available to most nationalities for tourism; passport must be valid for at least six months."
   },
   {
@@ -164,7 +164,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "VND",
-    "embassyUrl": "https://vietnam.travel",
+    "embassyUrl": "https://www.mofa.gov.vn/",
     "notes": "Nationals of France, Germany, Italy, Spain, UK and several other European countries may stay in Vietnam visa‑free for 45 days until 2028."
   },
   {
@@ -176,7 +176,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/",
+    "embassyUrl": "https://www.mfa.gr/en/",
     "notes": "EU nationals may travel freely within the EU/Schengen area with a valid passport or national ID."
   },
   {
@@ -188,7 +188,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/",
+    "embassyUrl": "https://vistos.mne.gov.pt/",
     "notes": "EU nationals may travel freely within the EU/Schengen area with a valid passport or national ID."
   },
   {
@@ -200,7 +200,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/",
+    "embassyUrl": "https://www.netherlandsworldwide.nl/",
     "notes": "EU nationals may travel freely within the EU/Schengen area with a valid passport or national ID."
   },
   {
@@ -212,7 +212,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/",
+    "embassyUrl": "https://www.bmeia.gv.at/en/",
     "notes": "EU nationals may travel freely within the EU/Schengen area with a valid passport or national ID."
   },
   {
@@ -224,7 +224,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://europa.eu/youreurope/citizens/travel/entry-exit/",
+    "embassyUrl": "https://www.eda.admin.ch/",
     "notes": "EU nationals may travel freely within the EU/Schengen area with a valid passport or national ID."
   },
   {
@@ -248,7 +248,7 @@
     "processingTime": "Minutes to a few days",
     "cost": 7,
     "currency": "CAD",
-    "embassyUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta.html",
+    "embassyUrl": "https://www.international.gc.ca/",
     "notes": "Most visa‑exempt travellers flying to Canada need an eTA; multiple entries allowed."
   },
   {
@@ -260,7 +260,7 @@
     "processingTime": "Minutes to a few days",
     "cost": 0,
     "currency": "AUD",
-    "embassyUrl": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/evisitor-651",
+    "embassyUrl": "https://www.dfat.gov.au/",
     "notes": "Available to passport holders from the EU and UK for tourism or business."
   },
   {
@@ -272,7 +272,7 @@
     "processingTime": "On arrival",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://www.egypt.travel",
+    "embassyUrl": "https://www.mfa.gov.eg/",
     "notes": "Available to EU, UK and US citizens at Egyptian airports; travellers can also apply for an e‑visa before arrival."
   },
   {
@@ -284,7 +284,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "MAD",
-    "embassyUrl": "https://www.consulat.ma/",
+    "embassyUrl": "https://www.diplomatie.ma/",
     "notes": "Nationals of many countries including EU member states, UK, USA and Canada may stay in Morocco visa‑free for up to 90 days."
   },
   {
@@ -296,7 +296,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "KRW",
-    "embassyUrl": "https://www.k-eta.go.kr/",
+    "embassyUrl": "https://www.mofa.go.kr/",
     "notes": "Korea has temporarily waived K‑ETA requirements for nationals of France, UK, USA and several other countries until the end of 2025; stays up to 90 days."
   },
   {
@@ -308,7 +308,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.gov.uk/visit-europe-visa",
+    "embassyUrl": "https://france-visas.gouv.fr/",
     "notes": "UK citizens can visit Schengen countries for up to 90 days in any 180‑day period without a visa."
   },
   {
@@ -320,7 +320,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.gov.uk/visit-europe-visa",
+    "embassyUrl": "https://www.exteriores.gob.es/",
     "notes": "UK citizens can visit Schengen countries for up to 90 days in any 180‑day period without a visa."
   },
   {
@@ -332,7 +332,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.gov.uk/visit-europe-visa",
+    "embassyUrl": "https://www.esteri.it/",
     "notes": "UK citizens can visit Schengen countries for up to 90 days in any 180‑day period without a visa."
   },
   {
@@ -344,7 +344,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "",
+    "embassyUrl": "https://www.gov.uk/uk-visas-immigration",
     "notes": "Travel within your own country does not require a visa."
   },
   {
@@ -356,7 +356,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.gov.uk/visit-europe-visa",
+    "embassyUrl": "https://www.auswaertiges-amt.de/en/",
     "notes": "UK citizens can visit Schengen countries for up to 90 days in any 180‑day period without a visa."
   },
   {
@@ -368,7 +368,7 @@
     "processingTime": "Typically within 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "Citizen of a Visa Waiver Program country; must apply for ESTA prior to travel."
   },
   {
@@ -380,7 +380,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa",
+    "embassyUrl": "https://www.mfa.gov.tr/",
     "notes": "Ordinary passport holders may stay in Türkiye for tourism/business without a visa."
   },
   {
@@ -392,7 +392,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "AED",
-    "embassyUrl": "https://www.emirates.com/ae/english/help/visa-passport-information/uae-visa-information/entry-permit-visa-on-arrival/",
+    "embassyUrl": "https://www.mofa.gov.ae/",
     "notes": "Passport must be valid at least six months; multiple entry allowed during validity period."
   },
   {
@@ -404,7 +404,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "THB",
-    "embassyUrl": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/thailand-travel-advisory.html",
+    "embassyUrl": "https://www.mfa.go.th/",
     "notes": "Citizens of the United States and United Kingdom may stay in Thailand for up to 60 days without a visa; pre‑arrival registration may be required."
   },
   {
@@ -416,7 +416,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://www.gov.uk/foreign-travel-advice/japan/entry-requirements",
+    "embassyUrl": "https://www.mofa.go.jp/",
     "notes": "British citizens receive a 90‑day stamp on arrival for tourism or business and may apply for an extension once in Japan."
   },
   {
@@ -428,7 +428,7 @@
     "processingTime": "5–7 business days or longer",
     "cost": 140,
     "currency": "USD",
-    "embassyUrl": "https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages/China.html",
+    "embassyUrl": "https://www.mfa.gov.cn/",
     "notes": "Visitors must obtain a visa before travel; U.S. citizens may apply for a 10‑year multiple entry visa."
   },
   {
@@ -440,7 +440,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://www.ica.gov.sg/",
+    "embassyUrl": "https://www.mfa.gov.sg/",
     "notes": "Nationals of EU countries, UK, USA and several other countries may enter Singapore visa‑free for 90 days; passport must be valid six months."
   },
   {
@@ -452,7 +452,7 @@
     "processingTime": "On arrival or online within a day",
     "cost": 500000,
     "currency": "IDR",
-    "embassyUrl": "https://molina.imigrasi.go.id/",
+    "embassyUrl": "https://kemlu.go.id/",
     "notes": "Available to most nationalities for tourism; passport must be valid for at least six months."
   },
   {
@@ -464,7 +464,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "VND",
-    "embassyUrl": "https://vietnam.travel",
+    "embassyUrl": "https://www.mofa.gov.vn/",
     "notes": "Nationals of France, Germany, Italy, Spain, UK and several other European countries may stay in Vietnam visa‑free for 45 days until 2028."
   },
   {
@@ -476,7 +476,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.gov.uk/visit-europe-visa",
+    "embassyUrl": "https://www.mfa.gr/en/",
     "notes": "UK citizens can visit Schengen countries for up to 90 days in any 180‑day period without a visa."
   },
   {
@@ -488,7 +488,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.gov.uk/visit-europe-visa",
+    "embassyUrl": "https://vistos.mne.gov.pt/",
     "notes": "UK citizens can visit Schengen countries for up to 90 days in any 180‑day period without a visa."
   },
   {
@@ -500,7 +500,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.gov.uk/visit-europe-visa",
+    "embassyUrl": "https://www.netherlandsworldwide.nl/",
     "notes": "UK citizens can visit Schengen countries for up to 90 days in any 180‑day period without a visa."
   },
   {
@@ -512,7 +512,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.gov.uk/visit-europe-visa",
+    "embassyUrl": "https://www.bmeia.gv.at/en/",
     "notes": "UK citizens can visit Schengen countries for up to 90 days in any 180‑day period without a visa."
   },
   {
@@ -524,7 +524,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.gov.uk/visit-europe-visa",
+    "embassyUrl": "https://www.eda.admin.ch/",
     "notes": "UK citizens can visit Schengen countries for up to 90 days in any 180‑day period without a visa."
   },
   {
@@ -548,7 +548,7 @@
     "processingTime": "Minutes to a few days",
     "cost": 7,
     "currency": "CAD",
-    "embassyUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta.html",
+    "embassyUrl": "https://www.international.gc.ca/",
     "notes": "Most visa‑exempt travellers flying to Canada need an eTA; multiple entries allowed."
   },
   {
@@ -560,7 +560,7 @@
     "processingTime": "Minutes to a few days",
     "cost": 0,
     "currency": "AUD",
-    "embassyUrl": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/evisitor-651",
+    "embassyUrl": "https://www.dfat.gov.au/",
     "notes": "Available to passport holders from the EU and UK for tourism or business."
   },
   {
@@ -572,7 +572,7 @@
     "processingTime": "On arrival",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://www.egypt.travel",
+    "embassyUrl": "https://www.mfa.gov.eg/",
     "notes": "Available to EU, UK and US citizens at Egyptian airports; travellers can also apply for an e‑visa before arrival."
   },
   {
@@ -584,7 +584,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "MAD",
-    "embassyUrl": "https://www.consulat.ma/",
+    "embassyUrl": "https://www.diplomatie.ma/",
     "notes": "Nationals of many countries including EU member states, UK, USA and Canada may stay in Morocco visa‑free for up to 90 days."
   },
   {
@@ -596,7 +596,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "KRW",
-    "embassyUrl": "https://www.k-eta.go.kr/",
+    "embassyUrl": "https://www.mofa.go.kr/",
     "notes": "Korea has temporarily waived K‑ETA requirements for nationals of France, UK, USA and several other countries until the end of 2025; stays up to 90 days."
   },
   {
@@ -608,7 +608,7 @@
     "processingTime": "Typically within 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://france-visas.gouv.fr/",
     "notes": "Citizen of a Visa Waiver Program country; must apply for ESTA prior to travel."
   },
   {
@@ -620,7 +620,7 @@
     "processingTime": "Typically within 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://www.exteriores.gob.es/",
     "notes": "Citizen of a Visa Waiver Program country; must apply for ESTA prior to travel."
   },
   {
@@ -632,7 +632,7 @@
     "processingTime": "Typically within 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://www.esteri.it/",
     "notes": "Citizen of a Visa Waiver Program country; must apply for ESTA prior to travel."
   },
   {
@@ -644,7 +644,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.gov.uk/uk-visas-immigration",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -656,7 +656,7 @@
     "processingTime": "Typically within 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://www.auswaertiges-amt.de/en/",
     "notes": "Citizen of a Visa Waiver Program country; must apply for ESTA prior to travel."
   },
   {
@@ -668,7 +668,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "Travel within your own country does not require a visa."
   },
   {
@@ -680,7 +680,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa",
+    "embassyUrl": "https://www.mfa.gov.tr/",
     "notes": "Ordinary passport holders may stay in Türkiye for tourism/business without a visa."
   },
   {
@@ -692,7 +692,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "AED",
-    "embassyUrl": "https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages/UnitedArabEmirates.html",
+    "embassyUrl": "https://www.mofa.gov.ae/",
     "notes": "Visitor visa free of charge for stays up to 30 days; extension possible for a fee."
   },
   {
@@ -704,7 +704,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "THB",
-    "embassyUrl": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/thailand-travel-advisory.html",
+    "embassyUrl": "https://www.mfa.go.th/",
     "notes": "Citizens of the United States and United Kingdom may stay in Thailand for up to 60 days without a visa; pre‑arrival registration may be required."
   },
   {
@@ -716,7 +716,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://www.mofa.go.jp/j_info/visit/visa/short/novisa.html",
+    "embassyUrl": "https://www.mofa.go.jp/",
     "notes": "Visa exemption applies to many countries for tourism and business visits; passport must be valid for the duration of stay."
   },
   {
@@ -728,7 +728,7 @@
     "processingTime": "5–7 business days or longer",
     "cost": 140,
     "currency": "USD",
-    "embassyUrl": "https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages/China.html",
+    "embassyUrl": "https://www.mfa.gov.cn/",
     "notes": "Visitors must obtain a visa before travel; U.S. citizens may apply for a 10‑year multiple entry visa."
   },
   {
@@ -740,7 +740,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://www.ica.gov.sg/",
+    "embassyUrl": "https://www.mfa.gov.sg/",
     "notes": "Nationals of EU countries, UK, USA and several other countries may enter Singapore visa‑free for 90 days; passport must be valid six months."
   },
   {
@@ -752,7 +752,7 @@
     "processingTime": "On arrival or online within a day",
     "cost": 500000,
     "currency": "IDR",
-    "embassyUrl": "https://molina.imigrasi.go.id/",
+    "embassyUrl": "https://kemlu.go.id/",
     "notes": "Available to most nationalities for tourism; passport must be valid for at least six months."
   },
   {
@@ -764,7 +764,7 @@
     "processingTime": "3–5 working days",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://evisa.xuatnhapcanh.gov.vn/",
+    "embassyUrl": "https://www.mofa.gov.vn/",
     "notes": "Most other nationals must obtain an e‑Visa before arrival; valid for tourism and business."
   },
   {
@@ -776,7 +776,7 @@
     "processingTime": "Typically within 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://www.mfa.gr/en/",
     "notes": "Citizen of a Visa Waiver Program country; must apply for ESTA prior to travel."
   },
   {
@@ -788,7 +788,7 @@
     "processingTime": "Typically within 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://vistos.mne.gov.pt/",
     "notes": "Citizen of a Visa Waiver Program country; must apply for ESTA prior to travel."
   },
   {
@@ -800,7 +800,7 @@
     "processingTime": "Typically within 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://www.netherlandsworldwide.nl/",
     "notes": "Citizen of a Visa Waiver Program country; must apply for ESTA prior to travel."
   },
   {
@@ -812,7 +812,7 @@
     "processingTime": "Typically within 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://www.bmeia.gv.at/en/",
     "notes": "Citizen of a Visa Waiver Program country; must apply for ESTA prior to travel."
   },
   {
@@ -824,7 +824,7 @@
     "processingTime": "Typically within 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://www.eda.admin.ch/",
     "notes": "Citizen of a Visa Waiver Program country; must apply for ESTA prior to travel."
   },
   {
@@ -848,7 +848,7 @@
     "processingTime": "Minutes to a few days",
     "cost": 7,
     "currency": "CAD",
-    "embassyUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta.html",
+    "embassyUrl": "https://www.international.gc.ca/",
     "notes": "Most visa‑exempt travellers flying to Canada need an eTA; multiple entries allowed."
   },
   {
@@ -860,7 +860,7 @@
     "processingTime": "Minutes to a day",
     "cost": 20,
     "currency": "AUD",
-    "embassyUrl": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/electronic-travel-authority-601",
+    "embassyUrl": "https://www.dfat.gov.au/",
     "notes": "US citizens can apply via the ETA app; service charge applies."
   },
   {
@@ -872,7 +872,7 @@
     "processingTime": "On arrival",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://www.egypt.travel",
+    "embassyUrl": "https://www.mfa.gov.eg/",
     "notes": "Available to EU, UK and US citizens at Egyptian airports; travellers can also apply for an e‑visa before arrival."
   },
   {
@@ -884,7 +884,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "MAD",
-    "embassyUrl": "https://www.consulat.ma/",
+    "embassyUrl": "https://www.diplomatie.ma/",
     "notes": "Nationals of many countries including EU member states, UK, USA and Canada may stay in Morocco visa‑free for up to 90 days."
   },
   {
@@ -896,7 +896,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "KRW",
-    "embassyUrl": "https://www.k-eta.go.kr/",
+    "embassyUrl": "https://www.mofa.go.kr/",
     "notes": "Korea has temporarily waived K‑ETA requirements for nationals of France, UK, USA and several other countries until the end of 2025; stays up to 90 days."
   },
   {
@@ -908,7 +908,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://france-visas.gouv.fr/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -920,7 +920,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.exteriores.gob.es/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -932,7 +932,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.esteri.it/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -944,7 +944,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.gov.uk/uk-visas-immigration",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -956,7 +956,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.auswaertiges-amt.de/en/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -968,7 +968,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -980,7 +980,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "",
+    "embassyUrl": "https://www.mfa.gov.tr/",
     "notes": "Travel within your own country does not require a visa."
   },
   {
@@ -992,7 +992,7 @@
     "processingTime": "Approx. 3 weeks",
     "cost": 127,
     "currency": "GBP",
-    "embassyUrl": "https://www.gov.uk/standard-visitor",
+    "embassyUrl": "https://www.mofa.gov.ae/",
     "notes": "Applicants must show ties to home country and purpose of visit; some nationalities require biometrics."
   },
   {
@@ -1004,7 +1004,7 @@
     "processingTime": "1–3 days",
     "cost": 60,
     "currency": "USD",
-    "embassyUrl": "https://www.evisa.gov.tr/en/",
+    "embassyUrl": "https://www.mfa.go.th/",
     "notes": "Apply online for single entry; valid for tourism or commerce."
   },
   {
@@ -1016,7 +1016,7 @@
     "processingTime": "1–3 days",
     "cost": 60,
     "currency": "USD",
-    "embassyUrl": "https://www.evisa.gov.tr/en/",
+    "embassyUrl": "https://www.mofa.go.jp/",
     "notes": "Apply online for single entry; valid for tourism or commerce."
   },
   {
@@ -1028,7 +1028,7 @@
     "processingTime": "5–7 business days or longer",
     "cost": 140,
     "currency": "USD",
-    "embassyUrl": "https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages/China.html",
+    "embassyUrl": "https://www.mfa.gov.cn/",
     "notes": "Visitors must obtain a visa before travel; U.S. citizens may apply for a 10‑year multiple entry visa."
   },
   {
@@ -1040,7 +1040,7 @@
     "processingTime": "3–7 working days",
     "cost": 30,
     "currency": "SGD",
-    "embassyUrl": "https://www.ica.gov.sg/",
+    "embassyUrl": "https://www.mfa.gov.sg/",
     "notes": "Applicants must apply through authorised agencies; VFS service fee may apply."
   },
   {
@@ -1052,7 +1052,7 @@
     "processingTime": "On arrival or online within a day",
     "cost": 500000,
     "currency": "IDR",
-    "embassyUrl": "https://molina.imigrasi.go.id/",
+    "embassyUrl": "https://kemlu.go.id/",
     "notes": "Available to most nationalities for tourism; passport must be valid for at least six months."
   },
   {
@@ -1064,7 +1064,7 @@
     "processingTime": "3–5 working days",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://evisa.xuatnhapcanh.gov.vn/",
+    "embassyUrl": "https://www.mofa.gov.vn/",
     "notes": "Most other nationals must obtain an e‑Visa before arrival; valid for tourism and business."
   },
   {
@@ -1076,7 +1076,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.mfa.gr/en/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1088,7 +1088,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://vistos.mne.gov.pt/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1100,7 +1100,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.netherlandsworldwide.nl/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1112,7 +1112,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.bmeia.gv.at/en/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1124,7 +1124,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.eda.admin.ch/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1136,7 +1136,7 @@
     "processingTime": "Same day",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://www.inm.gob.mx",
+    "embassyUrl": "https://www.gob.mx/sre",
     "notes": "Citizens of Russia and some other countries may apply for a free electronic authorisation for air travel to Mexico; valid for a single entry."
   },
   {
@@ -1148,7 +1148,7 @@
     "processingTime": "Varies (weeks)",
     "cost": 100,
     "currency": "CAD",
-    "embassyUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/visa.html",
+    "embassyUrl": "https://www.international.gc.ca/",
     "notes": "Citizens of Russia, Turkey and some other countries must obtain a visa before arriving in Canada."
   },
   {
@@ -1160,7 +1160,7 @@
     "processingTime": "20–33 days",
     "cost": 195,
     "currency": "AUD",
-    "embassyUrl": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/visitor-600",
+    "embassyUrl": "https://www.dfat.gov.au/",
     "notes": "Used for citizens of countries not eligible for eVisitor/ETA; online application through the Australian immigration portal."
   },
   {
@@ -1172,7 +1172,7 @@
     "processingTime": "5–7 working days",
     "cost": 27,
     "currency": "USD",
-    "embassyUrl": "https://visa2egypt.gov.eg/",
+    "embassyUrl": "https://www.mfa.gov.eg/",
     "notes": "Citizens of Russia and Turkey must apply for an e‑visa or obtain a sticker visa from an Egyptian mission."
   },
   {
@@ -1184,7 +1184,7 @@
     "processingTime": "2–3 weeks",
     "cost": 20,
     "currency": "EUR",
-    "embassyUrl": "https://www.consulat.ma/",
+    "embassyUrl": "https://www.diplomatie.ma/",
     "notes": "Citizens who are not visa‑exempt must apply for a Moroccan visa prior to travel."
   },
   {
@@ -1196,7 +1196,7 @@
     "processingTime": "24–72 hours",
     "cost": 10000,
     "currency": "KRW",
-    "embassyUrl": "https://www.k-eta.go.kr/",
+    "embassyUrl": "https://www.mofa.go.kr/",
     "notes": "Travellers must apply online for a K‑ETA before departure; valid for multiple entries for 2–3 years."
   },
   {
@@ -1208,7 +1208,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://france-visas.gouv.fr/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1220,7 +1220,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.exteriores.gob.es/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1232,7 +1232,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.esteri.it/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1244,7 +1244,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.gov.uk/uk-visas-immigration",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1256,7 +1256,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.auswaertiges-amt.de/en/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1268,7 +1268,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1280,7 +1280,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa",
+    "embassyUrl": "https://www.mfa.gov.tr/",
     "notes": "Ordinary passport holders may stay in Türkiye for tourism/business without a visa."
   },
   {
@@ -1292,7 +1292,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "",
-    "embassyUrl": "",
+    "embassyUrl": "https://www.mofa.gov.ae/",
     "notes": "Travel within your own country does not require a visa."
   },
   {
@@ -1304,7 +1304,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "THB",
-    "embassyUrl": "https://thaiembassy.com/thailand-visa/thai-visa-exemption",
+    "embassyUrl": "https://www.mfa.go.th/",
     "notes": "Nationals of many European countries may enter Thailand for 30 days without a visa and extend for another 30 days."
   },
   {
@@ -1316,7 +1316,7 @@
     "processingTime": "1–3 days",
     "cost": 60,
     "currency": "USD",
-    "embassyUrl": "https://www.evisa.gov.tr/en/",
+    "embassyUrl": "https://www.mofa.go.jp/",
     "notes": "Apply online for single entry; valid for tourism or commerce."
   },
   {
@@ -1328,7 +1328,7 @@
     "processingTime": "5–7 business days or longer",
     "cost": 140,
     "currency": "USD",
-    "embassyUrl": "https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages/China.html",
+    "embassyUrl": "https://www.mfa.gov.cn/",
     "notes": "Visitors must obtain a visa before travel; U.S. citizens may apply for a 10‑year multiple entry visa."
   },
   {
@@ -1340,7 +1340,7 @@
     "processingTime": "3–7 working days",
     "cost": 30,
     "currency": "SGD",
-    "embassyUrl": "https://www.ica.gov.sg/",
+    "embassyUrl": "https://www.mfa.gov.sg/",
     "notes": "Applicants must apply through authorised agencies; VFS service fee may apply."
   },
   {
@@ -1352,7 +1352,7 @@
     "processingTime": "On arrival or online within a day",
     "cost": 500000,
     "currency": "IDR",
-    "embassyUrl": "https://molina.imigrasi.go.id/",
+    "embassyUrl": "https://kemlu.go.id/",
     "notes": "Available to most nationalities for tourism; passport must be valid for at least six months."
   },
   {
@@ -1364,7 +1364,7 @@
     "processingTime": "3–5 working days",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://evisa.xuatnhapcanh.gov.vn/",
+    "embassyUrl": "https://www.mofa.gov.vn/",
     "notes": "Most other nationals must obtain an e‑Visa before arrival; valid for tourism and business."
   },
   {
@@ -1376,7 +1376,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.mfa.gr/en/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1388,7 +1388,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://vistos.mne.gov.pt/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1400,7 +1400,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.netherlandsworldwide.nl/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1412,7 +1412,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.bmeia.gv.at/en/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1424,7 +1424,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.eda.admin.ch/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1448,7 +1448,7 @@
     "processingTime": "Minutes to a few days",
     "cost": 7,
     "currency": "CAD",
-    "embassyUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta.html",
+    "embassyUrl": "https://www.international.gc.ca/",
     "notes": "Most visa‑exempt travellers flying to Canada need an eTA; multiple entries allowed."
   },
   {
@@ -1460,7 +1460,7 @@
     "processingTime": "20–33 days",
     "cost": 195,
     "currency": "AUD",
-    "embassyUrl": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/visitor-600",
+    "embassyUrl": "https://www.dfat.gov.au/",
     "notes": "Used for citizens of countries not eligible for eVisitor/ETA; online application through the Australian immigration portal."
   },
   {
@@ -1472,7 +1472,7 @@
     "processingTime": "On arrival",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://www.egypt.travel",
+    "embassyUrl": "https://www.mfa.gov.eg/",
     "notes": "Available to EU, UK and US citizens at Egyptian airports; travellers can also apply for an e‑visa before arrival."
   },
   {
@@ -1484,7 +1484,7 @@
     "processingTime": "2–3 weeks",
     "cost": 20,
     "currency": "EUR",
-    "embassyUrl": "https://www.consulat.ma/",
+    "embassyUrl": "https://www.diplomatie.ma/",
     "notes": "Citizens who are not visa‑exempt must apply for a Moroccan visa prior to travel."
   },
   {
@@ -1496,7 +1496,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "KRW",
-    "embassyUrl": "https://www.k-eta.go.kr/",
+    "embassyUrl": "https://www.mofa.go.kr/",
     "notes": "Korea has temporarily waived K‑ETA requirements for nationals of France, UK, USA and several other countries until the end of 2025; stays up to 90 days."
   },
   {
@@ -1508,7 +1508,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://france-visas.gouv.fr/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1520,7 +1520,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.exteriores.gob.es/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1532,7 +1532,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.esteri.it/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1544,7 +1544,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.gov.uk/uk-visas-immigration",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1556,7 +1556,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.auswaertiges-amt.de/en/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1568,7 +1568,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1580,7 +1580,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa",
+    "embassyUrl": "https://www.mfa.gov.tr/",
     "notes": "Ordinary passport holders may stay in Türkiye for tourism/business without a visa."
   },
   {
@@ -1592,7 +1592,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "AED",
-    "embassyUrl": "https://www.emirates.com/ae/english/help/visa-passport-information/uae-visa-information/entry-permit-visa-on-arrival/",
+    "embassyUrl": "https://www.mofa.gov.ae/",
     "notes": "Passport must be valid at least six months; multiple entry allowed during validity period."
   },
   {
@@ -1604,7 +1604,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "THB",
-    "embassyUrl": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/thailand-travel-advisory.html",
+    "embassyUrl": "https://www.mfa.go.th/",
     "notes": "Citizens of the United States and United Kingdom may stay in Thailand for up to 60 days without a visa; pre‑arrival registration may be required."
   },
   {
@@ -1616,7 +1616,7 @@
     "processingTime": "1–3 days",
     "cost": 60,
     "currency": "USD",
-    "embassyUrl": "https://www.evisa.gov.tr/en/",
+    "embassyUrl": "https://www.mofa.go.jp/",
     "notes": "Apply online for single entry; valid for tourism or commerce."
   },
   {
@@ -1628,7 +1628,7 @@
     "processingTime": "5–7 business days or longer",
     "cost": 140,
     "currency": "USD",
-    "embassyUrl": "https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages/China.html",
+    "embassyUrl": "https://www.mfa.gov.cn/",
     "notes": "Visitors must obtain a visa before travel; U.S. citizens may apply for a 10‑year multiple entry visa."
   },
   {
@@ -1640,7 +1640,7 @@
     "processingTime": "3–7 working days",
     "cost": 30,
     "currency": "SGD",
-    "embassyUrl": "https://www.ica.gov.sg/",
+    "embassyUrl": "https://www.mfa.gov.sg/",
     "notes": "Applicants must apply through authorised agencies; VFS service fee may apply."
   },
   {
@@ -1652,7 +1652,7 @@
     "processingTime": "On arrival or online within a day",
     "cost": 500000,
     "currency": "IDR",
-    "embassyUrl": "https://molina.imigrasi.go.id/",
+    "embassyUrl": "https://kemlu.go.id/",
     "notes": "Available to most nationalities for tourism; passport must be valid for at least six months."
   },
   {
@@ -1664,7 +1664,7 @@
     "processingTime": "On arrival",
     "cost": 0,
     "currency": "VND",
-    "embassyUrl": "https://vietnam.travel",
+    "embassyUrl": "https://www.mofa.gov.vn/",
     "notes": "Nationals of France, Germany, Italy, Spain, UK and several other European countries may stay in Vietnam visa‑free for 45 days until 2028."
   },
   {
@@ -1676,7 +1676,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.mfa.gr/en/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1688,7 +1688,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://vistos.mne.gov.pt/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1700,7 +1700,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.netherlandsworldwide.nl/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1712,7 +1712,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.bmeia.gv.at/en/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1724,7 +1724,7 @@
     "processingTime": "4–20 working days",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://electronic-visa.kdmid.ru/",
+    "embassyUrl": "https://www.eda.admin.ch/",
     "notes": "Most foreign nationals require a visa to enter Russia; e‑visa pilot programmes are available to citizens of select countries."
   },
   {
@@ -1736,7 +1736,7 @@
     "processingTime": "Same day",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://www.inm.gob.mx",
+    "embassyUrl": "https://www.gob.mx/sre",
     "notes": "Citizens of Russia and some other countries may apply for a free electronic authorisation for air travel to Mexico; valid for a single entry."
   },
   {
@@ -1748,7 +1748,7 @@
     "processingTime": "Varies (weeks)",
     "cost": 100,
     "currency": "CAD",
-    "embassyUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/visa.html",
+    "embassyUrl": "https://www.international.gc.ca/",
     "notes": "Citizens of Russia, Turkey and some other countries must obtain a visa before arriving in Canada."
   },
   {
@@ -1760,7 +1760,7 @@
     "processingTime": "20–33 days",
     "cost": 195,
     "currency": "AUD",
-    "embassyUrl": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/visitor-600",
+    "embassyUrl": "https://www.dfat.gov.au/",
     "notes": "Used for citizens of countries not eligible for eVisitor/ETA; online application through the Australian immigration portal."
   },
   {
@@ -1772,7 +1772,7 @@
     "processingTime": "5–7 working days",
     "cost": 27,
     "currency": "USD",
-    "embassyUrl": "https://visa2egypt.gov.eg/",
+    "embassyUrl": "https://www.mfa.gov.eg/",
     "notes": "Citizens of Russia and Turkey must apply for an e‑visa or obtain a sticker visa from an Egyptian mission."
   },
   {
@@ -1784,7 +1784,7 @@
     "processingTime": "2–3 weeks",
     "cost": 20,
     "currency": "EUR",
-    "embassyUrl": "https://www.consulat.ma/",
+    "embassyUrl": "https://www.diplomatie.ma/",
     "notes": "Citizens who are not visa‑exempt must apply for a Moroccan visa prior to travel."
   },
   {
@@ -1796,7 +1796,7 @@
     "processingTime": "24–72 hours",
     "cost": 10000,
     "currency": "KRW",
-    "embassyUrl": "https://www.k-eta.go.kr/",
+    "embassyUrl": "https://www.mofa.go.kr/",
     "notes": "Travellers must apply online for a K‑ETA before departure; valid for multiple entries for 2–3 years."
   }
 ]

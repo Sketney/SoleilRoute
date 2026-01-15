@@ -32,7 +32,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://www.government.ae/",
+    "embassyUrl": "https://www.mofa.gov.ae/",
     "notes": "Russian citizens can visit UAE visa-free for tourism or business."
   },
   {
@@ -68,7 +68,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://www.government.ae/",
+    "embassyUrl": "https://www.mofa.gov.ae/",
     "notes": "Kazakh citizens can visit UAE visa-free for tourism or business for up to 30 days."
   },
   {
@@ -104,7 +104,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://www.government.ae/",
+    "embassyUrl": "https://www.mofa.gov.ae/",
     "notes": "Uzbek citizens can visit UAE visa-free for tourism or business for up to 30 days."
   },
   {
@@ -188,7 +188,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://www.government.ae/",
+    "embassyUrl": "https://www.mofa.gov.ae/",
     "notes": "Belarusian citizens can visit UAE visa-free for tourism or business for up to 30 days."
   },
   {
@@ -224,7 +224,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://www.government.ae/",
+    "embassyUrl": "https://www.mofa.gov.ae/",
     "notes": "Armenian citizens can visit UAE visa-free for tourism or business."
   },
   {
@@ -272,7 +272,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://www.government.ae/",
+    "embassyUrl": "https://www.mofa.gov.ae/",
     "notes": "Georgian citizens can visit UAE visa-free for tourism or business."
   },
   {
@@ -308,7 +308,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://www.government.ae/",
+    "embassyUrl": "https://www.mofa.gov.ae/",
     "notes": "Azerbaijani citizens can visit UAE visa-free for tourism or business."
   },
   {
@@ -356,7 +356,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://www.mfa.kg/",
+    "embassyUrl": "https://www.mfa.gov.kg/",
     "notes": "Russian citizens can travel freely to Kyrgyzstan under EAEU agreement with internal passport."
   },
   {
@@ -380,7 +380,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://www.government.ae/",
+    "embassyUrl": "https://www.mofa.gov.ae/",
     "notes": "Kyrgyz citizens can visit UAE visa-free for tourism or business for up to 30 days."
   },
   {
@@ -416,7 +416,7 @@
     "processingTime": "Instant to 24 hours",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://www.evisa.gov.tr/",
+    "embassyUrl": "https://www.mfa.gov.tr/",
     "notes": "Tajik citizens can obtain e-Visa online for Turkey."
   },
   {
@@ -464,7 +464,7 @@
     "processingTime": "3-4 working days",
     "cost": 250,
     "currency": "AED",
-    "embassyUrl": "https://www.gdrfad.gov.ae/",
+    "embassyUrl": "https://www.mofa.gov.ae/",
     "notes": "Moldovan citizens need tourist visa for UAE. Apply through airline, hotel, or tour operator."
   },
   {
@@ -512,7 +512,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://www.gov.kz/",
+    "embassyUrl": "https://mfa.gov.kz/",
     "notes": "Russian citizens can travel freely to Kazakhstan under EAEU agreement with internal passport."
   },
   {
@@ -524,7 +524,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://www.gov.kz/",
+    "embassyUrl": "https://mfa.gov.kz/",
     "notes": "Uzbek citizens can visit Kazakhstan visa-free for up to 30 days."
   },
   {
@@ -548,7 +548,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://home-affairs.ec.europa.eu/",
+    "embassyUrl": "https://ec.europa.eu/home-affairs/what-we-do/policies/borders-and-visas/visa-policy/applying-schengen-visa_en",
     "notes": "Georgian citizens can travel visa-free to Schengen area countries for tourism or business."
   },
   {
@@ -560,7 +560,7 @@
     "processingTime": "7 days (e-Visa) or on arrival",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://www.visa2egypt.gov.eg/",
+    "embassyUrl": "https://www.mfa.gov.eg/",
     "notes": "Russian citizens can obtain e-Visa or visa-on-arrival for tourism. Popular destination for Russian travelers."
   },
   {
@@ -572,7 +572,7 @@
     "processingTime": "On arrival",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://www.visa2egypt.gov.eg/",
+    "embassyUrl": "https://www.mfa.gov.eg/",
     "notes": "Kazakh citizens can obtain visa-on-arrival at Egyptian airports."
   },
   {
@@ -584,7 +584,7 @@
     "processingTime": "On arrival",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://www.visa2egypt.gov.eg/",
+    "embassyUrl": "https://www.mfa.gov.eg/",
     "notes": "Uzbek citizens can obtain visa-on-arrival at Egyptian airports."
   },
   {
@@ -596,7 +596,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://immigration.gov.mv/",
+    "embassyUrl": "https://www.foreign.gov.mv/",
     "notes": "Russian citizens can visit Maldives visa-free for tourism. Very popular destination."
   },
   {
@@ -608,7 +608,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://immigration.gov.mv/",
+    "embassyUrl": "https://www.foreign.gov.mv/",
     "notes": "Kazakh citizens can visit Maldives visa-free for tourism."
   },
   {

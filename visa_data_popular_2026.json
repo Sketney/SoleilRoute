@@ -8,7 +8,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://www.us.emb-japan.go.jp/itpr_en/travel_and_visa.html",
+    "embassyUrl": "https://www.mofa.go.jp/",
     "notes": "U.S. passport holders do not need a visa for short-term visits (tourism, business) up to 90 days. Passport must be valid for duration of stay."
   },
   {
@@ -20,7 +20,7 @@
     "processingTime": "Instant to 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "Japanese citizens must obtain ESTA approval before traveling. Valid for tourism or business. ESTA is valid for 2 years or until passport expires."
   },
   {
@@ -32,7 +32,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://www.gov.uk/check-uk-visa",
+    "embassyUrl": "https://www.gov.uk/uk-visas-immigration",
     "notes": "U.S. citizens can visit the UK for tourism or business without a visa for up to 6 months. Cannot work or access public funds."
   },
   {
@@ -44,7 +44,7 @@
     "processingTime": "Instant to 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "UK citizens must obtain ESTA approval before traveling. Valid for tourism or business under Visa Waiver Program."
   },
   {
@@ -56,7 +56,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://france-visas.gouv.fr/en/web/france-visas",
+    "embassyUrl": "https://france-visas.gouv.fr/",
     "notes": "U.S. citizens can travel visa-free in Schengen area for tourism or business. Must not exceed 90 days in any 180-day period."
   },
   {
@@ -68,7 +68,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "THB",
-    "embassyUrl": "https://www.thaiembassy.com/",
+    "embassyUrl": "https://www.mfa.go.th/",
     "notes": "Chinese citizens can enter Thailand visa-free under mutual exemption agreement effective through December 2026. Passport must be valid for 6+ months."
   },
   {
@@ -80,7 +80,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "CNY",
-    "embassyUrl": "http://th.china-embassy.gov.cn/",
+    "embassyUrl": "https://www.mfa.gov.cn/",
     "notes": "Thai citizens can enter China visa-free under mutual exemption agreement extended through December 31, 2026. Valid for tourism, business, family visits."
   },
   {
@@ -92,7 +92,7 @@
     "processingTime": "3-4 working days",
     "cost": 250,
     "currency": "AED",
-    "embassyUrl": "https://www.gdrfad.gov.ae/",
+    "embassyUrl": "https://www.mofa.gov.ae/",
     "notes": "Indians with valid US/EU/UK visa or residence permit can get visa-on-arrival (14 days, extendable). Others need e-visa. Passport must be valid for 6+ months."
   },
   {
@@ -104,7 +104,7 @@
     "processingTime": "2-4 business days",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://indianvisaonline.gov.in/",
+    "embassyUrl": "https://www.mea.gov.in/",
     "notes": "UAE citizens can apply for e-Tourist Visa online. Available as 30-day single entry or 1-year multiple entry."
   },
   {
@@ -116,7 +116,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://france-visas.gouv.fr/en/web/france-visas",
+    "embassyUrl": "https://france-visas.gouv.fr/",
     "notes": "UK citizens can visit Schengen countries visa-free for tourism/business. ETIAS will be required from late 2026 (€20, valid 3 years)."
   },
   {
@@ -128,7 +128,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://www.thaiembassy.com/",
+    "embassyUrl": "https://www.mfa.go.th/",
     "notes": "U.S. passport holders can enter Thailand visa-free. Passport must be valid for 6+ months. Proof of onward travel may be required."
   },
   {
@@ -140,7 +140,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://consulmex.sre.gob.mx/",
+    "embassyUrl": "https://www.gob.mx/sre",
     "notes": "U.S. citizens can visit Mexico visa-free for tourism or business. Must complete FMM (tourist card) upon arrival."
   },
   {
@@ -152,7 +152,7 @@
     "processingTime": "Several weeks to months",
     "cost": 185,
     "currency": "USD",
-    "embassyUrl": "https://mx.usembassy.gov/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "Mexican citizens need B1/B2 visa for tourism or business in USA. Interview required. Processing times vary by location."
   },
   {
@@ -164,7 +164,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://ca.usembassy.gov/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "Canadian citizens generally don't need visa for tourism/business. Must present valid passport at border."
   },
   {
@@ -176,7 +176,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://www.canada.ca/en/immigration-refugees-citizenship.html",
+    "embassyUrl": "https://www.international.gc.ca/",
     "notes": "U.S. citizens can visit Canada visa-free for tourism or business. Valid passport required."
   },
   {
@@ -188,7 +188,7 @@
     "processingTime": "Several weeks",
     "cost": 185,
     "currency": "USD",
-    "embassyUrl": "https://china.usembassy-china.org.cn/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "Chinese citizens need B visa for tourism or business. Interview required at U.S. embassy/consulate. Each stay limited to 6 months."
   },
   {
@@ -200,7 +200,7 @@
     "processingTime": "4 business days (standard)",
     "cost": 140,
     "currency": "USD",
-    "embassyUrl": "http://www.china-embassy.org/",
+    "embassyUrl": "https://www.mfa.gov.cn/",
     "notes": "U.S. citizens need visa for China. Some cities offer 72/144-hour transit visa exemptions. Passport must be valid for 6+ months."
   },
   {
@@ -212,7 +212,7 @@
     "processingTime": "Several weeks to months",
     "cost": 185,
     "currency": "USD",
-    "embassyUrl": "https://www.ustraveldocs.com/in/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "Indian citizens need B visa. Interview required. Processing times vary. Each stay limited to maximum 6 months."
   },
   {
@@ -224,7 +224,7 @@
     "processingTime": "2-4 business days",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://indianvisaonline.gov.in/",
+    "embassyUrl": "https://www.mea.gov.in/",
     "notes": "U.S. citizens can apply for e-Visa online. Available as 30-day, 1-year or 5-year multiple entry. Must arrive at designated airports."
   },
   {
@@ -236,7 +236,7 @@
     "processingTime": "Instant to 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "Australian citizens must obtain ESTA approval before traveling under Visa Waiver Program."
   },
   {
@@ -248,7 +248,7 @@
     "processingTime": "Instant to 24 hours",
     "cost": 0,
     "currency": "AUD",
-    "embassyUrl": "https://immi.homeaffairs.gov.au/",
+    "embassyUrl": "https://www.dfat.gov.au/",
     "notes": "U.S. citizens can apply for free eVisitor online. Valid for multiple visits of up to 3 months each within 12 months."
   },
   {
@@ -260,7 +260,7 @@
     "processingTime": "Instant to 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "German citizens must obtain ESTA approval before traveling under Visa Waiver Program."
   },
   {
@@ -272,7 +272,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://www.germany.info/",
+    "embassyUrl": "https://www.auswaertiges-amt.de/en/",
     "notes": "U.S. citizens can travel visa-free in Schengen area for tourism or business."
   },
   {
@@ -284,7 +284,7 @@
     "processingTime": "Several weeks",
     "cost": 185,
     "currency": "USD",
-    "embassyUrl": "https://br.usembassy.gov/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "Brazilian citizens need B visa. Interview required. Processing times vary."
   },
   {
@@ -308,7 +308,7 @@
     "processingTime": "Instant to 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "South Korean citizens must obtain ESTA approval before traveling under Visa Waiver Program."
   },
   {
@@ -320,7 +320,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://www.0404.go.kr/",
+    "embassyUrl": "https://www.mofa.go.kr/",
     "notes": "U.S. citizens can visit South Korea visa-free for tourism, business, or transit for up to 90 days."
   },
   {
@@ -332,7 +332,7 @@
     "processingTime": "Instant to 72 hours",
     "cost": 21,
     "currency": "USD",
-    "embassyUrl": "https://esta.cbp.dhs.gov/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "Singaporean citizens must obtain ESTA approval before traveling under Visa Waiver Program."
   },
   {
@@ -344,7 +344,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "USD",
-    "embassyUrl": "https://www.ica.gov.sg/",
+    "embassyUrl": "https://www.mfa.gov.sg/",
     "notes": "U.S. citizens can visit Singapore visa-free for tourism, business, or transit for up to 90 days."
   },
   {
@@ -356,7 +356,7 @@
     "processingTime": "Several weeks to months",
     "cost": 185,
     "currency": "USD",
-    "embassyUrl": "https://ru.usembassy.gov/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "Russian citizens need B visa. Interview required. Due to current relations, processing may be limited."
   },
   {
@@ -380,7 +380,7 @@
     "processingTime": "Several weeks",
     "cost": 185,
     "currency": "USD",
-    "embassyUrl": "https://tr.usembassy.gov/",
+    "embassyUrl": "https://travel.state.gov/",
     "notes": "Turkish citizens need B visa. Interview required at U.S. embassy/consulate."
   },
   {
@@ -392,7 +392,7 @@
     "processingTime": "Instant",
     "cost": 50,
     "currency": "USD",
-    "embassyUrl": "https://www.evisa.gov.tr/",
+    "embassyUrl": "https://www.mfa.gov.tr/",
     "notes": "U.S. citizens can obtain e-Visa online instantly. Valid for tourism or business. Passport must be valid for 6+ months."
   },
   {
@@ -404,7 +404,7 @@
     "processingTime": "Instant to 24 hours",
     "cost": 0,
     "currency": "AUD",
-    "embassyUrl": "https://immi.homeaffairs.gov.au/",
+    "embassyUrl": "https://www.dfat.gov.au/",
     "notes": "UK citizens can apply for free eVisitor online. Valid for multiple visits of up to 3 months each."
   },
   {
@@ -416,7 +416,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "AUD",
-    "embassyUrl": "https://www.gov.uk/check-uk-visa",
+    "embassyUrl": "https://www.gov.uk/uk-visas-immigration",
     "notes": "Australian citizens can visit UK visa-free for tourism or business for up to 6 months."
   },
   {
@@ -428,7 +428,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "CAD",
-    "embassyUrl": "https://embamex.sre.gob.mx/canada/",
+    "embassyUrl": "https://www.gob.mx/sre",
     "notes": "Canadian citizens can visit Mexico visa-free for tourism or business. Must complete FMM upon arrival."
   },
   {
@@ -440,7 +440,7 @@
     "processingTime": "Minutes to hours",
     "cost": 7,
     "currency": "CAD",
-    "embassyUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta.html",
+    "embassyUrl": "https://www.international.gc.ca/",
     "notes": "Mexican citizens need eTA to fly to Canada. Valid for tourism or business. No eTA needed for land/sea entry."
   },
   {
@@ -464,7 +464,7 @@
     "processingTime": "2-4 business days",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://indianvisaonline.gov.in/",
+    "embassyUrl": "https://www.mea.gov.in/",
     "notes": "Thai citizens can apply for e-Tourist Visa online. Multiple entry options available."
   },
   {
@@ -476,7 +476,7 @@
     "processingTime": "5-7 business days",
     "cost": 30,
     "currency": "USD",
-    "embassyUrl": "https://www.cn.emb-japan.go.jp/",
+    "embassyUrl": "https://www.mofa.go.jp/",
     "notes": "Chinese citizens need visa for Japan. Single, double or multiple-entry options available through travel agencies."
   },
   {
@@ -488,7 +488,7 @@
     "processingTime": "4 business days",
     "cost": 30,
     "currency": "USD",
-    "embassyUrl": "http://www.china-embassy.or.jp/",
+    "embassyUrl": "https://www.mfa.gov.cn/",
     "notes": "Japanese citizens need visa for China. Some cities offer 72/144-hour transit visa exemptions."
   },
   {
@@ -512,7 +512,7 @@
     "processingTime": "2-4 business days",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://indianvisaonline.gov.in/",
+    "embassyUrl": "https://www.mea.gov.in/",
     "notes": "Singaporean citizens can apply for e-Tourist Visa online. Multiple entry options available."
   },
   {
@@ -524,7 +524,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "GBP",
-    "embassyUrl": "http://www.exteriores.gob.es/",
+    "embassyUrl": "https://www.exteriores.gob.es/",
     "notes": "UK citizens can visit Schengen countries visa-free. ETIAS will be required from late 2026."
   },
   {
@@ -536,7 +536,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.gov.uk/check-uk-visa",
+    "embassyUrl": "https://www.gov.uk/uk-visas-immigration",
     "notes": "Spanish citizens can visit UK visa-free for tourism or business for up to 6 months."
   },
   {
@@ -548,7 +548,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.auswaertiges-amt.de/",
+    "embassyUrl": "https://www.mfa.gov.tr/",
     "notes": "German citizens can visit Turkey visa-free for tourism or business."
   },
   {
@@ -560,7 +560,7 @@
     "processingTime": "15 calendar days (up to 30-45 days)",
     "cost": 80,
     "currency": "EUR",
-    "embassyUrl": "https://ankara.diplo.de/",
+    "embassyUrl": "https://www.auswaertiges-amt.de/en/",
     "notes": "Turkish citizens need Schengen visa for Germany. Apply at German embassy/consulate or visa center."
   },
   {
@@ -572,7 +572,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.fr.emb-japan.go.jp/",
+    "embassyUrl": "https://www.mofa.go.jp/",
     "notes": "French citizens can visit Japan visa-free for tourism or business for up to 90 days."
   },
   {
@@ -584,7 +584,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://www.fr.emb-japan.go.jp/",
+    "embassyUrl": "https://france-visas.gouv.fr/",
     "notes": "Japanese citizens can travel visa-free in Schengen area for tourism or business."
   },
   {
@@ -596,7 +596,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "EUR",
-    "embassyUrl": "https://www.government.ae/",
+    "embassyUrl": "https://www.mofa.gov.ae/",
     "notes": "Italian citizens can visit UAE visa-free for tourism or business."
   },
   {
@@ -608,7 +608,7 @@
     "processingTime": "15 calendar days",
     "cost": 80,
     "currency": "EUR",
-    "embassyUrl": "https://vistoperitalia.esteri.it/",
+    "embassyUrl": "https://www.esteri.it/",
     "notes": "UAE citizens need Schengen visa for Italy. Apply at Italian embassy/consulate or visa center."
   },
   {
@@ -620,7 +620,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "CAD",
-    "embassyUrl": "https://www.gov.uk/check-uk-visa",
+    "embassyUrl": "https://www.gov.uk/uk-visas-immigration",
     "notes": "Canadian citizens can visit UK visa-free for tourism or business for up to 6 months."
   },
   {
@@ -632,7 +632,7 @@
     "processingTime": "Minutes",
     "cost": 7,
     "currency": "CAD",
-    "embassyUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta.html",
+    "embassyUrl": "https://www.international.gc.ca/",
     "notes": "UK citizens need eTA to fly to Canada. Valid for tourism or business."
   },
   {
@@ -644,7 +644,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "AUD",
-    "embassyUrl": "https://www.au.emb-japan.go.jp/",
+    "embassyUrl": "https://www.mofa.go.jp/",
     "notes": "Australian citizens can visit Japan visa-free for tourism or business for up to 90 days."
   },
   {
@@ -656,7 +656,7 @@
     "processingTime": "Instant to 24 hours",
     "cost": 0,
     "currency": "AUD",
-    "embassyUrl": "https://immi.homeaffairs.gov.au/",
+    "embassyUrl": "https://www.dfat.gov.au/",
     "notes": "Japanese citizens can apply for free eVisitor online for tourism or business."
   },
   {
@@ -668,7 +668,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "KRW",
-    "embassyUrl": "https://overseas.mofa.go.kr/",
+    "embassyUrl": "https://www.mofa.go.jp/",
     "notes": "South Korean citizens can visit Japan visa-free for tourism or business for up to 90 days."
   },
   {
@@ -680,7 +680,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "JPY",
-    "embassyUrl": "https://overseas.mofa.go.kr/",
+    "embassyUrl": "https://www.mofa.go.kr/",
     "notes": "Japanese citizens can visit South Korea visa-free for tourism or business for up to 90 days."
   },
   {
@@ -716,7 +716,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "NZD",
-    "embassyUrl": "https://immi.homeaffairs.gov.au/",
+    "embassyUrl": "https://www.dfat.gov.au/",
     "notes": "New Zealand citizens receive Special Category Visa automatically on arrival in Australia."
   },
   {
@@ -728,7 +728,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "AUD",
-    "embassyUrl": "https://www.immigration.govt.nz/",
+    "embassyUrl": "https://www.mfat.govt.nz/",
     "notes": "Australian citizens can live and work in New Zealand indefinitely without visa under Trans-Tasman Travel Arrangement."
   },
   {
@@ -740,7 +740,7 @@
     "processingTime": "3 weeks",
     "cost": 115,
     "currency": "GBP",
-    "embassyUrl": "https://www.gov.uk/standard-visitor-visa",
+    "embassyUrl": "https://www.gov.uk/uk-visas-immigration",
     "notes": "Indian citizens need Standard Visitor visa for tourism or business. Apply online."
   },
   {
@@ -752,7 +752,7 @@
     "processingTime": "2-4 business days",
     "cost": 25,
     "currency": "USD",
-    "embassyUrl": "https://indianvisaonline.gov.in/",
+    "embassyUrl": "https://www.mea.gov.in/",
     "notes": "UK citizens can apply for e-Tourist Visa online. Multiple entry options available."
   },
   {
@@ -776,7 +776,7 @@
     "processingTime": "4 business days",
     "cost": 30,
     "currency": "SGD",
-    "embassyUrl": "http://www.chinaembassy.org.sg/",
+    "embassyUrl": "https://www.mfa.gov.cn/",
     "notes": "Singaporean citizens need visa for China. 144-hour transit visa exemption available in some cities."
   },
   {
@@ -800,7 +800,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "THB",
-    "embassyUrl": "https://www.government.ae/",
+    "embassyUrl": "https://www.mofa.gov.ae/",
     "notes": "Thai citizens can visit UAE visa-free for tourism or business for up to 30 days."
   },
   {
@@ -812,7 +812,7 @@
     "processingTime": "3 weeks",
     "cost": 115,
     "currency": "GBP",
-    "embassyUrl": "https://www.gov.uk/standard-visitor-visa",
+    "embassyUrl": "https://www.gov.uk/uk-visas-immigration",
     "notes": "South African citizens need Standard Visitor visa for tourism or business in UK."
   },
   {
@@ -824,7 +824,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "GBP",
-    "embassyUrl": "http://www.dha.gov.za/",
+    "embassyUrl": "https://www.dirco.gov.za/",
     "notes": "UK citizens can visit South Africa visa-free for tourism or business for up to 90 days."
   },
   {
@@ -872,7 +872,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://www.imi.gov.my/",
+    "embassyUrl": "https://www.kln.gov.my/",
     "notes": "Singaporean citizens can visit Malaysia visa-free for tourism or business for up to 30 days."
   },
   {
@@ -896,7 +896,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "SGD",
-    "embassyUrl": "https://immigration.gov.ph/",
+    "embassyUrl": "https://dfa.gov.ph/",
     "notes": "Singaporean citizens can visit Philippines visa-free for tourism or business for up to 30 days."
   },
   {
@@ -920,7 +920,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "THB",
-    "embassyUrl": "https://evisa.xuatnhapcanh.gov.vn/",
+    "embassyUrl": "https://www.mofa.gov.vn/",
     "notes": "Thai citizens can visit Vietnam visa-free for tourism or business for up to 30 days."
   },
   {
@@ -932,7 +932,7 @@
     "processingTime": "3-4 working days",
     "cost": 250,
     "currency": "AED",
-    "embassyUrl": "https://www.gdrfad.gov.ae/",
+    "embassyUrl": "https://www.mofa.gov.ae/",
     "notes": "Egyptian citizens need tourist visa for UAE. Apply through airline, travel agency, or hotel."
   },
   {
@@ -944,7 +944,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "AED",
-    "embassyUrl": "https://www.egypt.travel/",
+    "embassyUrl": "https://www.mfa.gov.eg/",
     "notes": "UAE citizens can visit Egypt visa-free for tourism for up to 90 days."
   },
   {
@@ -956,7 +956,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "SAR",
-    "embassyUrl": "https://www.government.ae/",
+    "embassyUrl": "https://www.mofa.gov.ae/",
     "notes": "Saudi citizens can travel freely within GCC countries with national ID."
   },
   {
@@ -968,7 +968,7 @@
     "processingTime": "N/A",
     "cost": 0,
     "currency": "AED",
-    "embassyUrl": "https://www.my.gov.sa/",
+    "embassyUrl": "https://www.mofa.gov.sa/",
     "notes": "UAE citizens can travel freely within GCC countries with national ID."
   }
 ]
