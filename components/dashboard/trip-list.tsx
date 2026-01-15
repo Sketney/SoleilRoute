@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import {
   CalendarDays,
   MapPin,
@@ -137,7 +138,14 @@ export function TripList({ trips }: { trips: DashboardTrip[] }) {
           <Card key={trip.id} className="border-border/70">
             <CardHeader className="flex flex-row items-start justify-between space-y-0">
               <div className="space-y-1">
-                <CardTitle className="text-lg">{trip.name}</CardTitle>
+                <CardTitle className="text-lg">
+                  <Link
+                    href={`/dashboard/trips/${trip.id}`}
+                    className="transition hover:text-foreground hover:underline hover:underline-offset-4"
+                  >
+                    {trip.name}
+                  </Link>
+                </CardTitle>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <MapPin className="h-4 w-4" />
                   <span>
