@@ -12,6 +12,7 @@ import { canEditTrip, getTripAccess } from "@/server/db";
 import { VisaStatusEditor } from "@/components/dashboard/visa-status-editor";
 import { getRequestLocale } from "@/lib/i18n/server";
 import { getTranslations } from "@/lib/i18n";
+import { localizeVisaValue } from "@/lib/visa-localization";
 
 export const metadata = {
   title: "Trip visa checklist",
@@ -48,6 +49,15 @@ export default async function TripVisaPage({
     trip.citizenship,
     trip.destination_country,
   );
+  const localizedVisaType = visaRequirement
+    ? localizeVisaValue(visaRequirement.visaType, locale)
+    : "";
+  const localizedValidity = visaRequirement
+    ? localizeVisaValue(visaRequirement.validity, locale)
+    : "";
+  const localizedProcessing = visaRequirement
+    ? localizeVisaValue(visaRequirement.processingTime, locale)
+    : "";
 
   return (
     <section className="space-y-6">
@@ -101,7 +111,7 @@ export default async function TripVisaPage({
                 </Badge>
                 {visaRequirement.visaType ? (
                   <span className="text-sm text-muted-foreground">
-                    {visaRequirement.visaType}
+                    {localizedVisaType || visaRequirement.visaType}
                   </span>
                 ) : null}
               </div>
@@ -109,13 +119,15 @@ export default async function TripVisaPage({
                 {visaRequirement.validity ? (
                   <Detail
                     label={t.tripVisaPage.detailValidity}
-                    value={visaRequirement.validity}
+                    value={localizedValidity || visaRequirement.validity}
                   />
                 ) : null}
                 {visaRequirement.processingTime ? (
                   <Detail
                     label={t.tripVisaPage.detailProcessing}
-                    value={visaRequirement.processingTime}
+                    value={
+                      localizedProcessing || visaRequirement.processingTime
+                    }
                   />
                 ) : null}
                 <Detail

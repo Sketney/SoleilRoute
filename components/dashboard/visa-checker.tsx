@@ -22,6 +22,7 @@ import { listVisaDataset } from "@/lib/services/visa";
 import { TripForm } from "@/components/forms/trip-form";
 import { useToast } from "@/components/ui/use-toast";
 import { useLocale, useTranslations } from "@/components/providers/app-providers";
+import { localizeVisaValue } from "@/lib/visa-localization";
 
 const visaDataset = listVisaDataset();
 const storageKey = "visa-checker-state";
@@ -321,6 +322,10 @@ function formatCurrencies(
 
 function VisaResult({ result }: { result: VisaRequirement }) {
   const t = useTranslations();
+  const { locale } = useLocale();
+  const visaType = localizeVisaValue(result.visaType, locale);
+  const validity = localizeVisaValue(result.validity, locale);
+  const processingTime = localizeVisaValue(result.processingTime, locale);
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between rounded-lg border border-border/60 bg-background px-4 py-3">
@@ -349,11 +354,11 @@ function VisaResult({ result }: { result: VisaRequirement }) {
         </Badge>
       </div>
       <div className="grid gap-4 md:grid-cols-2">
-        <Detail label={t.visaChecker.detailVisaType} value={result.visaType} />
-        <Detail label={t.visaChecker.detailValidity} value={result.validity} />
+        <Detail label={t.visaChecker.detailVisaType} value={visaType} />
+        <Detail label={t.visaChecker.detailValidity} value={validity} />
         <Detail
           label={t.visaChecker.detailProcessing}
-          value={result.processingTime}
+          value={processingTime}
         />
         <Detail
           label={t.visaChecker.detailCost}
