@@ -16,6 +16,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -29,6 +37,7 @@ import { formatCurrency, formatDateRange } from "@/lib/utils";
 import type { VisaStatus } from "@/lib/constants";
 import { useToast } from "@/components/ui/use-toast";
 import { useTranslations } from "@/components/providers/app-providers";
+import { TripForm } from "@/components/forms/trip-form";
 
 export type DashboardTrip = {
   id: string;
@@ -61,6 +70,7 @@ export function TripList({ trips }: { trips: DashboardTrip[] }) {
   const router = useRouter();
   const { toast } = useToast();
   const t = useTranslations();
+  const [createOpen, setCreateOpen] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const visaLabels: Record<VisaStatus, string> = {
     unknown: t.visa.statuses.unknown,
@@ -106,7 +116,7 @@ export function TripList({ trips }: { trips: DashboardTrip[] }) {
   if (trips.length === 0) {
     return (
       <Card className="border-border/70">
-        <CardContent className="flex flex-col items-center justify-center gap-3 py-12 text-center">
+        <CardContent className="flex flex-col items-center justify-center gap-4 py-12 text-center">
           <CalendarDays className="h-10 w-10 text-muted-foreground" />
           <div>
             <h3 className="text-lg font-semibold">{t.tripList.emptyTitle}</h3>
@@ -114,6 +124,26 @@ export function TripList({ trips }: { trips: DashboardTrip[] }) {
               {t.tripList.emptyDescription}
             </p>
           </div>
+          <Dialog open={createOpen} onOpenChange={setCreateOpen}>
+            <DialogTrigger asChild>
+              <Button data-testid="trips-empty-create">
+                {t.tripForm.submitDefault}
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-2xl">
+              <DialogHeader>
+                <DialogTitle>{t.quickActions.dialogTitle}</DialogTitle>
+                <DialogDescription>
+                  {t.quickActions.dialogDescription}
+                </DialogDescription>
+              </DialogHeader>
+              <TripForm
+                onSuccess={() => {
+                  setCreateOpen(false);
+                }}
+              />
+            </DialogContent>
+          </Dialog>
         </CardContent>
       </Card>
     );
