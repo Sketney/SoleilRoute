@@ -3,13 +3,13 @@
 import Link from "next/link";
 import type { Route } from "next";
 import { usePathname } from "next/navigation";
-import { Menu } from "lucide-react";
+import { Menu, Moon, Sun } from "lucide-react";
 import { useState } from "react";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/i18n/language-switcher";
-import { useTranslations } from "@/components/providers/app-providers";
+import { useTheme, useTranslations } from "@/components/providers/app-providers";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,6 +21,7 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const t = useTranslations();
+  const { theme, toggleTheme } = useTheme();
   const navItems = [
     { key: "features", href: "#features" },
     { key: "howItWorks", href: "#how-it-works" },
@@ -73,11 +74,39 @@ export function SiteHeader() {
               {t.navigation.createAccount}
             </Link>
           </Button>
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="border-stone-200 bg-white text-stone-700 hover:bg-stone-50 dark:border-border-dark dark:bg-transparent dark:text-stone-200 dark:hover:bg-white/5"
+          >
+            {theme === "dark" ? (
+              <Sun className="h-4 w-4" />
+            ) : (
+              <Moon className="h-4 w-4" />
+            )}
+          </Button>
           <LanguageSwitcher
             className="border-stone-200 bg-white text-stone-700 hover:bg-stone-50 dark:border-border-dark dark:bg-transparent dark:text-stone-200 dark:hover:bg-white/5"
           />
         </div>
         <div className="flex items-center gap-2 md:hidden">
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="border-stone-200 bg-white text-stone-700 hover:bg-stone-50 dark:border-border-dark dark:bg-transparent dark:text-stone-200 dark:hover:bg-white/5"
+          >
+            {theme === "dark" ? (
+              <Sun className="h-4 w-4" />
+            ) : (
+              <Moon className="h-4 w-4" />
+            )}
+          </Button>
           <LanguageSwitcher
             showLabel={false}
             size="icon"
