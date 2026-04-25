@@ -1,0 +1,5 @@
+.env
+.env.*
+.vercel
+dev-server.log
+dev-server-error.log

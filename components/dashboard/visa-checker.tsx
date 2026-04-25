@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { ShieldCheck, ShieldX } from "lucide-react";
+import { ExternalLink, ShieldCheck, ShieldX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -70,6 +70,7 @@ export function VisaChecker() {
   });
   const [result, setResult] = useState<VisaRequirement | null>(null);
   const [checkedAt, setCheckedAt] = useState<string | null>(null);
+  const [source, setSource] = useState<string | null>(null);
   const [fallbackNotice, setFallbackNotice] = useState(false);
   const [insights, setInsights] = useState<TravelInsights | null>(null);
   const [checking, setChecking] = useState(false);
@@ -132,6 +133,7 @@ export function VisaChecker() {
       };
       setResult(data.visa ?? null);
       setCheckedAt(data.checkedAt ?? null);
+      setSource(data.source ?? null);
       setFallbackNotice(Boolean(data.fallback));
       setInsights(data.insights ?? null);
     } catch (error) {
@@ -160,6 +162,7 @@ export function VisaChecker() {
     }
     setResult(null);
     setCheckedAt(null);
+    setSource(null);
     setFallbackNotice(false);
     setInsights(null);
   }, [citizenship, destination]);
@@ -229,7 +232,7 @@ export function VisaChecker() {
               </DialogContent>
             </Dialog>
           </div>
-          <VisaMeta checkedAt={checkedAt} />
+          <VisaMeta checkedAt={checkedAt} source={source} fallback={fallbackNotice} />
         </div>
         <div className="rounded-lg border border-dashed border-border/70 bg-muted/20 p-4 text-sm text-muted-foreground">
           {t.visaChecker.resultsNote}
@@ -368,19 +371,51 @@ function VisaResult({ result }: { result: VisaRequirement }) {
               : t.visaChecker.noFee
           }
         />
+        {result.passportValidity ? (
+          <Detail
+            label={t.visaChecker.detailPassportValidity}
+            value={localizeVisaValue(result.passportValidity, locale)}
+          />
+        ) : null}
       </div>
+      {result.mandatoryRegistration ? (
+        <div className="rounded-lg border border-amber-300/60 bg-amber-50 p-4 text-sm text-amber-950 dark:border-amber-500/30 dark:bg-amber-950/20 dark:text-amber-100">
+          <p className="font-medium">{t.visaChecker.mandatoryRegistrationLabel}</p>
+          <p className="mt-1">{result.mandatoryRegistration.name}</p>
+          {result.mandatoryRegistration.link ? (
+            <a
+              href={result.mandatoryRegistration.link}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-3 inline-flex items-center gap-2 text-sm font-medium underline-offset-4 hover:underline"
+            >
+              {t.visaChecker.applicationLink}
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+          ) : null}
+        </div>
+      ) : null}
       {result.notes ? (
         <div className="rounded-lg border border-border/60 bg-muted/30 p-4 text-sm text-muted-foreground">
           {result.notes}
         </div>
       ) : null}
-      {result.embassyUrl ? (
-        <Button asChild variant="outline">
-          <a href={result.embassyUrl} target="_blank" rel="noreferrer">
-            {t.visaChecker.viewEmbassy}
-          </a>
-        </Button>
-      ) : null}
+      <div className="flex flex-wrap gap-3">
+        {result.applicationUrl ? (
+          <Button asChild variant="default">
+            <a href={result.applicationUrl} target="_blank" rel="noreferrer">
+              {t.visaChecker.applicationLink}
+            </a>
+          </Button>
+        ) : null}
+        {result.embassyUrl ? (
+          <Button asChild variant="outline">
+            <a href={result.embassyUrl} target="_blank" rel="noreferrer">
+              {t.visaChecker.viewEmbassy}
+            </a>
+          </Button>
+        ) : null}
+      </div>
     </div>
   );
 }
@@ -394,19 +429,33 @@ function Detail({ label, value }: { label: string; value: string }) {
   );
 }
 
-function VisaMeta({ checkedAt }: { checkedAt: string | null }) {
+function VisaMeta({
+  checkedAt,
+  source,
+  fallback,
+}: {
+  checkedAt: string | null;
+  source: string | null;
+  fallback: boolean;
+}) {
   const { locale } = useLocale();
   const t = useTranslations();
-  if (!checkedAt) {
+  if (!checkedAt && !source) {
     return null;
   }
 
   return (
-    <div className="text-xs text-muted-foreground">
+    <div className="space-y-1 text-xs text-muted-foreground">
       {checkedAt ? (
         <div>
           {t.visaChecker.lastCheckedLabel}:{" "}
           {formatTimestamp(locale, checkedAt, t.common.justNow)}
+        </div>
+      ) : null}
+      {source ? (
+        <div>
+          {t.visaChecker.sourceLabel}: {source}
+          {fallback ? " (fallback)" : ""}
         </div>
       ) : null}
     </div>

@@ -741,6 +741,9 @@ export type Translations = {
     detailCost: string;
     noFee: string;
     viewEmbassy: string;
+    applicationLink: string;
+    detailPassportValidity: string;
+    mandatoryRegistrationLabel: string;
     lastCheckedLabel: string;
     sourceLabel: string;
     insightsTitle: string;
@@ -1764,6 +1767,9 @@ const translations = {
       detailCost: "Cost",
       noFee: "No fee",
       viewEmbassy: "View embassy guidance",
+      applicationLink: "Start application",
+      detailPassportValidity: "Passport validity",
+      mandatoryRegistrationLabel: "Mandatory registration",
       lastCheckedLabel: "Last checked",
       sourceLabel: "Source",
       insightsTitle: "Travel insights",
@@ -2795,6 +2801,9 @@ const translations = {
       detailCost: "Стоимость",
       noFee: "Без сбора",
       viewEmbassy: "Сайт посольства",
+      applicationLink: "Подать онлайн",
+      detailPassportValidity: "Срок действия паспорта",
+      mandatoryRegistrationLabel: "Обязательная регистрация",
       lastCheckedLabel: "Проверено",
       sourceLabel: "Источник",
       insightsTitle: "Информация о стране",
@@ -3842,6 +3851,9 @@ const translations = {
       detailCost: "Cout",
       noFee: "Aucun frais",
       viewEmbassy: "Voir les infos ambassade",
+      applicationLink: "Demande en ligne",
+      detailPassportValidity: "Validite du passeport",
+      mandatoryRegistrationLabel: "Enregistrement obligatoire",
       lastCheckedLabel: "Derniere verification",
       sourceLabel: "Source",
       insightsTitle: "Infos voyage",
@@ -4886,6 +4898,9 @@ const translations = {
       detailCost: "Kosten",
       noFee: "Keine Gebuehr",
       viewEmbassy: "Botschaftsinfo ansehen",
+      applicationLink: "Online beantragen",
+      detailPassportValidity: "Passgueltigkeit",
+      mandatoryRegistrationLabel: "Pflichtregistrierung",
       lastCheckedLabel: "Zuletzt geprueft",
       sourceLabel: "Quelle",
       insightsTitle: "Reiseinfos",
@@ -5928,6 +5943,9 @@ const translations = {
       detailCost: "Costo",
       noFee: "Sin tarifa",
       viewEmbassy: "Ver info de embajada",
+      applicationLink: "Iniciar solicitud",
+      detailPassportValidity: "Validez del pasaporte",
+      mandatoryRegistrationLabel: "Registro obligatorio",
       lastCheckedLabel: "Ultima revision",
       sourceLabel: "Fuente",
       insightsTitle: "Info del pais",

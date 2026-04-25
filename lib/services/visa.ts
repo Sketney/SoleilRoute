@@ -14,6 +14,12 @@ export type VisaRequirement = {
   cost: number;
   currency: string;
   embassyUrl: string;
+  applicationUrl?: string;
+  passportValidity?: string;
+  mandatoryRegistration?: {
+    name: string;
+    link?: string;
+  };
   notes?: string;
 };
 
@@ -64,6 +70,50 @@ type RestCountriesResponse = {
   idd?: {
     root?: string;
     suffixes?: string[];
+  };
+};
+
+type TravelBuddyRule = {
+  name?: string;
+  duration?: string | null;
+  color?: string;
+  link?: string;
+};
+
+type TravelBuddyResponse = {
+  data?: {
+    passport?: {
+      code?: string;
+      name?: string;
+      currency_code?: string;
+    };
+    destination?: {
+      code?: string;
+      name?: string;
+      continent?: string;
+      capital?: string;
+      currency_code?: string;
+      currency?: string;
+      passport_validity?: string;
+      phone_code?: string;
+      timezone?: string;
+      embassy_url?: string;
+    };
+    mandatory_registration?: {
+      name?: string;
+      link?: string;
+      color?: string;
+    } | null;
+    visa_rules?: {
+      primary_rule?: TravelBuddyRule | null;
+      secondary_rule?: TravelBuddyRule | null;
+      exception_rule?: {
+        name?: string;
+        exception_type_name?: string;
+        full_text?: string;
+        link?: string;
+      } | null;
+    };
   };
 };
 
@@ -166,6 +216,33 @@ const countryAliases: Record<string, string> = {
   "indonesia (bali)": "Indonesia",
 };
 
+const countryCodeAliases: Record<string, string> = {
+  australia: "AU",
+  brazil: "BR",
+  canada: "CA",
+  china: "CN",
+  france: "FR",
+  germany: "DE",
+  india: "IN",
+  indonesia: "ID",
+  italy: "IT",
+  japan: "JP",
+  russia: "RU",
+  singapore: "SG",
+  spain: "ES",
+  "south africa": "ZA",
+  thailand: "TH",
+  turkey: "TR",
+  turkiye: "TR",
+  "united arab emirates": "AE",
+  uae: "AE",
+  "united kingdom": "GB",
+  uk: "GB",
+  "united states": "US",
+  "united states of america": "US",
+  usa: "US",
+};
+
 const minorWords = new Set(["and", "or", "of", "the", "la", "de", "da"]);
 
 function titleCase(value: string) {
@@ -260,6 +337,15 @@ function buildVisaDataset() {
 
 const { list: visaDataset, index: visaDatasetIndex } = buildVisaDataset();
 
+type TravelBuddyStatus = "ok" | "not_found" | "error" | "disabled";
+
+const travelBuddyCache = new Map<
+  string,
+  { expiresAt: number; data: TravelBuddyResponse | null; status: TravelBuddyStatus }
+>();
+const travelBuddyTtlMs = 12 * 60 * 60 * 1000;
+const travelBuddyTimeoutMs = 8000;
+
 type TravelBriefingStatus = "ok" | "not_found" | "error";
 
 const travelBriefingCache = new Map<
@@ -291,6 +377,32 @@ function isTravelBriefingEnabled() {
     return true;
   }
   return !["0", "false", "no"].includes(toggle.toLowerCase());
+}
+
+function getTravelBuddyCredentials() {
+  const rapidApiKey =
+    process.env.TRAVEL_BUDDY_RAPIDAPI_KEY ?? process.env.RAPIDAPI_KEY ?? "";
+  const proxySecret =
+    process.env.TRAVEL_BUDDY_RAPIDAPI_SECRET ??
+    process.env.RAPIDAPI_SECRET ??
+    "";
+  return {
+    rapidApiKey: rapidApiKey.trim(),
+    proxySecret: proxySecret.trim(),
+  };
+}
+
+function countryToIso2(country: string) {
+  const normalized = normalizeCountryName(country);
+  const directCode = normalizeText(country).toUpperCase();
+  if (/^[A-Z]{2}$/.test(directCode)) {
+    return directCode;
+  }
+  return (
+    countryCodeAliases[normalizeKey(normalized)] ??
+    countryCodeAliases[normalizeKey(country)] ??
+    null
+  );
 }
 
 function normalizeRestCountriesEntry(entry: RestCountriesResponse): TravelInsights {
@@ -428,6 +540,90 @@ async function fetchCountryInsights(
   }
 }
 
+async function fetchTravelBuddy(
+  citizenship: string,
+  destination: string,
+): Promise<{ data: TravelBuddyResponse | null; status: TravelBuddyStatus }> {
+  const { rapidApiKey, proxySecret } = getTravelBuddyCredentials();
+  if (!rapidApiKey && !proxySecret) {
+    return { data: null, status: "disabled" };
+  }
+
+  const passportCode = countryToIso2(citizenship);
+  const destinationCode = countryToIso2(destination);
+  if (!passportCode || !destinationCode) {
+    return { data: null, status: "not_found" };
+  }
+
+  const key = `${passportCode}::${destinationCode}`;
+  const cached = travelBuddyCache.get(key);
+  const now = Date.now();
+  if (cached && cached.expiresAt > now) {
+    return { data: cached.data, status: cached.status };
+  }
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), travelBuddyTimeoutMs);
+  const headers: Record<string, string> = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  };
+  if (rapidApiKey) {
+    headers["X-RapidAPI-Key"] = rapidApiKey;
+    headers["X-RapidAPI-Host"] = "visa-requirement.p.rapidapi.com";
+  } else {
+    headers["X-RapidAPI-Proxy-Secret"] = proxySecret;
+  }
+
+  try {
+    const response = await fetch(
+      "https://visa-requirement.p.rapidapi.com/v2/visa/check",
+      {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          passport: passportCode,
+          destination: destinationCode,
+        }),
+        signal: controller.signal,
+      },
+    );
+
+    if (!response.ok) {
+      const status: TravelBuddyStatus =
+        response.status === 404 || response.status === 422
+          ? "not_found"
+          : "error";
+      travelBuddyCache.set(key, {
+        expiresAt: now + travelBuddyTtlMs,
+        data: null,
+        status,
+      });
+      return { data: null, status };
+    }
+
+    const data = (await response.json()) as TravelBuddyResponse;
+    const status: TravelBuddyStatus = data?.data?.visa_rules
+      ? "ok"
+      : "not_found";
+    travelBuddyCache.set(key, {
+      expiresAt: now + travelBuddyTtlMs,
+      data,
+      status,
+    });
+    return { data, status };
+  } catch {
+    travelBuddyCache.set(key, {
+      expiresAt: now + travelBuddyTtlMs,
+      data: null,
+      status: "error",
+    });
+    return { data: null, status: "error" };
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
+
 function parseVisaRequired(value?: string | boolean) {
   if (typeof value === "boolean") return value;
   if (typeof value === "string") {
@@ -440,6 +636,128 @@ function parseVisaRequired(value?: string | boolean) {
     }
   }
   return false;
+}
+
+function isTravelBuddyVisaRequired(rule?: TravelBuddyRule | null) {
+  const color = normalizeText(rule?.color ?? "").toLowerCase();
+  const name = normalizeText(rule?.name ?? "").toLowerCase();
+  if (color === "green") {
+    return false;
+  }
+  if (
+    name.includes("visa-free") ||
+    name.includes("visa free") ||
+    name.includes("visa not required") ||
+    name.includes("not required") ||
+    name.includes("freedom of movement")
+  ) {
+    return false;
+  }
+  return true;
+}
+
+function buildTravelBuddyVisaType(
+  primary?: TravelBuddyRule | null,
+  secondary?: TravelBuddyRule | null,
+) {
+  const names = [
+    normalizeText(primary?.name ?? ""),
+    normalizeText(secondary?.name ?? ""),
+  ].filter(Boolean);
+  return names.length ? names.join(" / ") : "See official guidance";
+}
+
+function buildTravelBuddyValidity(
+  primary?: TravelBuddyRule | null,
+  secondary?: TravelBuddyRule | null,
+) {
+  return (
+    normalizeText(primary?.duration ?? "") ||
+    normalizeText(secondary?.duration ?? "") ||
+    "See official guidance"
+  );
+}
+
+function normalizeTravelBuddyRequirement(
+  citizenship: string,
+  destination: string,
+  data: TravelBuddyResponse,
+): VisaRequirement | null {
+  const payload = data.data;
+  const primary = payload?.visa_rules?.primary_rule;
+  if (!payload || !primary) {
+    return null;
+  }
+
+  const secondary = payload.visa_rules?.secondary_rule;
+  const exception = payload.visa_rules?.exception_rule;
+  const mandatoryRegistration = payload.mandatory_registration?.name
+    ? {
+        name: normalizeText(payload.mandatory_registration.name),
+        link: payload.mandatory_registration.link
+          ? normalizeText(payload.mandatory_registration.link)
+          : undefined,
+      }
+    : undefined;
+  const passportValidity = normalizeText(
+    payload.destination?.passport_validity ?? "",
+  );
+  const exceptionText = normalizeText(
+    exception?.full_text ?? exception?.name ?? exception?.exception_type_name ?? "",
+  );
+  const notes = [
+    passportValidity ? `Passport validity: ${passportValidity}.` : "",
+    mandatoryRegistration
+      ? `Mandatory registration: ${mandatoryRegistration.name}.`
+      : "",
+    exceptionText ? `Exception: ${exceptionText}` : "",
+  ].filter(Boolean);
+
+  return {
+    citizenship: normalizeCountryName(payload.passport?.name ?? citizenship),
+    destination: normalizeCountryName(payload.destination?.name ?? destination),
+    visaRequired: isTravelBuddyVisaRequired(primary),
+    visaType: buildTravelBuddyVisaType(primary, secondary),
+    validity: buildTravelBuddyValidity(primary, secondary),
+    processingTime: "See official guidance",
+    cost: 0,
+    currency: normalizeText(payload.destination?.currency_code ?? "") || "USD",
+    embassyUrl: normalizeText(payload.destination?.embassy_url ?? ""),
+    applicationUrl:
+      normalizeText(secondary?.link ?? primary.link ?? "") || undefined,
+    passportValidity: passportValidity || undefined,
+    mandatoryRegistration,
+    notes: notes.length ? notes.join(" ") : undefined,
+  };
+}
+
+function travelBuddyInsights(data: TravelBuddyResponse): TravelInsights | null {
+  const destination = data.data?.destination;
+  if (!destination?.name) {
+    return null;
+  }
+
+  return {
+    name: normalizeText(destination.name),
+    region: destination.continent ? normalizeText(destination.continent) : undefined,
+    capital: destination.capital ? normalizeText(destination.capital) : undefined,
+    currencies: destination.currency_code
+      ? [
+          {
+            code: normalizeText(destination.currency_code),
+            name: destination.currency
+              ? normalizeText(destination.currency)
+              : undefined,
+          },
+        ]
+      : undefined,
+    timezones: destination.timezone
+      ? [normalizeText(destination.timezone)]
+      : undefined,
+    callingCodes: destination.phone_code
+      ? [normalizeText(destination.phone_code)]
+      : undefined,
+  };
 }
 
 async function fetchTravelBriefing(
@@ -552,13 +870,36 @@ export async function getVisaRequirementWithSource(
       makeKey(normalizedCitizenship, normalizedDestination),
     ) ?? null;
   const emptyTravelBriefing = { data: null, status: "error" as const };
+  const emptyTravelBuddy = { data: null, status: "error" as const };
   const emptyInsights = { data: null, status: "error" as const };
   const insightsPromise = fetchCountryInsights(normalizedDestination);
+  const travelBuddyPromise = fetchTravelBuddy(
+    normalizedCitizenship,
+    normalizedDestination,
+  );
   const travelBriefingPromise = fetchTravelBriefing(normalizedDestination);
-  const [travelBriefing, insightsLookup] = await Promise.all([
+  const [travelBuddy, travelBriefing, insightsLookup] = await Promise.all([
+    withTimeout(travelBuddyPromise, visaLookupTimeoutMs, emptyTravelBuddy),
     withTimeout(travelBriefingPromise, visaLookupTimeoutMs, emptyTravelBriefing),
     withTimeout(insightsPromise, insightsSoftTimeoutMs, emptyInsights),
   ]);
+  const travelBuddyData = travelBuddy.data;
+  const travelBuddyRequirement = travelBuddyData
+    ? normalizeTravelBuddyRequirement(
+        normalizedCitizenship,
+        normalizedDestination,
+        travelBuddyData,
+      )
+    : null;
+  if (travelBuddyRequirement && travelBuddyData) {
+    return {
+      requirement: travelBuddyRequirement,
+      source: "Travel Buddy",
+      fallback: false,
+      insights: insightsLookup.data ?? travelBuddyInsights(travelBuddyData),
+    };
+  }
+
   if (travelBriefing.data?.visa) {
     return {
       requirement: normalizeTravelBriefingRequirement(

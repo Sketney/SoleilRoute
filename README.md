@@ -37,6 +37,7 @@ The datastore file is created automatically at `server/data/store.json`. Delete 
 | `NEXT_PUBLIC_APP_URL` | Base URL used for links and redirects. |
 | `EXCHANGE_RATE_BASE_CURRENCY` | Three-letter code used for default trip budgets (e.g. `USD`). |
 | `EXCHANGE_RATE_API_KEY` | Optional key for [ExchangeRate API](https://www.exchangerate-api.com/); enables live rate lookups. |
+| `TRAVEL_BUDDY_RAPIDAPI_KEY` | Optional RapidAPI key for Travel Buddy visa checks; enables live passport-to-destination visa rules. |
 | `RESEND_API_KEY` / `RESEND_FROM_EMAIL` | Optional credentials for transactional emails through [Resend](https://resend.com/). |
 | `SUPPORT_EMAIL` | Optional support inbox destination for help form submissions. |
 | `NEXT_PUBLIC_SENTRY_DSN`, `SENTRY_DSN`, `SENTRY_ENVIRONMENT` | Optional Sentry instrumentation settings. |
