@@ -3,6 +3,7 @@ import rawVisaRemainingDataset from "@/visa_data_remaining.json";
 import rawVisaRemainingDatasetTwo from "@/visa_data_remaining2.json";
 import rawVisaPopular2026 from "@/visa_data_popular_2026.json";
 import rawVisaCIS2026 from "@/visa_data_cis_2026.json";
+import { countryCodeToName, countryNameToCode } from "@/lib/countries";
 
 export type VisaRequirement = {
   citizenship: string;
@@ -216,33 +217,6 @@ const countryAliases: Record<string, string> = {
   "indonesia (bali)": "Indonesia",
 };
 
-const countryCodeAliases: Record<string, string> = {
-  australia: "AU",
-  brazil: "BR",
-  canada: "CA",
-  china: "CN",
-  france: "FR",
-  germany: "DE",
-  india: "IN",
-  indonesia: "ID",
-  italy: "IT",
-  japan: "JP",
-  russia: "RU",
-  singapore: "SG",
-  spain: "ES",
-  "south africa": "ZA",
-  thailand: "TH",
-  turkey: "TR",
-  turkiye: "TR",
-  "united arab emirates": "AE",
-  uae: "AE",
-  "united kingdom": "GB",
-  uk: "GB",
-  "united states": "US",
-  "united states of america": "US",
-  usa: "US",
-};
-
 const minorWords = new Set(["and", "or", "of", "the", "la", "de", "da"]);
 
 function titleCase(value: string) {
@@ -264,6 +238,10 @@ function titleCase(value: string) {
 
 function normalizeCountryName(value: string) {
   const raw = normalizeText(value);
+  const codeName = countryCodeToName(raw);
+  if (codeName) {
+    return codeName;
+  }
   const key = raw.toLowerCase();
   if (countryAliases[key]) {
     return countryAliases[key];
@@ -393,16 +371,7 @@ function getTravelBuddyCredentials() {
 }
 
 function countryToIso2(country: string) {
-  const normalized = normalizeCountryName(country);
-  const directCode = normalizeText(country).toUpperCase();
-  if (/^[A-Z]{2}$/.test(directCode)) {
-    return directCode;
-  }
-  return (
-    countryCodeAliases[normalizeKey(normalized)] ??
-    countryCodeAliases[normalizeKey(country)] ??
-    null
-  );
+  return countryNameToCode(country);
 }
 
 function normalizeRestCountriesEntry(entry: RestCountriesResponse): TravelInsights {

@@ -1,12 +1,20 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { ExternalLink, ShieldCheck, ShieldX } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  ChevronDown,
+  ExternalLink,
+  Globe2,
+  Search,
+  ShieldCheck,
+  ShieldX,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Dialog,
   DialogContent,
@@ -15,21 +23,26 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { supportedCitizenships } from "@/lib/constants";
 import { formatCurrency } from "@/lib/utils";
 import type { TravelInsights, VisaRequirement } from "@/lib/services/visa";
-import { listVisaDataset } from "@/lib/services/visa";
 import { TripForm } from "@/components/forms/trip-form";
 import { useToast } from "@/components/ui/use-toast";
 import { useLocale, useTranslations } from "@/components/providers/app-providers";
 import { localizeVisaValue } from "@/lib/visa-localization";
+import {
+  countryCodeToName,
+  countryNameToCode,
+  getCountryOptions,
+  type CountryOption,
+} from "@/lib/countries";
 
-const visaDataset = listVisaDataset();
 const storageKey = "visa-checker-state";
 
 type StoredVisaCheckerState = {
-  citizenship: string;
-  destination: string;
+  citizenship?: string;
+  destination?: string;
+  citizenshipCode?: string;
+  destinationCode?: string;
 };
 
 function readStoredState(): StoredVisaCheckerState | null {
@@ -43,12 +56,16 @@ function readStoredState(): StoredVisaCheckerState | null {
     }
     const parsed = JSON.parse(raw) as Partial<StoredVisaCheckerState>;
     if (
-      typeof parsed?.citizenship === "string" &&
-      typeof parsed?.destination === "string"
+      typeof parsed?.citizenship === "string" ||
+      typeof parsed?.destination === "string" ||
+      typeof parsed?.citizenshipCode === "string" ||
+      typeof parsed?.destinationCode === "string"
     ) {
       return {
         citizenship: parsed.citizenship,
         destination: parsed.destination,
+        citizenshipCode: parsed.citizenshipCode,
+        destinationCode: parsed.destinationCode,
       };
     }
   } catch {
@@ -60,13 +77,22 @@ function readStoredState(): StoredVisaCheckerState | null {
 export function VisaChecker() {
   const { toast } = useToast();
   const t = useTranslations();
-  const [citizenship, setCitizenship] = useState(() => {
+  const { locale } = useLocale();
+  const [citizenshipCode, setCitizenshipCode] = useState(() => {
     const stored = readStoredState();
-    return stored?.citizenship ?? "USA";
+    return (
+      stored?.citizenshipCode ??
+      countryNameToCode(stored?.citizenship ?? "") ??
+      "US"
+    );
   });
-  const [destination, setDestination] = useState(() => {
+  const [destinationCode, setDestinationCode] = useState(() => {
     const stored = readStoredState();
-    return stored?.destination ?? "Japan";
+    return (
+      stored?.destinationCode ??
+      countryNameToCode(stored?.destination ?? "") ??
+      "JP"
+    );
   });
   const [result, setResult] = useState<VisaRequirement | null>(null);
   const [checkedAt, setCheckedAt] = useState<string | null>(null);
@@ -75,32 +101,35 @@ export function VisaChecker() {
   const [insights, setInsights] = useState<TravelInsights | null>(null);
   const [checking, setChecking] = useState(false);
   const [tripDialogOpen, setTripDialogOpen] = useState(false);
-  const canCreateTrip = Boolean(destination.trim()) && Boolean(citizenship.trim());
-  const citizenshipOptions = useMemo(
-    () => [...supportedCitizenships].sort((a, b) => a.localeCompare(b)),
-    [],
+  const canCreateTrip = Boolean(destinationCode) && Boolean(citizenshipCode);
+  const countryOptions = useMemo(
+    () => getCountryOptions(locale),
+    [locale],
   );
-  const destinationOptions = useMemo(() => {
-    const base = supportedCitizenships;
-    const fromCache = visaDataset.map((entry) => entry.destination);
-    return Array.from(new Set([...base, ...fromCache])).sort((a, b) =>
-      a.localeCompare(b),
-    );
-  }, []);
+  const selectedCitizenship = useMemo(
+    () => countryOptions.find((option) => option.code === citizenshipCode),
+    [citizenshipCode, countryOptions],
+  );
+  const selectedDestination = useMemo(
+    () => countryOptions.find((option) => option.code === destinationCode),
+    [destinationCode, countryOptions],
+  );
+  const tripCitizenship =
+    countryCodeToName(citizenshipCode) ?? selectedCitizenship?.name ?? "";
+  const tripDestination =
+    countryCodeToName(destinationCode) ?? selectedDestination?.name ?? "";
 
   const tripDefaults = useMemo(
     () => ({
-      name: destination.trim()
-        ? t.visaChecker.tripName(destination.trim())
-        : "",
-      destinationCountry: destination.trim(),
-      citizenship,
+      name: tripDestination ? t.visaChecker.tripName(tripDestination) : "",
+      destinationCountry: tripDestination,
+      citizenship: tripCitizenship,
     }),
-    [citizenship, destination, t],
+    [tripCitizenship, tripDestination, t],
   );
 
   const handleCheck = async () => {
-    if (!destination.trim() || !citizenship.trim()) {
+    if (!destinationCode || !citizenshipCode) {
       toast({
         title: t.visaChecker.toastMissingTitle,
         description: t.visaChecker.toastMissingDescription,
@@ -117,8 +146,8 @@ export function VisaChecker() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          citizenship,
-          destination: destination.trim(),
+          citizenship: citizenshipCode,
+          destination: destinationCode,
         }),
       });
       if (!response.ok) {
@@ -155,8 +184,10 @@ export function VisaChecker() {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const payload: StoredVisaCheckerState = {
-        citizenship,
-        destination,
+        citizenship: tripCitizenship,
+        destination: tripDestination,
+        citizenshipCode,
+        destinationCode,
       };
       window.sessionStorage.setItem(storageKey, JSON.stringify(payload));
     }
@@ -165,46 +196,38 @@ export function VisaChecker() {
     setSource(null);
     setFallbackNotice(false);
     setInsights(null);
-  }, [citizenship, destination]);
+  }, [citizenshipCode, destinationCode, tripCitizenship, tripDestination]);
 
   return (
     <Card className="border-border/70">
-      <CardHeader className="flex flex-col gap-2">
-        <CardTitle>{t.visaChecker.title}</CardTitle>
-        <p className="text-sm text-muted-foreground">
-          {t.visaChecker.description}
-        </p>
+      <CardHeader className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+        <div className="space-y-2">
+          <CardTitle>{t.visaChecker.title}</CardTitle>
+          <p className="max-w-3xl text-sm text-muted-foreground">
+            {t.visaChecker.description}
+          </p>
+        </div>
+        <Badge variant="secondary" className="w-fit gap-2">
+          <Globe2 className="h-3.5 w-3.5" />
+          Travel Buddy API
+        </Badge>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="grid gap-4 md:grid-cols-2">
-          <div className="space-y-2">
-            <Label>{t.visaChecker.citizenshipLabel}</Label>
-            <Input
-              value={citizenship}
-              onChange={(event) => setCitizenship(event.target.value)}
-              placeholder={t.visaChecker.citizenshipSearchPlaceholder}
-              list="citizenship-options"
-            />
-            <datalist id="citizenship-options">
-              {citizenshipOptions.map((country) => (
-                <option key={country} value={country} />
-              ))}
-            </datalist>
-          </div>
-          <div className="space-y-2">
-            <Label>{t.visaChecker.destinationLabel}</Label>
-            <Input
-              value={destination}
-              onChange={(event) => setDestination(event.target.value)}
-              placeholder={t.visaChecker.destinationPlaceholder}
-              list="destination-options"
-            />
-            <datalist id="destination-options">
-              {destinationOptions.map((entry) => (
-                <option key={entry} value={entry} />
-              ))}
-            </datalist>
-          </div>
+          <CountryPicker
+            label={t.visaChecker.citizenshipLabel}
+            options={countryOptions}
+            placeholder={t.visaChecker.citizenshipSearchPlaceholder}
+            value={citizenshipCode}
+            onChange={setCitizenshipCode}
+          />
+          <CountryPicker
+            label={t.visaChecker.destinationLabel}
+            options={countryOptions}
+            placeholder={t.visaChecker.destinationSearchPlaceholder}
+            value={destinationCode}
+            onChange={setDestinationCode}
+          />
         </div>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap gap-3">
@@ -321,6 +344,116 @@ function formatCurrencies(
       return `${currency.code}${name}${symbol}`.trim();
     })
     .join(", ");
+}
+
+function CountryPicker({
+  label,
+  value,
+  options,
+  placeholder,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  options: CountryOption[];
+  placeholder: string;
+  onChange: (value: string) => void;
+}) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const selected = options.find((option) => option.code === value);
+  const normalizedQuery = query.trim().toLowerCase();
+  const filteredOptions = normalizedQuery
+    ? options
+        .filter((option) => option.search.includes(normalizedQuery))
+        .slice(0, 80)
+    : options.slice(0, 80);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!containerRef.current?.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => document.removeEventListener("pointerdown", handlePointerDown);
+  }, [open]);
+
+  return (
+    <div ref={containerRef} className="relative space-y-2">
+      <Label>{label}</Label>
+      <button
+        type="button"
+        className="flex h-11 w-full items-center justify-between rounded-lg border border-stone-300 bg-white px-3 text-left text-sm text-stone-900 ring-offset-background transition focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 dark:border-stone-700 dark:bg-stone-950 dark:text-white"
+        onClick={() => {
+          setOpen((current) => !current);
+          setQuery("");
+        }}
+      >
+        <span className="flex min-w-0 items-center gap-2">
+          <span className="truncate">
+            {selected ? selected.name : placeholder}
+          </span>
+          {selected ? (
+            <span className="rounded border border-border/70 px-1.5 py-0.5 text-xs text-muted-foreground">
+              {selected.code}
+            </span>
+          ) : null}
+        </span>
+        <ChevronDown className="h-4 w-4 shrink-0 opacity-50" />
+      </button>
+      {open ? (
+        <div className="absolute z-50 mt-1 w-full rounded-lg border border-border bg-popover p-2 text-popover-foreground shadow-lg">
+          <div className="relative">
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              autoFocus
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === "Escape") {
+                  setOpen(false);
+                }
+              }}
+              placeholder={placeholder}
+              className="pl-9"
+            />
+          </div>
+          <ScrollArea className="mt-2 h-72">
+            <div className="space-y-1 pr-2">
+              {filteredOptions.length ? (
+                filteredOptions.map((option) => (
+                  <button
+                    key={option.code}
+                    type="button"
+                    className="flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-sm hover:bg-accent hover:text-accent-foreground"
+                    onClick={() => {
+                      onChange(option.code);
+                      setOpen(false);
+                      setQuery("");
+                    }}
+                  >
+                    <span className="truncate">{option.name}</span>
+                    <span className="ml-3 rounded border border-border/70 px-1.5 py-0.5 text-xs text-muted-foreground">
+                      {option.code}
+                    </span>
+                  </button>
+                ))
+              ) : (
+                <p className="px-3 py-6 text-center text-sm text-muted-foreground">
+                  No countries found.
+                </p>
+              )}
+            </div>
+          </ScrollArea>
+        </div>
+      ) : null}
+    </div>
+  );
 }
 
 function VisaResult({ result }: { result: VisaRequirement }) {
