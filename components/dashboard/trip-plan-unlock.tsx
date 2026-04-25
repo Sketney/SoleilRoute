@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import type { Route } from "next";
+import { usePathname, useRouter } from "next/navigation";
 import { Lock, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
@@ -14,6 +15,7 @@ export function TripPlanUnlockButton({
   locked: boolean;
 }) {
   const router = useRouter();
+  const pathname = usePathname();
   const { toast } = useToast();
   const [pending, setPending] = useState(false);
 
@@ -30,8 +32,12 @@ export function TripPlanUnlockButton({
         title: "Full plan unlocked",
         description: "Your trip plan is ready.",
       });
-      window.location.href = `/dashboard/trips/${tripId}/plan`;
-      router.refresh();
+      const planPath = `/dashboard/trips/${tripId}/plan` as Route;
+      if (pathname === planPath) {
+        router.refresh();
+      } else {
+        router.push(planPath);
+      }
     } catch (error) {
       console.error(error);
       toast({
