@@ -56,6 +56,16 @@ export async function hasTripPlanAccess(userId: string, tripId: string) {
   return evaluateTripPlanAccess(snapshot, tripId);
 }
 
+export async function hasTripPlanAccessForUser(
+  user: { id: string; is_admin?: boolean | null },
+  tripId: string,
+) {
+  if (user.is_admin) {
+    return true;
+  }
+  return hasTripPlanAccess(user.id, tripId);
+}
+
 export type UnlockOption = {
   productType: "trip_pass" | "monthly_pro" | "annual_pro";
   label: string;

@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "@/lib/auth/session";
 import { apiError } from "@/lib/api/responses";
-import { grantMockTripPass, hasTripPlanAccess } from "@/lib/services/entitlements";
+import {
+  grantMockTripPass,
+  hasTripPlanAccessForUser,
+} from "@/lib/services/entitlements";
 import { generateFullTripPlan } from "@/lib/services/full-plan/generate-full-trip-plan";
 import { createNotification, getTripAccess } from "@/server/db";
 
@@ -20,7 +23,7 @@ export async function POST(
     return apiError("NOT_FOUND", "Trip not found", 404);
   }
 
-  if (!(await hasTripPlanAccess(session.user.id, access.trip.id))) {
+  if (!(await hasTripPlanAccessForUser(session.user, access.trip.id))) {
     if ((process.env.PAYMENT_PROVIDER ?? "mock") !== "mock") {
       return apiError("CHECKOUT_REQUIRED", "Checkout provider is not configured", 402);
     }

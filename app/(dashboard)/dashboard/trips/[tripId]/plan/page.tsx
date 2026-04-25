@@ -15,7 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getServerSession } from "@/lib/auth/session";
-import { hasTripPlanAccess } from "@/lib/services/entitlements";
+import { hasTripPlanAccessForUser } from "@/lib/services/entitlements";
 import { buildPlanSnapshot } from "@/lib/services/full-plan/build-plan-snapshot";
 import { getVisaRequirement } from "@/lib/services/visa";
 import { formatCurrency, formatDateRange } from "@/lib/utils";
@@ -48,7 +48,7 @@ export default async function TripPlanPage({
     notFound();
   }
 
-  const hasAccess = await hasTripPlanAccess(session.user.id, access.trip.id);
+  const hasAccess = await hasTripPlanAccessForUser(session.user, access.trip.id);
   const storedPlan = hasAccess ? await getTripPlan(access.trip.id) : null;
   const plan =
     storedPlan?.status === "full"

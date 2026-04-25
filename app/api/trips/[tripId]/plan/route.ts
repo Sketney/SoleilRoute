@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "@/lib/auth/session";
 import { apiError } from "@/lib/api/responses";
-import { hasTripPlanAccess } from "@/lib/services/entitlements";
+import { hasTripPlanAccessForUser } from "@/lib/services/entitlements";
 import { generateFullTripPlan } from "@/lib/services/full-plan/generate-full-trip-plan";
 import {
   getTripAccess,
@@ -26,7 +26,7 @@ export async function GET(
     return apiError("NOT_FOUND", "Trip not found", 404);
   }
 
-  const hasAccess = await hasTripPlanAccess(session.user.id, access.trip.id);
+  const hasAccess = await hasTripPlanAccessForUser(session.user, access.trip.id);
   if (!hasAccess) {
     const [visa, budgetItems] = await Promise.all([
       getVisaRequirement(access.trip.citizenship, access.trip.destination_country).catch(
@@ -89,7 +89,7 @@ export async function POST(
     return apiError("NOT_FOUND", "Trip not found", 404);
   }
 
-  if (!(await hasTripPlanAccess(session.user.id, access.trip.id))) {
+  if (!(await hasTripPlanAccessForUser(session.user, access.trip.id))) {
     return apiError("PAYMENT_REQUIRED", "Full trip plan is locked", 402);
   }
 
