@@ -4,6 +4,8 @@ import rawVisaRemainingDatasetTwo from "@/visa_data_remaining2.json";
 import rawVisaPopular2026 from "@/visa_data_popular_2026.json";
 import rawVisaCIS2026 from "@/visa_data_cis_2026.json";
 import { countryCodeToName, countryNameToCode } from "@/lib/countries";
+import { manualOverrideToVisaRequirement } from "@/lib/services/visa-qa";
+import { getActiveVisaOverride } from "@/server/db/visa-checks";
 
 export type VisaRequirement = {
   citizenship: string;
@@ -834,6 +836,19 @@ export async function getVisaRequirementWithSource(
 ) {
   const normalizedCitizenship = normalizeCountryName(citizenship);
   const normalizedDestination = normalizeCountryName(destination);
+  const manualOverride = await getActiveVisaOverride(
+    normalizedCitizenship,
+    normalizedDestination,
+  ).catch(() => null);
+  if (manualOverride) {
+    return {
+      requirement: manualOverrideToVisaRequirement(manualOverride),
+      source: "SoleilRoute manual QA override",
+      fallback: false,
+      insights: null,
+    };
+  }
+
   const cached =
     visaDatasetIndex.get(
       makeKey(normalizedCitizenship, normalizedDestination),

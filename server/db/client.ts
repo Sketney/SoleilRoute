@@ -6,7 +6,11 @@ import type { SessionRecord } from "@/server/db/sessions";
 import type { UserRecord } from "@/server/db/users";
 import type { ExchangeRateRecord } from "@/server/db/exchange-rates";
 import type { NotificationRecord } from "@/server/db/notifications";
-import type { VisaCheckRecord } from "@/server/db/visa-checks";
+import type {
+  VisaCheckRecord,
+  VisaIssueReportRecord,
+  VisaManualOverrideRecord,
+} from "@/server/db/visa-checks";
 import type { BudgetCapRecord } from "@/server/db/budget-caps";
 import type { TimelineItemRecord } from "@/server/db/timeline";
 import type { TripCollaboratorRecord } from "@/server/db/collaborators";
@@ -23,6 +27,7 @@ import type {
   TripEntitlementRecord,
 } from "@/server/db/entitlements";
 import type { TripPlanRecord } from "@/server/db/trip-plans";
+import type { ReminderDeliveryRecord } from "@/server/db/reminders";
 
 export type DatabaseSchema = {
   users: UserRecord[];
@@ -33,6 +38,8 @@ export type DatabaseSchema = {
   exchange_rates: ExchangeRateRecord[];
   notifications: NotificationRecord[];
   visa_checks: VisaCheckRecord[];
+  visa_manual_overrides: VisaManualOverrideRecord[];
+  visa_issue_reports: VisaIssueReportRecord[];
   timeline_items: TimelineItemRecord[];
   trip_collaborators: TripCollaboratorRecord[];
   trip_invitations: TripInvitationRecord[];
@@ -44,6 +51,7 @@ export type DatabaseSchema = {
   subscriptions: SubscriptionRecord[];
   trip_entitlements: TripEntitlementRecord[];
   trip_plans: TripPlanRecord[];
+  reminder_deliveries: ReminderDeliveryRecord[];
 };
 
 const legacyDbDirectory = path.join(process.cwd(), "server", "data");
@@ -79,6 +87,8 @@ const defaultData: DatabaseSchema = {
   exchange_rates: [],
   notifications: [],
   visa_checks: [],
+  visa_manual_overrides: [],
+  visa_issue_reports: [],
   timeline_items: [],
   trip_collaborators: [],
   trip_invitations: [],
@@ -90,6 +100,7 @@ const defaultData: DatabaseSchema = {
   subscriptions: [],
   trip_entitlements: [],
   trip_plans: [],
+  reminder_deliveries: [],
 };
 
 function ensureDatabaseFile() {
@@ -116,6 +127,8 @@ export function readDatabase(): DatabaseSchema {
       exchange_rates: parsed.exchange_rates ?? [],
       notifications: parsed.notifications ?? [],
       visa_checks: parsed.visa_checks ?? [],
+      visa_manual_overrides: parsed.visa_manual_overrides ?? [],
+      visa_issue_reports: parsed.visa_issue_reports ?? [],
       timeline_items: parsed.timeline_items ?? [],
       trip_collaborators: parsed.trip_collaborators ?? [],
       trip_invitations: parsed.trip_invitations ?? [],
@@ -127,6 +140,7 @@ export function readDatabase(): DatabaseSchema {
       subscriptions: parsed.subscriptions ?? [],
       trip_entitlements: parsed.trip_entitlements ?? [],
       trip_plans: parsed.trip_plans ?? [],
+      reminder_deliveries: parsed.reminder_deliveries ?? [],
     };
   } catch (error) {
     console.error("Failed to parse database file. Reinitialising.", error);

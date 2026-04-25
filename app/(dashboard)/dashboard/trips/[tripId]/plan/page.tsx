@@ -25,6 +25,7 @@ import {
   listBudgetItems,
 } from "@/server/db";
 import { TripPlanUnlockButton } from "@/components/dashboard/trip-plan-unlock";
+import { VisaIssueReport } from "@/components/dashboard/visa-issue-report";
 import type { TripPlanSnapshot } from "@/lib/services/full-plan/types";
 
 export const metadata = {
@@ -116,6 +117,11 @@ export default async function TripPlanPage({
                 {plan.visa.notes}
               </p>
             ) : null}
+            <VisaIssueReport
+              tripId={access.trip.id}
+              citizenship={plan.trip.citizenship}
+              destination={plan.trip.destination}
+            />
           </CardContent>
         </Card>
 
@@ -183,10 +189,19 @@ export default async function TripPlanPage({
           <p className="text-sm text-muted-foreground">
             PDF export will use this saved plan snapshot and requires plan access.
           </p>
-          <Button disabled variant="outline">
-            <Download className="mr-2 h-4 w-4" />
-            PDF export coming next
-          </Button>
+          {hasAccess ? (
+            <Button asChild variant="outline">
+              <a href={`/api/trips/${access.trip.id}/export`}>
+                <Download className="mr-2 h-4 w-4" />
+                Download PDF
+              </a>
+            </Button>
+          ) : (
+            <Button disabled variant="outline">
+              <Download className="mr-2 h-4 w-4" />
+              Unlock to export
+            </Button>
+          )}
         </CardContent>
       </Card>
 
