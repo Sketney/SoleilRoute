@@ -3,7 +3,9 @@ import type { VisaRequirement } from "@/lib/services/visa";
 import type {
   FullPlanGenerationReason,
   TripPlanSnapshot,
+  TripPlanVisaDetails,
 } from "@/lib/services/full-plan/types";
+import type { TripPlanVisaScenario } from "@/lib/services/full-plan/visa-scenarios/types";
 import { generateBudgetSnapshot } from "@/lib/services/full-plan/generate-budget";
 import { generateDocumentChecklist } from "@/lib/services/full-plan/generate-documents";
 import { generateTimelinePlan } from "@/lib/services/full-plan/generate-timeline";
@@ -31,6 +33,28 @@ export function buildPlanSnapshot({
     now: new Date(generatedAt),
   });
   const budget = generateBudgetSnapshot({ trip, budgetItems });
+  const reminders = timeline.filter((item) => item.status === "pending");
+  const visaDetails: TripPlanVisaDetails = {
+    required: visa ? visa.visaRequired : null,
+    type: visa?.visaType ?? null,
+    validity: visa?.validity ?? null,
+    processingTime: visa?.processingTime ?? null,
+    passportValidity: visa?.passportValidity ?? null,
+    source: visa ? "Travel Buddy" : "Unavailable",
+    checkedAt: trip.visa_last_checked,
+    embassyUrl: visa?.embassyUrl ?? null,
+    applicationUrl: visa?.applicationUrl ?? null,
+    notes: visa?.notes ?? null,
+  };
+  const defaultVisaScenario: TripPlanVisaScenario = {
+    id: "default",
+    label: "Default visa scenario",
+    isDefault: true,
+    visa: visaDetails,
+    documents,
+    timeline,
+    reminders,
+  };
 
   return {
     version: 1,
@@ -46,22 +70,13 @@ export function buildPlanSnapshot({
       },
       citizenship: trip.citizenship,
     },
-    visa: {
-      required: visa ? visa.visaRequired : null,
-      type: visa?.visaType ?? null,
-      validity: visa?.validity ?? null,
-      processingTime: visa?.processingTime ?? null,
-      passportValidity: visa?.passportValidity ?? null,
-      source: visa ? "Travel Buddy" : "Unavailable",
-      checkedAt: trip.visa_last_checked,
-      embassyUrl: visa?.embassyUrl ?? null,
-      applicationUrl: visa?.applicationUrl ?? null,
-      notes: visa?.notes ?? null,
-    },
-    documents,
-    timeline,
+    visaScenarios: [defaultVisaScenario],
+    activeVisaScenarioId: defaultVisaScenario.id,
+    visa: defaultVisaScenario.visa,
+    documents: defaultVisaScenario.documents,
+    timeline: defaultVisaScenario.timeline,
     budget,
-    reminders: timeline.filter((item) => item.status === "pending"),
+    reminders: defaultVisaScenario.reminders,
     sources: [
       {
         label: "Visa requirements",

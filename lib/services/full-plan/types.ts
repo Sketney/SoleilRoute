@@ -1,4 +1,5 @@
 import type { BudgetCategoryId } from "@/lib/constants";
+import type { TripPlanVisaScenario } from "@/lib/services/full-plan/visa-scenarios/types";
 
 export type FullPlanGenerationReason =
   | "purchase"
@@ -49,6 +50,19 @@ export type PlanSource = {
   url?: string | null;
 };
 
+export type TripPlanVisaDetails = {
+  required: boolean | null;
+  type: string | null;
+  validity: string | null;
+  processingTime: string | null;
+  passportValidity: string | null;
+  source: string;
+  checkedAt: string | null;
+  embassyUrl: string | null;
+  applicationUrl: string | null;
+  notes: string | null;
+};
+
 export type TripPlanSnapshot = {
   version: number;
   generatedAt: string;
@@ -63,18 +77,9 @@ export type TripPlanSnapshot = {
     };
     citizenship: string;
   };
-  visa: {
-    required: boolean | null;
-    type: string | null;
-    validity: string | null;
-    processingTime: string | null;
-    passportValidity: string | null;
-    source: string;
-    checkedAt: string | null;
-    embassyUrl: string | null;
-    applicationUrl: string | null;
-    notes: string | null;
-  };
+  visaScenarios: TripPlanVisaScenario[];
+  activeVisaScenarioId: string | null;
+  visa: TripPlanVisaDetails;
   documents: PlanDocument[];
   timeline: PlanTimelineItem[];
   budget: {
