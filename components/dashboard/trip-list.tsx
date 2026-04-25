@@ -205,6 +205,11 @@ export function TripList({ trips }: { trips: DashboardTrip[] }) {
                       {t.tripList.visaChecklist}
                     </a>
                   </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <a href={`/dashboard/trips/${trip.id}/plan`}>
+                      Full trip plan
+                    </a>
+                  </DropdownMenuItem>
                   {trip.role === "owner" ? (
                     <>
                       <DropdownMenuSeparator />

@@ -24,6 +24,8 @@ import { TripDetailsEditor } from "@/components/dashboard/trip-details-editor";
 import { BudgetCapsEditor } from "@/components/dashboard/budget-caps-editor";
 import { TimelinePlanner } from "@/components/dashboard/timeline-planner";
 import { CollaboratorsManager } from "@/components/dashboard/collaborators-manager";
+import { TripPlanUnlockButton } from "@/components/dashboard/trip-plan-unlock";
+import { hasTripPlanAccess } from "@/lib/services/entitlements";
 
 export const metadata = {
   title: "Trip overview",
@@ -57,6 +59,7 @@ export default async function TripOverviewPage({
   const trip = access.trip;
   const canEdit = canEditTrip(access.role);
   const canManage = access.role === "owner";
+  const hasPlanAccess = await hasTripPlanAccess(session.user.id, trip.id);
 
   const budgetItems = await listBudgetItems(trip.id);
   const paidAmount = budgetItems
@@ -173,6 +176,7 @@ export default async function TripOverviewPage({
           initialValues={editorValues}
           readOnly={!canEdit}
         />
+        <TripPlanUnlockButton tripId={trip.id} locked={!hasPlanAccess} />
       </div>
 
       <Card className="border-border/70">

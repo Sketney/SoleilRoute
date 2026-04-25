@@ -17,6 +17,12 @@ import type {
   CommunityLikeRecord,
   CommunitySaveRecord,
 } from "@/server/db/community-reactions";
+import type {
+  PurchaseRecord,
+  SubscriptionRecord,
+  TripEntitlementRecord,
+} from "@/server/db/entitlements";
+import type { TripPlanRecord } from "@/server/db/trip-plans";
 
 export type DatabaseSchema = {
   users: UserRecord[];
@@ -34,6 +40,10 @@ export type DatabaseSchema = {
   community_comments: CommunityCommentRecord[];
   community_likes: CommunityLikeRecord[];
   community_saves: CommunitySaveRecord[];
+  purchases: PurchaseRecord[];
+  subscriptions: SubscriptionRecord[];
+  trip_entitlements: TripEntitlementRecord[];
+  trip_plans: TripPlanRecord[];
 };
 
 const legacyDbDirectory = path.join(process.cwd(), "server", "data");
@@ -76,6 +86,10 @@ const defaultData: DatabaseSchema = {
   community_comments: [],
   community_likes: [],
   community_saves: [],
+  purchases: [],
+  subscriptions: [],
+  trip_entitlements: [],
+  trip_plans: [],
 };
 
 function ensureDatabaseFile() {
@@ -109,6 +123,10 @@ export function readDatabase(): DatabaseSchema {
       community_comments: parsed.community_comments ?? [],
       community_likes: parsed.community_likes ?? [],
       community_saves: parsed.community_saves ?? [],
+      purchases: parsed.purchases ?? [],
+      subscriptions: parsed.subscriptions ?? [],
+      trip_entitlements: parsed.trip_entitlements ?? [],
+      trip_plans: parsed.trip_plans ?? [],
     };
   } catch (error) {
     console.error("Failed to parse database file. Reinitialising.", error);

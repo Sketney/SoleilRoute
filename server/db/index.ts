@@ -11,3 +11,5 @@ export * from "@/server/db/invitations";
 export * from "@/server/db/community-posts";
 export * from "@/server/db/community-comments";
 export * from "@/server/db/community-reactions";
+export * from "@/server/db/entitlements";
+export * from "@/server/db/trip-plans";
