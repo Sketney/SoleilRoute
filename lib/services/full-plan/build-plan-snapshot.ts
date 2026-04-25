@@ -13,6 +13,10 @@ import { generateTimelinePlan } from "@/lib/services/full-plan/generate-timeline
 export const travelDisclaimer =
   "Visa and travel information is provided for planning purposes only. Always verify requirements with official government, embassy, airline, or visa center sources before booking or traveling.";
 
+function buildVisaScenarioLabel(visa: TripPlanVisaDetails) {
+  return visa.type?.trim() || "Entry requirements";
+}
+
 export function buildPlanSnapshot({
   trip,
   visa,
@@ -48,7 +52,7 @@ export function buildPlanSnapshot({
   };
   const defaultVisaScenario: TripPlanVisaScenario = {
     id: "default",
-    label: "Default visa scenario",
+    label: buildVisaScenarioLabel(visaDetails),
     isDefault: true,
     visa: visaDetails,
     documents,

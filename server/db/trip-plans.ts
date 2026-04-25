@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import type { TripPlanSnapshot } from "@/lib/services/full-plan/types";
+import type { TripPlanVisaScenario } from "@/lib/services/full-plan/visa-scenarios/types";
 import { readDatabase, updateDatabase } from "@/server/db/client";
 import { getSupabaseAdmin } from "@/server/db/supabase";
 
@@ -16,10 +17,62 @@ export type TripPlanRecord = {
   updated_at: string;
 };
 
+type TripPlanSnapshotWithLegacyScenarioFields = Omit<
+  TripPlanSnapshot,
+  "visaScenarios" | "activeVisaScenarioId"
+> & {
+  visaScenarios?: TripPlanVisaScenario[] | null;
+  activeVisaScenarioId?: string | null;
+};
+
+function buildLegacyVisaScenario(
+  snapshot: TripPlanSnapshotWithLegacyScenarioFields,
+): TripPlanVisaScenario {
+  return {
+    id: "default",
+    label: snapshot.visa.type?.trim() || "Entry requirements",
+    isDefault: true,
+    visa: snapshot.visa,
+    documents: snapshot.documents,
+    timeline: snapshot.timeline,
+    reminders: snapshot.reminders,
+  };
+}
+
+export function normalizeTripPlanSnapshot(
+  snapshot: TripPlanSnapshotWithLegacyScenarioFields,
+): TripPlanSnapshot {
+  const fallbackScenario = buildLegacyVisaScenario(snapshot);
+  const visaScenarios =
+    snapshot.visaScenarios && snapshot.visaScenarios.length > 0
+      ? snapshot.visaScenarios
+      : [fallbackScenario];
+  const activeVisaScenarioId =
+    snapshot.activeVisaScenarioId &&
+    visaScenarios.some((scenario) => scenario.id === snapshot.activeVisaScenarioId)
+      ? snapshot.activeVisaScenarioId
+      : (visaScenarios[0]?.id ?? null);
+  const activeScenario =
+    visaScenarios.find((scenario) => scenario.id === activeVisaScenarioId) ??
+    fallbackScenario;
+
+  return {
+    ...snapshot,
+    visaScenarios,
+    activeVisaScenarioId,
+    visa: activeScenario.visa,
+    documents: activeScenario.documents,
+    timeline: activeScenario.timeline,
+    reminders: activeScenario.reminders,
+  };
+}
+
 function clonePlan(record: TripPlanRecord) {
   return {
     ...record,
-    plan_json: structuredClone(record.plan_json),
+    plan_json: normalizeTripPlanSnapshot(
+      structuredClone(record.plan_json) as TripPlanSnapshotWithLegacyScenarioFields,
+    ),
   };
 }
 
