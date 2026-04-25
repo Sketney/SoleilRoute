@@ -18,6 +18,21 @@ export function TripPlanUnlockButton({
   const pathname = usePathname();
   const { toast } = useToast();
   const [pending, setPending] = useState(false);
+  const [readyPath, setReadyPath] = useState<Route | null>(null);
+  const planPath = `/dashboard/trips/${tripId}/plan` as Route;
+
+  const openPlan = (path: Route, forceReloadDelayMs: number) => {
+    setReadyPath(path);
+    if (pathname === path) {
+      router.refresh();
+    } else {
+      router.push(path);
+    }
+
+    window.setTimeout(() => {
+      window.location.assign(path);
+    }, forceReloadDelayMs);
+  };
 
   const unlock = async () => {
     setPending(true);
@@ -30,14 +45,9 @@ export function TripPlanUnlockButton({
       }
       toast({
         title: "Full plan unlocked",
-        description: "Your trip plan is ready.",
+        description: "Your trip plan is ready. Opening it now.",
       });
-      const planPath = `/dashboard/trips/${tripId}/plan` as Route;
-      if (pathname === planPath) {
-        router.refresh();
-      } else {
-        router.push(planPath);
-      }
+      openPlan(planPath, pathname === planPath ? 150 : 400);
     } catch (error) {
       console.error(error);
       toast({
@@ -50,10 +60,10 @@ export function TripPlanUnlockButton({
     }
   };
 
-  if (!locked) {
+  if (!locked || readyPath) {
     return (
       <Button asChild>
-        <a href={`/dashboard/trips/${tripId}/plan`}>
+        <a href={readyPath ?? planPath}>
           <Sparkles className="mr-2 h-4 w-4" />
           Open full plan
         </a>
