@@ -15,6 +15,20 @@ function joinNotes(...notes: Array<string | null | undefined>) {
   return items.length > 0 ? items.join(" ") : null;
 }
 
+function buildScenarioNotes(
+  baseVisaDetails: TripPlanVisaDetails,
+  scenario: CuratedVisaScenarioTemplate,
+) {
+  if (scenario.kind === "tourist") {
+    return joinNotes(baseVisaDetails.notes, scenario.notesAppend);
+  }
+
+  return (
+    scenario.notesAppend?.trim() ||
+    "Check official guidance for scenario-specific eligibility, supporting documents, and stay conditions."
+  );
+}
+
 function buildScenarioId(country: string, kind: CuratedVisaScenarioKind) {
   return `${country.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}-${kind.replace(/_/g, "-")}`;
 }
@@ -45,7 +59,7 @@ function buildScenarioVisaDetails(
     return {
       ...baseVisaDetails,
       type: scenario.visaTypeOverride ?? baseVisaDetails.type,
-      notes: joinNotes(baseVisaDetails.notes, scenario.notesAppend),
+      notes: buildScenarioNotes(baseVisaDetails, scenario),
     };
   }
 
@@ -59,7 +73,7 @@ function buildScenarioVisaDetails(
       (baseVisaDetails.embassyUrl ? "Check official guidance" : null),
     embassyUrl: scenario.embassyUrlOverride ?? baseVisaDetails.embassyUrl,
     applicationUrl: scenario.applicationUrlOverride ?? null,
-    notes: joinNotes(baseVisaDetails.notes, scenario.notesAppend),
+    notes: buildScenarioNotes(baseVisaDetails, scenario),
   };
 }
 

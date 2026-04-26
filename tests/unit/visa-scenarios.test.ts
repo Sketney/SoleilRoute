@@ -99,6 +99,8 @@ describe("visa scenarios in full plan snapshots", () => {
       applicationUrl: null,
       embassyUrl: "https://example.test/embassy",
     });
+    expect(scenarios[1]?.visa.notes).not.toContain("Passport validity: 6 months.");
+    expect(scenarios[1]?.visa.notes).toContain("Remote work stays may require income evidence");
     expect(scenarios[2]?.id).toBe("indonesia-business");
     expect(scenarios[2]?.visa).toMatchObject({
       type: "Business visit visa / eVisa",
@@ -108,6 +110,8 @@ describe("visa scenarios in full plan snapshots", () => {
       applicationUrl: null,
       embassyUrl: "https://example.test/embassy",
     });
+    expect(scenarios[2]?.visa.notes).not.toContain("Passport validity: 6 months.");
+    expect(scenarios[2]?.visa.notes).toContain("Business travel often depends on invitation letters");
   });
 
   it("projects the default active scenario to top-level fields with a stable id", () => {
