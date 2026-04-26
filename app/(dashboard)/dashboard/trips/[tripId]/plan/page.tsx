@@ -64,7 +64,7 @@ export default async function TripPlanPage({
           <div>
             <h1 className="text-2xl font-semibold">Full trip plan</h1>
             <p className="text-sm text-muted-foreground">
-              {plan.trip.destination} В·{" "}
+              {plan.trip.destination} -{" "}
               {formatDateRange(plan.trip.dates.start, plan.trip.dates.end)}
             </p>
           </div>
@@ -94,7 +94,7 @@ export default async function TripPlanPage({
                 {formatCurrency(item.amount, item.currency)}
               </p>
               <p className="text-xs text-muted-foreground">
-                {item.source} В· {item.confidence}
+                {item.source} - {item.confidence}
               </p>
             </div>
           ))}

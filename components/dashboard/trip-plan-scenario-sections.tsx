@@ -160,7 +160,7 @@ export function TripPlanScenarioSections({
               label="Source"
               value={`${scenarioView.visa.source}${
                 scenarioView.visa.checkedAt
-                  ? ` В· ${new Date(scenarioView.visa.checkedAt).toLocaleDateString()}`
+                  ? ` - ${new Date(scenarioView.visa.checkedAt).toLocaleDateString()}`
                   : ""
               }`}
             />
@@ -192,7 +192,7 @@ export function TripPlanScenarioSections({
                 </div>
                 <p className="mt-1 text-xs text-muted-foreground">
                   {source.source}
-                  {source.checkedAt ? ` В· ${new Date(source.checkedAt).toLocaleString()}` : ""}
+                  {source.checkedAt ? ` - ${new Date(source.checkedAt).toLocaleString()}` : ""}
                 </p>
               </div>
             ))}
@@ -300,7 +300,7 @@ function TimelineSection({
               {item.urgent ? <Badge variant="danger">Urgent</Badge> : null}
             </div>
             <p className="mt-1 text-xs text-muted-foreground">
-              {new Date(item.dueDate).toLocaleDateString()} В· {item.description}
+              {new Date(item.dueDate).toLocaleDateString()} - {item.description}
             </p>
           </div>
         ))}
