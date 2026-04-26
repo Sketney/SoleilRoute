@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
-import { useRouter } from "next/navigation";
 import {
   CalendarClock,
   CheckCircle2,
@@ -72,7 +71,6 @@ export function TripPlanScenarioSections({
   editable: boolean;
   locked: boolean;
 }) {
-  const router = useRouter();
   const { toast } = useToast();
   const [isPending, setIsPending] = useState(false);
   const [scenarioView, setScenarioView] = useState<TripPlanScenarioViewState>(
@@ -111,7 +109,6 @@ export function TripPlanScenarioSections({
       setScenarioView((current) =>
         applyVisaScenarioSelectionResponse(current, payload),
       );
-      router.refresh();
     } catch (error) {
       console.error(error);
       toast({
