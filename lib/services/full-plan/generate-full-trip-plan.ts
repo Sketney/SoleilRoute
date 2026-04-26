@@ -5,8 +5,10 @@ import type {
 } from "@/lib/services/full-plan/types";
 import { buildPlanSnapshot } from "@/lib/services/full-plan/build-plan-snapshot";
 import {
+  getTripPlan,
   getTripById,
   listBudgetItems,
+  selectActiveVisaScenario,
   upsertTripPlan,
 } from "@/server/db";
 
@@ -34,13 +36,22 @@ export async function generateFullTripPlan(input: {
     listBudgetItems(trip.id),
   ]);
   const generatedAt = new Date().toISOString();
-  const snapshot = buildPlanSnapshot({
+  const existingPlan = await getTripPlan(trip.id);
+  const builtSnapshot = buildPlanSnapshot({
     trip,
     visa,
     budgetItems,
     generatedAt,
     reason: input.reason,
   });
+  const savedActiveScenarioId = existingPlan?.plan_json.activeVisaScenarioId;
+  const snapshot =
+    savedActiveScenarioId &&
+    builtSnapshot.visaScenarios.some(
+      (scenario) => scenario.id === savedActiveScenarioId,
+    )
+      ? selectActiveVisaScenario(builtSnapshot, savedActiveScenarioId)
+      : builtSnapshot;
 
   await upsertTripPlan({
     trip_id: trip.id,

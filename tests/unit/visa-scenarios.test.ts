@@ -1,10 +1,13 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import type { BudgetItemRecord, TripRecord } from "@/server/db/trips";
 import type { VisaRequirement } from "@/lib/services/visa";
 import { buildPlanSnapshot } from "@/lib/services/full-plan/build-plan-snapshot";
 import { buildVisaScenarios } from "@/lib/services/full-plan/visa-scenarios/build-scenarios";
 import { projectVisaScenario } from "@/lib/services/full-plan/visa-scenarios/project-scenario";
-import { normalizeTripPlanSnapshot } from "@/server/db/trip-plans";
+import {
+  normalizeTripPlanSnapshot,
+  selectActiveVisaScenario,
+} from "@/server/db/trip-plans";
 
 const trip: TripRecord = {
   id: "trip-1",
@@ -54,6 +57,11 @@ const visa: VisaRequirement = {
 };
 
 const budgetItems: BudgetItemRecord[] = [];
+
+afterEach(() => {
+  vi.restoreAllMocks();
+  vi.resetModules();
+});
 
 describe("visa scenarios in full plan snapshots", () => {
   it("builds merged curated scenarios for supported destinations", () => {
@@ -166,6 +174,54 @@ describe("visa scenarios in full plan snapshots", () => {
     );
   });
 
+  it("reprojects top-level sections when a different scenario is selected for persistence", () => {
+    const snapshot = buildPlanSnapshot({
+      trip,
+      visa,
+      budgetItems,
+      generatedAt: "2026-04-25T12:00:00.000Z",
+      reason: "purchase",
+    });
+
+    const selected = selectActiveVisaScenario(
+      snapshot,
+      "indonesia-digital-nomad",
+    );
+
+    expect(selected.activeVisaScenarioId).toBe("indonesia-digital-nomad");
+    expect(selected.visa).toEqual(
+      selected.visaScenarios.find((scenario) => scenario.id === "indonesia-digital-nomad")?.visa,
+    );
+    expect(selected.documents).toEqual(
+      selected.visaScenarios.find((scenario) => scenario.id === "indonesia-digital-nomad")?.documents,
+    );
+    expect(selected.timeline).toEqual(
+      selected.visaScenarios.find((scenario) => scenario.id === "indonesia-digital-nomad")?.timeline,
+    );
+    expect(selected.reminders).toEqual(
+      selected.visaScenarios.find((scenario) => scenario.id === "indonesia-digital-nomad")?.reminders,
+    );
+    expect(selected.documents).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ title: "Remote work income proof" }),
+      ]),
+    );
+  });
+
+  it("rejects selecting a scenario that does not exist on the saved snapshot", () => {
+    const snapshot = buildPlanSnapshot({
+      trip,
+      visa,
+      budgetItems,
+      generatedAt: "2026-04-25T12:00:00.000Z",
+      reason: "purchase",
+    });
+
+    expect(() =>
+      selectActiveVisaScenario(snapshot, "missing-scenario"),
+    ).toThrowError("VISA_SCENARIO_NOT_FOUND");
+  });
+
   it("creates a usable fallback scenario for an uncataloged destination when visa data is unavailable", () => {
     const snapshot = buildPlanSnapshot({
       trip: uncatalogedTrip,
@@ -215,5 +271,64 @@ describe("visa scenarios in full plan snapshots", () => {
     expect(normalized.documents).toEqual(normalized.visaScenarios[0]?.documents);
     expect(normalized.timeline).toEqual(normalized.visaScenarios[0]?.timeline);
     expect(normalized.reminders).toEqual(normalized.visaScenarios[0]?.reminders);
+  });
+
+  it("preserves a valid saved active scenario during regeneration", async () => {
+    vi.doMock("@/server/db", async (importOriginal) => {
+      const actual = await importOriginal<typeof import("@/server/db")>();
+
+      return {
+        ...actual,
+        getTripById: vi.fn(async () => trip),
+        listBudgetItems: vi.fn(async () => budgetItems),
+        getTripPlan: vi.fn(async () => ({
+          id: "plan-1",
+          trip_id: trip.id,
+          user_id: trip.user_id,
+          version: 1,
+          status: "full",
+          plan_json: {
+            ...buildPlanSnapshot({
+              trip,
+              visa,
+              budgetItems,
+              generatedAt: "2026-04-25T12:00:00.000Z",
+              reason: "purchase",
+            }),
+            activeVisaScenarioId: "indonesia-digital-nomad",
+          },
+          generated_at: "2026-04-25T12:00:00.000Z",
+          visa_checked_at: trip.visa_last_checked,
+          created_at: "2026-04-25T12:00:00.000Z",
+          updated_at: "2026-04-25T12:00:00.000Z",
+        })),
+        upsertTripPlan: vi.fn(async (input: { plan_json: unknown }) => input),
+      };
+    });
+    vi.doMock("@/lib/services/visa", () => ({
+      getVisaRequirement: vi.fn(async () => visa),
+    }));
+
+    const { generateFullTripPlan } = await import(
+      "@/lib/services/full-plan/generate-full-trip-plan"
+    );
+
+    const result = await generateFullTripPlan({
+      tripId: trip.id,
+      userId: trip.user_id,
+      reason: "manual_regenerate",
+    });
+
+    expect(result.snapshot.activeVisaScenarioId).toBe("indonesia-digital-nomad");
+    expect(
+      result.snapshot.visaScenarios.some(
+        (scenario) => scenario.id === result.snapshot.activeVisaScenarioId,
+      ),
+    ).toBe(true);
+    expect(result.snapshot.visa).toEqual(
+      result.snapshot.visaScenarios.find(
+        (scenario) => scenario.id === "indonesia-digital-nomad",
+      )?.visa,
+    );
   });
 });

@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import type { TripPlanSnapshot } from "@/lib/services/full-plan/types";
+import { projectVisaScenario } from "@/lib/services/full-plan/visa-scenarios/project-scenario";
 import type { TripPlanVisaScenario } from "@/lib/services/full-plan/visa-scenarios/types";
 import { readDatabase, updateDatabase } from "@/server/db/client";
 import { getSupabaseAdmin } from "@/server/db/supabase";
@@ -52,18 +53,36 @@ export function normalizeTripPlanSnapshot(
     visaScenarios.some((scenario) => scenario.id === snapshot.activeVisaScenarioId)
       ? snapshot.activeVisaScenarioId
       : (visaScenarios[0]?.id ?? null);
-  const activeScenario =
-    visaScenarios.find((scenario) => scenario.id === activeVisaScenarioId) ??
-    fallbackScenario;
+  return selectActiveVisaScenario(
+    {
+      ...snapshot,
+      visaScenarios,
+      activeVisaScenarioId,
+    },
+    activeVisaScenarioId ?? fallbackScenario.id,
+  );
+}
+
+export function selectActiveVisaScenario(
+  snapshot: TripPlanSnapshot,
+  scenarioId: string,
+): TripPlanSnapshot {
+  if (!snapshot.visaScenarios.some((scenario) => scenario.id === scenarioId)) {
+    throw new Error("VISA_SCENARIO_NOT_FOUND");
+  }
+
+  const projection = projectVisaScenario({
+    scenarios: snapshot.visaScenarios,
+    activeScenarioId: scenarioId,
+  });
 
   return {
     ...snapshot,
-    visaScenarios,
-    activeVisaScenarioId,
-    visa: activeScenario.visa,
-    documents: activeScenario.documents,
-    timeline: activeScenario.timeline,
-    reminders: activeScenario.reminders,
+    activeVisaScenarioId: projection.activeScenarioId,
+    visa: projection.visa,
+    documents: projection.documents,
+    timeline: projection.timeline,
+    reminders: projection.reminders,
   };
 }
 
