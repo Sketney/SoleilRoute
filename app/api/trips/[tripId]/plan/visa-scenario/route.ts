@@ -3,6 +3,7 @@ import { getServerSession } from "@/lib/auth/session";
 import { apiError } from "@/lib/api/responses";
 import { hasTripPlanAccessForUser } from "@/lib/services/entitlements";
 import {
+  canEditTrip,
   getTripAccess,
   getTripPlan,
   selectActiveVisaScenario,
@@ -22,6 +23,10 @@ export async function PATCH(
   const access = await getTripAccess(tripId, session.user.id);
   if (!access) {
     return apiError("NOT_FOUND", "Trip not found", 404);
+  }
+
+  if (!canEditTrip(access.role)) {
+    return apiError("FORBIDDEN", "Forbidden", 403);
   }
 
   if (!(await hasTripPlanAccessForUser(session.user, access.trip.id))) {

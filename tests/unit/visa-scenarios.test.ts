@@ -331,4 +331,64 @@ describe("visa scenarios in full plan snapshots", () => {
       )?.visa,
     );
   });
+
+  it("self-heals an invalid saved active scenario during regeneration", async () => {
+    vi.doMock("@/server/db", async (importOriginal) => {
+      const actual = await importOriginal<typeof import("@/server/db")>();
+
+      return {
+        ...actual,
+        getTripById: vi.fn(async () => trip),
+        listBudgetItems: vi.fn(async () => budgetItems),
+        getTripPlan: vi.fn(async () => ({
+          id: "plan-1",
+          trip_id: trip.id,
+          user_id: trip.user_id,
+          version: 1,
+          status: "full",
+          plan_json: {
+            ...buildPlanSnapshot({
+              trip,
+              visa,
+              budgetItems,
+              generatedAt: "2026-04-25T12:00:00.000Z",
+              reason: "purchase",
+            }),
+            activeVisaScenarioId: "stale-scenario-id",
+          },
+          generated_at: "2026-04-25T12:00:00.000Z",
+          visa_checked_at: trip.visa_last_checked,
+          created_at: "2026-04-25T12:00:00.000Z",
+          updated_at: "2026-04-25T12:00:00.000Z",
+        })),
+        upsertTripPlan: vi.fn(async (input: { plan_json: unknown }) => input),
+      };
+    });
+    vi.doMock("@/lib/services/visa", () => ({
+      getVisaRequirement: vi.fn(async () => visa),
+    }));
+
+    const { generateFullTripPlan } = await import(
+      "@/lib/services/full-plan/generate-full-trip-plan"
+    );
+
+    const result = await generateFullTripPlan({
+      tripId: trip.id,
+      userId: trip.user_id,
+      reason: "manual_regenerate",
+    });
+
+    const fallbackScenario = result.snapshot.visaScenarios[0];
+
+    expect(result.snapshot.activeVisaScenarioId).toBe(fallbackScenario?.id);
+    expect(
+      result.snapshot.visaScenarios.some(
+        (scenario) => scenario.id === result.snapshot.activeVisaScenarioId,
+      ),
+    ).toBe(true);
+    expect(result.snapshot.visa).toEqual(fallbackScenario?.visa);
+    expect(result.snapshot.documents).toEqual(fallbackScenario?.documents);
+    expect(result.snapshot.timeline).toEqual(fallbackScenario?.timeline);
+    expect(result.snapshot.reminders).toEqual(fallbackScenario?.reminders);
+  });
 });
