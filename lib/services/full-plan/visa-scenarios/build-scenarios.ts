@@ -77,6 +77,24 @@ function buildScenarioVisaDetails(
   };
 }
 
+function buildScenarioArtifactVisa(
+  visa: VisaRequirement | null,
+  scenario: CuratedVisaScenarioTemplate,
+): VisaRequirement | null {
+  if (!visa || scenario.kind === "tourist") {
+    return visa;
+  }
+
+  return {
+    ...visa,
+    visaRequired: scenario.requiredOverride ?? true,
+    visaType: scenario.visaTypeOverride ?? visa.visaType,
+    processingTime: scenario.processingTimeOverride ?? visa.processingTime,
+    embassyUrl: scenario.embassyUrlOverride ?? visa.embassyUrl,
+    applicationUrl: scenario.applicationUrlOverride ?? visa.applicationUrl,
+  };
+}
+
 function buildFallbackScenario({
   trip,
   visa,
@@ -122,9 +140,10 @@ export function buildVisaScenarios({
   const baseVisaDetails = buildVisaDetails(visa, trip.visa_last_checked);
 
   return curatedScenarios.map((scenario, index) => {
+    const scenarioVisa = buildScenarioArtifactVisa(visa, scenario);
     const timeline = generateTimelinePlan({
       trip,
-      visa,
+      visa: scenarioVisa,
       now: new Date(generatedAt),
       scenarioId: scenario.kind,
     });
@@ -136,7 +155,7 @@ export function buildVisaScenarios({
       visa: buildScenarioVisaDetails(baseVisaDetails, scenario),
       documents: generateDocumentChecklist({
         trip,
-        visa,
+        visa: scenarioVisa,
         scenarioId: scenario.kind,
       }),
       timeline,

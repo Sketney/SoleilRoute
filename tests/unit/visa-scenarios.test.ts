@@ -42,6 +42,14 @@ const uncatalogedTrip: TripRecord = {
   destination_city: "Santiago",
 };
 
+const portugalTrip: TripRecord = {
+  ...trip,
+  id: "trip-3",
+  name: "Lisbon trip",
+  destination_country: "Portugal",
+  destination_city: "Lisbon",
+};
+
 const visa: VisaRequirement = {
   citizenship: "China",
   destination: "Indonesia",
@@ -59,6 +67,22 @@ const visa: VisaRequirement = {
     link: "https://example.test/arrival",
   },
   notes: "Passport validity: 6 months.",
+};
+
+const visaFreeTouristVisa: VisaRequirement = {
+  citizenship: "United States",
+  destination: "Portugal",
+  visaRequired: false,
+  visaType: "Visa-free entry",
+  validity: "90 days in 180 days",
+  processingTime: "Not applicable",
+  cost: 0,
+  currency: "EUR",
+  embassyUrl: "https://example.test/portugal-embassy",
+  applicationUrl: null,
+  passportValidity: "3 months beyond departure",
+  mandatoryRegistration: null,
+  notes: "Tourist stays are visa-free for short visits.",
 };
 
 const budgetItems: BudgetItemRecord[] = [];
@@ -177,6 +201,46 @@ describe("visa scenarios in full plan snapshots", () => {
         expect.objectContaining({ title: "Prepare remote work eligibility documents" }),
       ]),
     );
+  });
+
+  it("uses visa-application artifacts for alternate curated scenarios even when the tourist answer is visa-free", () => {
+    const scenarios = buildVisaScenarios({
+      trip: portugalTrip,
+      visa: visaFreeTouristVisa,
+      generatedAt: "2026-04-25T12:00:00.000Z",
+    });
+
+    const digitalNomadScenario = scenarios.find(
+      (scenario) => scenario.id === "portugal-digital-nomad",
+    );
+
+    expect(digitalNomadScenario).toBeDefined();
+    expect(digitalNomadScenario?.documents).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ title: "Visa or eVisa confirmation" }),
+        expect.objectContaining({ title: "Remote work income proof" }),
+      ]),
+    );
+    expect(
+      digitalNomadScenario?.documents.some(
+        (document) => document.title === "Visa-free entry proof",
+      ),
+    ).toBe(false);
+    expect(digitalNomadScenario?.timeline).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          title: "Submit visa application: Digital nomad visa",
+        }),
+        expect.objectContaining({
+          title: "Prepare remote work eligibility documents",
+        }),
+      ]),
+    );
+    expect(
+      digitalNomadScenario?.timeline.some(
+        (item) => item.title === "Confirm visa-free entry conditions",
+      ),
+    ).toBe(false);
   });
 
   it("reprojects top-level sections when a different scenario is selected for persistence", () => {
