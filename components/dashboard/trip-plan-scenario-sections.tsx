@@ -13,7 +13,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import type {
   TripPlanSnapshot,
-  TripPlanVisaDetails,
   PlanDocument,
   PlanTimelineItem,
 } from "@/lib/services/full-plan/types";
