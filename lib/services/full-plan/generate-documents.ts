@@ -15,9 +15,11 @@ function documentId(title: string) {
 export function generateDocumentChecklist({
   trip,
   visa,
+  scenarioId,
 }: {
   trip: TripRecord;
   visa: VisaRequirement | null;
+  scenarioId?: string | null;
 }): PlanDocument[] {
   const documents: Omit<PlanDocument, "id" | "sortOrder" | "status" | "source">[] = [
     {
@@ -95,6 +97,48 @@ export function generateDocumentChecklist({
       category: "visa",
       required: true,
       dueDate: dueDateFromStart(trip, 7),
+    });
+  }
+
+  const normalizedScenarioId = scenarioId?.toLowerCase().replace(/-/g, "_");
+
+  if (normalizedScenarioId?.includes("digital_nomad")) {
+    documents.push(
+      {
+        title: "Remote work income proof",
+        description:
+          "Prepare recent bank statements, payslips, or recurring income proof for remote work eligibility checks.",
+        category: "finance",
+        required: true,
+        dueDate: dueDateFromStart(trip, 45),
+      },
+      {
+        title: "Employment or client contract evidence",
+        description:
+          "Keep employer letters, freelance contracts, or client agreements that support the remote work purpose of stay.",
+        category: "custom",
+        required: true,
+        dueDate: dueDateFromStart(trip, 45),
+      },
+      {
+        title: "Long-stay accommodation plan",
+        description:
+          "Prepare accommodation details that cover the intended remote work stay and arrival address requirements.",
+        category: "travel",
+        required: true,
+        dueDate: dueDateFromStart(trip, 30),
+      },
+    );
+  }
+
+  if (normalizedScenarioId?.includes("business")) {
+    documents.push({
+      title: "Business invitation letter",
+      description:
+        "Request an invitation letter or host confirmation covering meetings, company details, and trip purpose.",
+      category: "custom",
+      required: true,
+      dueDate: dueDateFromStart(trip, 30),
     });
   }
 

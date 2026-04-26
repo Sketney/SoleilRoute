@@ -103,11 +103,14 @@ export function generateTimelinePlan({
   trip,
   visa,
   now = new Date(),
+  scenarioId,
 }: {
   trip: TripRecord;
   visa: VisaRequirement | null;
   now?: Date;
+  scenarioId?: string | null;
 }): PlanTimelineItem[] {
+  const normalizedScenarioId = scenarioId?.toLowerCase().replace(/-/g, "_");
   const items = templates.flatMap((template, index) => {
     if (template.skipWhenVisaFree && visa && !visa.visaRequired) {
       return [];
@@ -142,6 +145,55 @@ export function generateTimelinePlan({
       urgent: dueDate(trip.start_date, 30, now).urgent,
       source: "SoleilRoute timeline generator",
       sortOrder: 4,
+    });
+  }
+
+  if (normalizedScenarioId?.includes("digital_nomad")) {
+    const remoteWorkDocumentsDue = dueDate(trip.start_date, 75, now);
+    const remoteWorkRulesDue = dueDate(trip.start_date, 40, now);
+
+    items.push(
+      {
+        id: "prepare-remote-work-eligibility-documents",
+        title: "Prepare remote work eligibility documents",
+        description:
+          "Collect income proof, employer or client contracts, insurance details, and accommodation evidence for remote work stays.",
+        dueDate: remoteWorkDocumentsDue.date,
+        category: "documents",
+        status: "pending",
+        urgent: remoteWorkDocumentsDue.urgent,
+        source: "SoleilRoute timeline generator",
+        sortOrder: items.length + 1,
+      },
+      {
+        id: "confirm-remote-work-stay-rules",
+        title: "Confirm tax and stay rules for remote work",
+        description:
+          "Review remote work eligibility, local stay limits, and any tax or registration expectations before departure.",
+        dueDate: remoteWorkRulesDue.date,
+        category: "visa",
+        status: "pending",
+        urgent: remoteWorkRulesDue.urgent,
+        source: "SoleilRoute timeline generator",
+        sortOrder: items.length + 2,
+      },
+    );
+  }
+
+  if (normalizedScenarioId?.includes("business")) {
+    const businessDocumentsDue = dueDate(trip.start_date, 50, now);
+
+    items.push({
+      id: "request-business-host-documents",
+      title: "Request host company documents",
+      description:
+        "Confirm invitation letters, meeting schedules, and company contact details for the business trip.",
+      dueDate: businessDocumentsDue.date,
+      category: "documents",
+      status: "pending",
+      urgent: businessDocumentsDue.urgent,
+      source: "SoleilRoute timeline generator",
+      sortOrder: items.length + 1,
     });
   }
 

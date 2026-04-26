@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import type { BudgetItemRecord, TripRecord } from "@/server/db/trips";
 import type { VisaRequirement } from "@/lib/services/visa";
 import { buildPlanSnapshot } from "@/lib/services/full-plan/build-plan-snapshot";
+import { buildVisaScenarios } from "@/lib/services/full-plan/visa-scenarios/build-scenarios";
+import { projectVisaScenario } from "@/lib/services/full-plan/visa-scenarios/project-scenario";
 import { normalizeTripPlanSnapshot } from "@/server/db/trip-plans";
 
 const trip: TripRecord = {
@@ -46,7 +48,34 @@ const visa: VisaRequirement = {
 const budgetItems: BudgetItemRecord[] = [];
 
 describe("visa scenarios in full plan snapshots", () => {
-  it("creates one baseline scenario and projects it to top-level fields", () => {
+  it("builds merged curated scenarios for supported destinations", () => {
+    const scenarios = buildVisaScenarios({
+      trip,
+      visa,
+      generatedAt: "2026-04-25T12:00:00.000Z",
+    });
+
+    expect(scenarios.map((scenario) => scenario.id)).toEqual([
+      "indonesia-tourist",
+      "indonesia-digital-nomad",
+      "indonesia-business",
+    ]);
+    expect(scenarios[0]).toMatchObject({
+      label: "Tourist / short stay",
+      isDefault: true,
+      visa: {
+        type: "Visa on arrival / eVisa",
+      },
+    });
+    expect(
+      scenarios[1]?.documents.some((document) => document.title === "Remote work income proof"),
+    ).toBe(true);
+    expect(
+      scenarios[1]?.timeline.some((item) => item.title === "Prepare remote work eligibility documents"),
+    ).toBe(true);
+  });
+
+  it("projects the default active scenario to top-level fields with a stable id", () => {
     const snapshot = buildPlanSnapshot({
       trip,
       visa,
@@ -55,16 +84,47 @@ describe("visa scenarios in full plan snapshots", () => {
       reason: "purchase",
     });
 
-    expect(snapshot.visaScenarios).toHaveLength(1);
+    expect(snapshot.visaScenarios).toHaveLength(3);
 
     const [scenario] = snapshot.visaScenarios;
 
+    expect(snapshot.activeVisaScenarioId).toBe("indonesia-tourist");
     expect(snapshot.activeVisaScenarioId).toBe(scenario.id);
-    expect(scenario.label).toBe("Visa on arrival / eVisa");
+    expect(scenario.label).toBe("Tourist / short stay");
     expect(snapshot.visa).toEqual(scenario.visa);
     expect(snapshot.documents).toEqual(scenario.documents);
     expect(snapshot.timeline).toEqual(scenario.timeline);
     expect(snapshot.reminders).toEqual(scenario.reminders);
+  });
+
+  it("projects a digital nomad scenario with different documents and timeline", () => {
+    const snapshot = buildPlanSnapshot({
+      trip,
+      visa,
+      budgetItems,
+      generatedAt: "2026-04-25T12:00:00.000Z",
+      reason: "purchase",
+    });
+
+    const projection = projectVisaScenario({
+      scenarios: snapshot.visaScenarios,
+      activeScenarioId: "indonesia-digital-nomad",
+    });
+
+    expect(projection.activeScenarioId).toBe("indonesia-digital-nomad");
+    expect(projection.documents).not.toEqual(snapshot.documents);
+    expect(projection.timeline).not.toEqual(snapshot.timeline);
+    expect(projection.documents).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ title: "Remote work income proof" }),
+        expect.objectContaining({ title: "Employment or client contract evidence" }),
+      ]),
+    );
+    expect(projection.timeline).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ title: "Prepare remote work eligibility documents" }),
+      ]),
+    );
   });
 
   it("creates a usable fallback scenario when visa data is unavailable", () => {
@@ -76,12 +136,12 @@ describe("visa scenarios in full plan snapshots", () => {
       reason: "purchase",
     });
 
-    expect(snapshot.visaScenarios).toHaveLength(1);
+    expect(snapshot.visaScenarios).toHaveLength(3);
 
     const [scenario] = snapshot.visaScenarios;
 
     expect(snapshot.activeVisaScenarioId).toBe(scenario.id);
-    expect(scenario.label).toBe("Entry requirements");
+    expect(scenario.label).toBe("Tourist / short stay");
     expect(snapshot.visa).toEqual(scenario.visa);
     expect(snapshot.documents).toEqual(scenario.documents);
     expect(snapshot.timeline).toEqual(scenario.timeline);
