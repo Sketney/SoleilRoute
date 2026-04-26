@@ -50,6 +50,17 @@ export function applyVisaScenarioSelectionResponse(
   };
 }
 
+export function shouldSyncScenarioViewFromPlan(
+  current: TripPlanScenarioViewState | null,
+  plan: TripPlanSnapshot,
+) {
+  if (!current) {
+    return true;
+  }
+
+  return current.activeVisaScenarioId === plan.activeVisaScenarioId;
+}
+
 export function TripPlanScenarioSections({
   tripId,
   plan,
@@ -69,7 +80,11 @@ export function TripPlanScenarioSections({
   );
 
   useEffect(() => {
-    setScenarioView(buildTripPlanScenarioViewState(plan));
+    setScenarioView((current) =>
+      shouldSyncScenarioViewFromPlan(current, plan)
+        ? buildTripPlanScenarioViewState(plan)
+        : current,
+    );
   }, [plan]);
 
   const selectScenario = async (scenarioId: string) => {

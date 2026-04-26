@@ -8,7 +8,11 @@ import {
   getActiveVisaScenario,
   isVisaScenarioSelectionEnabled,
 } from "@/components/dashboard/trip-plan-visa-scenarios";
-import { applyVisaScenarioSelectionResponse } from "@/components/dashboard/trip-plan-scenario-sections";
+import {
+  applyVisaScenarioSelectionResponse,
+  buildTripPlanScenarioViewState,
+  shouldSyncScenarioViewFromPlan,
+} from "@/components/dashboard/trip-plan-scenario-sections";
 import {
   normalizeTripPlanSnapshot,
   selectActiveVisaScenario,
@@ -320,6 +324,36 @@ describe("visa scenarios in full plan snapshots", () => {
     expect(visible.timeline).toEqual(selected.timeline);
     expect(visible.documents).toHaveLength(selected.documents.length);
     expect(visible.timeline).toHaveLength(selected.timeline.length);
+  });
+
+  it("does not overwrite a locally selected scenario with stale incoming plan props", () => {
+    const snapshot = buildPlanSnapshot({
+      trip,
+      visa,
+      budgetItems,
+      generatedAt: "2026-04-25T12:00:00.000Z",
+      reason: "purchase",
+    });
+
+    const localSelection = buildTripPlanScenarioViewState(
+      selectActiveVisaScenario(snapshot, "indonesia-business"),
+    );
+
+    expect(shouldSyncScenarioViewFromPlan(localSelection, snapshot)).toBe(false);
+  });
+
+  it("allows syncing when incoming plan props already match the visible scenario", () => {
+    const snapshot = buildPlanSnapshot({
+      trip,
+      visa,
+      budgetItems,
+      generatedAt: "2026-04-25T12:00:00.000Z",
+      reason: "purchase",
+    });
+
+    const localSelection = buildTripPlanScenarioViewState(snapshot);
+
+    expect(shouldSyncScenarioViewFromPlan(localSelection, snapshot)).toBe(true);
   });
 
   it("keeps the switcher read-only for viewers and displays the saved active scenario", () => {
