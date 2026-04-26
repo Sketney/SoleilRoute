@@ -13,13 +13,13 @@ import { TripPlanUnlockButton } from "@/components/dashboard/trip-plan-unlock";
 import { getServerSession } from "@/lib/auth/session";
 import { hasTripPlanAccessForUser } from "@/lib/services/entitlements";
 import { buildPlanSnapshot } from "@/lib/services/full-plan/build-plan-snapshot";
+import { resolveFullTripPlan } from "@/lib/services/full-plan/resolve-full-trip-plan";
 import type { TripPlanSnapshot } from "@/lib/services/full-plan/types";
 import { getVisaRequirement } from "@/lib/services/visa";
 import { formatCurrency, formatDateRange } from "@/lib/utils";
 import {
   canEditTrip,
   getTripAccess,
-  getTripPlan,
   listBudgetItems,
 } from "@/server/db";
 
@@ -45,10 +45,13 @@ export default async function TripPlanPage({
 
   const hasAccess = await hasTripPlanAccessForUser(session.user, access.trip.id);
   const canPersistVisaScenario = hasAccess && canEditTrip(access.role);
-  const storedPlan = hasAccess ? await getTripPlan(access.trip.id) : null;
   const plan =
-    storedPlan?.status === "full"
-      ? storedPlan.plan_json
+    hasAccess
+      ? await resolveFullTripPlan({
+          tripId: access.trip.id,
+          userId: session.user.id,
+          reason: "pro_unlock",
+        })
       : await buildPreviewPlan(access.trip.id);
 
   return (

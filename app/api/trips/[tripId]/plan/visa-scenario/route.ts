@@ -2,10 +2,10 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "@/lib/auth/session";
 import { apiError } from "@/lib/api/responses";
 import { hasTripPlanAccessForUser } from "@/lib/services/entitlements";
+import { resolveFullTripPlan } from "@/lib/services/full-plan/resolve-full-trip-plan";
 import {
   canEditTrip,
   getTripAccess,
-  getTripPlan,
   selectActiveVisaScenario,
   upsertTripPlan,
 } from "@/server/db";
@@ -40,15 +40,16 @@ export async function PATCH(
     return apiError("BAD_REQUEST", "scenarioId is required", 400);
   }
 
-  const existingPlan = await getTripPlan(access.trip.id);
-  if (!existingPlan || existingPlan.status !== "full") {
-    return apiError("NOT_FOUND", "Full trip plan not found", 404);
-  }
+  const existingSnapshot = await resolveFullTripPlan({
+    tripId: access.trip.id,
+    userId: session.user.id,
+    reason: "pro_unlock",
+  });
 
   let updatedSnapshot;
   try {
     updatedSnapshot = selectActiveVisaScenario(
-      existingPlan.plan_json,
+      existingSnapshot,
       body.scenarioId,
     );
   } catch (error) {
@@ -59,11 +60,11 @@ export async function PATCH(
   }
 
   const updatedPlan = await upsertTripPlan({
-    trip_id: existingPlan.trip_id,
-    user_id: existingPlan.user_id,
+    trip_id: access.trip.id,
+    user_id: session.user.id,
     status: "full",
     plan_json: updatedSnapshot,
-    visa_checked_at: existingPlan.visa_checked_at,
+    visa_checked_at: access.trip.visa_last_checked,
   });
 
   return NextResponse.json({
