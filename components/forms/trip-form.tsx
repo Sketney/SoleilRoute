@@ -15,7 +15,11 @@ import {
   budgetCategories,
   supportedCurrencies,
 } from "@/lib/constants";
-import { getCountryOptions } from "@/lib/countries";
+import {
+  countryCodeToName,
+  countryNameToCode,
+  getCountryOptions,
+} from "@/lib/countries";
 import { publicEnv } from "@/lib/env";
 import { TripFormValues, createTripFormSchema } from "@/lib/validators/trip";
 import type { BudgetTier } from "@/lib/budget-planner-data";
@@ -91,6 +95,10 @@ export function TripForm({
   const filteredDestinationCountries = countryOptions.filter((country) =>
     country.search.includes(destinationCountrySearch.trim().toLowerCase()),
   );
+  const selectedCitizenshipCode =
+    countryNameToCode(form.watch("citizenship") ?? "") ?? "";
+  const selectedDestinationCountryCode =
+    countryNameToCode(form.watch("destinationCountry") ?? "") ?? "";
   useEffect(() => {
     form.reset(defaultValues);
   }, [defaultValues, form]);
@@ -157,9 +165,9 @@ export function TripForm({
           error={form.formState.errors.citizenship?.message}
         >
           <Select
-            value={form.watch("citizenship")}
+            value={selectedCitizenshipCode}
             onValueChange={(value) => {
-              form.setValue("citizenship", value);
+              form.setValue("citizenship", countryCodeToName(value, "en") ?? value);
               setCitizenshipSearch("");
             }}
           >
@@ -184,7 +192,7 @@ export function TripForm({
               <SelectSeparator />
               {filteredCitizenships.length ? (
                 filteredCitizenships.map((country) => (
-                  <SelectItem key={country.code} value={country.name}>
+                  <SelectItem key={country.code} value={country.code}>
                     {country.name}
                   </SelectItem>
                 ))
@@ -201,9 +209,12 @@ export function TripForm({
           error={form.formState.errors.destinationCountry?.message}
         >
           <Select
-            value={form.watch("destinationCountry")}
+            value={selectedDestinationCountryCode}
             onValueChange={(value) => {
-              form.setValue("destinationCountry", value);
+              form.setValue(
+                "destinationCountry",
+                countryCodeToName(value, "en") ?? value,
+              );
               setDestinationCountrySearch("");
             }}
           >
@@ -226,7 +237,7 @@ export function TripForm({
               <SelectSeparator />
               {filteredDestinationCountries.length ? (
                 filteredDestinationCountries.map((country) => (
-                  <SelectItem key={country.code} value={country.name}>
+                  <SelectItem key={country.code} value={country.code}>
                     {country.name}
                   </SelectItem>
                 ))

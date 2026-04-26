@@ -11,9 +11,13 @@ import { useForm, type Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createTripFormSchema, type TripFormValues } from "@/lib/validators/trip";
 import {
-  supportedCitizenships,
   supportedCurrencies,
 } from "@/lib/constants";
+import {
+  countryCodeToName,
+  countryNameToCode,
+  getCountryOptions,
+} from "@/lib/countries";
 import type { BudgetTier } from "@/lib/budget-planner-data";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -36,7 +40,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
-import { useTranslations } from "@/components/providers/app-providers";
+import { useLocale, useTranslations } from "@/components/providers/app-providers";
 
 type TripDetailsEditorProps = {
   tripId: string;
@@ -64,9 +68,12 @@ export function TripDetailsEditor({
   const router = useRouter();
   const { toast } = useToast();
   const t = useTranslations();
+  const { locale } = useLocale();
   const [open, setOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
   const [citizenshipSearch, setCitizenshipSearch] = useState("");
+  const [destinationCountrySearch, setDestinationCountrySearch] = useState("");
+  const countryOptions = useMemo(() => getCountryOptions(locale), [locale]);
   const tierOptions: Array<{ value: BudgetTier; label: string }> = [
     { value: "budget", label: t.budgetPlanner.tiers.budget.label },
     { value: "mid", label: t.budgetPlanner.tiers.mid.label },
@@ -96,9 +103,16 @@ export function TripDetailsEditor({
       notes: initialValues.notes ?? "",
     },
   });
-  const filteredCitizenships = supportedCitizenships.filter((country) =>
-    country.toLowerCase().includes(citizenshipSearch.trim().toLowerCase()),
+  const filteredCitizenships = countryOptions.filter((country) =>
+    country.search.includes(citizenshipSearch.trim().toLowerCase()),
   );
+  const filteredDestinationCountries = countryOptions.filter((country) =>
+    country.search.includes(destinationCountrySearch.trim().toLowerCase()),
+  );
+  const selectedCitizenshipCode =
+    countryNameToCode(form.watch("citizenship") ?? "") ?? "";
+  const selectedDestinationCountryCode =
+    countryNameToCode(form.watch("destinationCountry") ?? "") ?? "";
 
   if (readOnly) {
     return null;
@@ -166,9 +180,9 @@ export function TripDetailsEditor({
               error={form.formState.errors.citizenship?.message}
             >
               <Select
-                value={form.watch("citizenship")}
+                value={selectedCitizenshipCode}
                 onValueChange={(value) => {
-                  form.setValue("citizenship", value);
+                  form.setValue("citizenship", countryCodeToName(value, "en") ?? value);
                   setCitizenshipSearch("");
                 }}
               >
@@ -194,8 +208,8 @@ export function TripDetailsEditor({
                   <SelectSeparator />
                   {filteredCitizenships.length ? (
                     filteredCitizenships.map((country) => (
-                      <SelectItem key={country} value={country}>
-                        {country}
+                      <SelectItem key={country.code} value={country.code}>
+                        {country.name}
                       </SelectItem>
                     ))
                   ) : (
@@ -210,7 +224,49 @@ export function TripDetailsEditor({
               label={t.tripForm.fields.destinationCountryLabel}
               error={form.formState.errors.destinationCountry?.message}
             >
-              <Input {...form.register("destinationCountry")} />
+              <Select
+                value={selectedDestinationCountryCode}
+                onValueChange={(value) => {
+                  form.setValue(
+                    "destinationCountry",
+                    countryCodeToName(value, "en") ?? value,
+                  );
+                  setDestinationCountrySearch("");
+                }}
+              >
+                <SelectTrigger>
+                  <SelectValue
+                    placeholder={t.tripForm.placeholders.destinationCountry}
+                  />
+                </SelectTrigger>
+                <SelectContent>
+                  <div className="px-2 pt-2">
+                    <Input
+                      value={destinationCountrySearch}
+                      onChange={(event) =>
+                        setDestinationCountrySearch(event.target.value)
+                      }
+                      onKeyDown={(event) => event.stopPropagation()}
+                      onPointerDown={(event) => event.stopPropagation()}
+                      placeholder={t.tripForm.placeholders.searchCountries}
+                      className="h-8"
+                      autoFocus
+                    />
+                  </div>
+                  <SelectSeparator />
+                  {filteredDestinationCountries.length ? (
+                    filteredDestinationCountries.map((country) => (
+                      <SelectItem key={country.code} value={country.code}>
+                        {country.name}
+                      </SelectItem>
+                    ))
+                  ) : (
+                    <div className="px-2 py-2 text-xs text-muted-foreground">
+                      {t.budgetPlanner.noMatches}
+                    </div>
+                  )}
+                </SelectContent>
+              </Select>
             </FormField>
             <FormField
               label={t.tripForm.fields.destinationCityLabel}
