@@ -1,22 +1,19 @@
 import { notFound, redirect } from "next/navigation";
-import type { ReactNode } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
-  CalendarClock,
-  CheckCircle2,
   Download,
-  FileText,
   Lock,
-  ShieldCheck,
-  WalletCards,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { TripPlanScenarioSections } from "@/components/dashboard/trip-plan-scenario-sections";
+import { TripPlanUnlockButton } from "@/components/dashboard/trip-plan-unlock";
 import { getServerSession } from "@/lib/auth/session";
 import { hasTripPlanAccessForUser } from "@/lib/services/entitlements";
 import { buildPlanSnapshot } from "@/lib/services/full-plan/build-plan-snapshot";
+import type { TripPlanSnapshot } from "@/lib/services/full-plan/types";
 import { getVisaRequirement } from "@/lib/services/visa";
 import { formatCurrency, formatDateRange } from "@/lib/utils";
 import {
@@ -25,10 +22,6 @@ import {
   getTripPlan,
   listBudgetItems,
 } from "@/server/db";
-import { TripPlanVisaScenarios } from "@/components/dashboard/trip-plan-visa-scenarios";
-import { TripPlanUnlockButton } from "@/components/dashboard/trip-plan-unlock";
-import { VisaIssueReport } from "@/components/dashboard/visa-issue-report";
-import type { TripPlanSnapshot } from "@/lib/services/full-plan/types";
 
 export const metadata = {
   title: "Full trip plan",
@@ -71,7 +64,7 @@ export default async function TripPlanPage({
           <div>
             <h1 className="text-2xl font-semibold">Full trip plan</h1>
             <p className="text-sm text-muted-foreground">
-              {plan.trip.destination} ·{" "}
+              {plan.trip.destination} В·{" "}
               {formatDateRange(plan.trip.dates.start, plan.trip.dates.end)}
             </p>
           </div>
@@ -81,94 +74,12 @@ export default async function TripPlanPage({
 
       {!hasAccess ? <LockedPlanBanner tripId={access.trip.id} /> : null}
 
-      <div className="grid gap-4 lg:grid-cols-4">
-        <SummaryCard
-          icon={<ShieldCheck className="h-4 w-4" />}
-          label="Visa"
-          value={plan.visa.required === null ? "Unknown" : plan.visa.required ? "Required" : "Not required"}
-        />
-        <SummaryCard
-          icon={<FileText className="h-4 w-4" />}
-          label="Documents"
-          value={`${plan.documents.length} items`}
-        />
-        <SummaryCard
-          icon={<CalendarClock className="h-4 w-4" />}
-          label="Timeline"
-          value={`${plan.timeline.length} milestones`}
-        />
-        <SummaryCard
-          icon={<WalletCards className="h-4 w-4" />}
-          label="Budget"
-          value={formatCurrency(plan.budget.total, plan.budget.currency)}
-        />
-      </div>
-
-      <div className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
-        <Card className="border-border/70">
-          <CardHeader className="space-y-4">
-            <TripPlanVisaScenarios
-              tripId={access.trip.id}
-              scenarios={plan.visaScenarios}
-              activeScenarioId={plan.activeVisaScenarioId}
-              editable={canPersistVisaScenario}
-            />
-            <CardTitle>Visa snapshot</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3 text-sm">
-            <Detail label="Type" value={plan.visa.type ?? "Not available"} />
-            <Detail label="Validity" value={plan.visa.validity ?? "Check official source"} />
-            <Detail label="Processing" value={plan.visa.processingTime ?? "Check official source"} />
-            <Detail label="Passport validity" value={plan.visa.passportValidity ?? "Check official source"} />
-            <Detail label="Source" value={`${plan.visa.source}${plan.visa.checkedAt ? ` · ${new Date(plan.visa.checkedAt).toLocaleDateString()}` : ""}`} />
-            {plan.visa.notes ? (
-              <p className="rounded-lg border border-border/60 bg-muted/30 p-3 text-muted-foreground">
-                {plan.visa.notes}
-              </p>
-            ) : null}
-            <VisaIssueReport
-              tripId={access.trip.id}
-              citizenship={plan.trip.citizenship}
-              destination={plan.trip.destination}
-            />
-          </CardContent>
-        </Card>
-
-        <Card className="border-border/70">
-          <CardHeader>
-            <CardTitle>Sources</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {plan.sources.map((source) => (
-              <div key={source.label} className="rounded-lg border border-border/60 p-3">
-                <div className="flex items-center justify-between gap-3">
-                  <p className="text-sm font-medium">{source.label}</p>
-                  <Badge variant={source.confidence === "high" ? "success" : "secondary"}>
-                    {source.confidence}
-                  </Badge>
-                </div>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  {source.source}
-                  {source.checkedAt ? ` · ${new Date(source.checkedAt).toLocaleString()}` : ""}
-                </p>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="grid gap-6 xl:grid-cols-2">
-        <ChecklistSection
-          title="Documents"
-          locked={!hasAccess}
-          items={hasAccess ? plan.documents : plan.documents.slice(0, 4)}
-        />
-        <TimelineSection
-          title="Timeline"
-          locked={!hasAccess}
-          items={hasAccess ? plan.timeline : plan.timeline.slice(0, 4)}
-        />
-      </div>
+      <TripPlanScenarioSections
+        tripId={access.trip.id}
+        plan={plan}
+        editable={canPersistVisaScenario}
+        locked={!hasAccess}
+      />
 
       <Card className="border-border/70">
         <CardHeader className="flex flex-row items-center justify-between">
@@ -183,7 +94,7 @@ export default async function TripPlanPage({
                 {formatCurrency(item.amount, item.currency)}
               </p>
               <p className="text-xs text-muted-foreground">
-                {item.source} · {item.confidence}
+                {item.source} В· {item.confidence}
               </p>
             </div>
           ))}
@@ -264,99 +175,6 @@ function LockedPlanBanner({ tripId }: { tripId: string }) {
           </div>
         </div>
         <TripPlanUnlockButton tripId={tripId} locked />
-      </CardContent>
-    </Card>
-  );
-}
-
-function SummaryCard({
-  icon,
-  label,
-  value,
-}: {
-  icon: ReactNode;
-  label: string;
-  value: string;
-}) {
-  return (
-    <Card className="border-border/70">
-      <CardContent className="flex items-center gap-3 p-4">
-        <span className="rounded-md bg-muted p-2 text-muted-foreground">{icon}</span>
-        <div>
-          <p className="text-xs uppercase text-muted-foreground">{label}</p>
-          <p className="text-sm font-semibold">{value}</p>
-        </div>
-      </CardContent>
-    </Card>
-  );
-}
-
-function Detail({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex justify-between gap-4 border-b border-border/60 pb-2">
-      <span className="text-muted-foreground">{label}</span>
-      <span className="text-right font-medium">{value}</span>
-    </div>
-  );
-}
-
-function ChecklistSection({
-  title,
-  items,
-  locked,
-}: {
-  title: string;
-  items: TripPlanSnapshot["documents"];
-  locked: boolean;
-}) {
-  return (
-    <Card className="border-border/70">
-      <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle>{title}</CardTitle>
-        {locked ? <Badge variant="warning">Preview</Badge> : null}
-      </CardHeader>
-      <CardContent className="space-y-3">
-        {items.map((item) => (
-          <div key={item.id} className="flex gap-3 rounded-lg border border-border/60 p-3">
-            <CheckCircle2 className="mt-0.5 h-4 w-4 text-muted-foreground" />
-            <div>
-              <p className="text-sm font-medium">{item.title}</p>
-              <p className="text-xs text-muted-foreground">{item.description}</p>
-            </div>
-          </div>
-        ))}
-      </CardContent>
-    </Card>
-  );
-}
-
-function TimelineSection({
-  title,
-  items,
-  locked,
-}: {
-  title: string;
-  items: TripPlanSnapshot["timeline"];
-  locked: boolean;
-}) {
-  return (
-    <Card className="border-border/70">
-      <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle>{title}</CardTitle>
-        {locked ? <Badge variant="warning">Preview</Badge> : null}
-      </CardHeader>
-      <CardContent className="space-y-3">
-        {items.map((item) => (
-          <div key={item.id} className="rounded-lg border border-border/60 p-3">
-            <div className="flex items-center justify-between gap-3">
-              <p className="text-sm font-medium">{item.title}</p>
-              {item.urgent ? <Badge variant="danger">Urgent</Badge> : null}
-            </div>
-            <p className="mt-1 text-xs text-muted-foreground">
-              {new Date(item.dueDate).toLocaleDateString()} · {item.description}
-            </p>
-          </div>
-        ))}
       </CardContent>
     </Card>
   );

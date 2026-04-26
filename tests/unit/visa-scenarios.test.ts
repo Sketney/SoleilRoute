@@ -8,6 +8,7 @@ import {
   getActiveVisaScenario,
   isVisaScenarioSelectionEnabled,
 } from "@/components/dashboard/trip-plan-visa-scenarios";
+import { applyVisaScenarioSelectionResponse } from "@/components/dashboard/trip-plan-scenario-sections";
 import {
   normalizeTripPlanSnapshot,
   selectActiveVisaScenario,
@@ -229,6 +230,32 @@ describe("visa scenarios in full plan snapshots", () => {
     expect(activeScenario?.label).toBe("Business visit");
     expect(activeScenario?.visa).toEqual(selected.visa);
     expect(activeScenario?.timeline).toEqual(selected.timeline);
+  });
+
+  it("applies a successful scenario PATCH response to the visible scenario-driven state", () => {
+    const snapshot = buildPlanSnapshot({
+      trip,
+      visa,
+      budgetItems,
+      generatedAt: "2026-04-25T12:00:00.000Z",
+      reason: "purchase",
+    });
+
+    const selected = selectActiveVisaScenario(snapshot, "indonesia-business");
+    const visible = applyVisaScenarioSelectionResponse(snapshot, {
+      activeVisaScenarioId: selected.activeVisaScenarioId,
+      visa: selected.visa,
+      documents: selected.documents,
+      timeline: selected.timeline,
+      reminders: selected.reminders,
+    });
+
+    expect(visible.activeVisaScenarioId).toBe("indonesia-business");
+    expect(visible.visa).toEqual(selected.visa);
+    expect(visible.documents).toEqual(selected.documents);
+    expect(visible.timeline).toEqual(selected.timeline);
+    expect(visible.documents).toHaveLength(selected.documents.length);
+    expect(visible.timeline).toHaveLength(selected.timeline.length);
   });
 
   it("keeps the switcher read-only for viewers and displays the saved active scenario", () => {

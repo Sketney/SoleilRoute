@@ -1,11 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useMemo } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
 import type { TripPlanSnapshot } from "@/lib/services/full-plan/types";
 
 type VisaScenarioOption = Pick<
@@ -68,19 +66,18 @@ export function isVisaScenarioSelectionEnabled({
 }
 
 export function TripPlanVisaScenarios({
-  tripId,
   scenarios,
   activeScenarioId,
   editable,
+  isPending,
+  onSelectScenario,
 }: {
-  tripId: string;
   scenarios: TripPlanSnapshot["visaScenarios"];
   activeScenarioId: string | null;
   editable: boolean;
+  isPending: boolean;
+  onSelectScenario?: (scenarioId: string) => void | Promise<void>;
 }) {
-  const router = useRouter();
-  const { toast } = useToast();
-  const [isPending, setIsPending] = useState(false);
   const activeScenario = useMemo(
     () => getActiveVisaScenario(scenarios, activeScenarioId),
     [activeScenarioId, scenarios],
@@ -89,11 +86,8 @@ export function TripPlanVisaScenarios({
     ? scenarios.findIndex((scenario) => scenario.id === activeScenario.id)
     : -1;
   const resolvedIndex = activeIndex >= 0 ? activeIndex : 0;
-  const canNavigate = isVisaScenarioSelectionEnabled({
-    editable,
-    scenarios,
-    isPending,
-  });
+  const canShowControls = editable && scenarios.length > 1;
+  const canNavigate = isVisaScenarioSelectionEnabled({ editable, scenarios, isPending });
 
   const selectScenario = async (offset: number) => {
     if (!canNavigate || isPending || !activeScenario) {
@@ -105,33 +99,7 @@ export function TripPlanVisaScenarios({
     if (!nextScenario || nextScenario.id === activeScenario.id) {
       return;
     }
-
-    setIsPending(true);
-
-    try {
-      const response = await fetch(`/api/trips/${tripId}/plan/visa-scenario`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ scenarioId: nextScenario.id }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to save visa scenario");
-      }
-
-      router.refresh();
-    } catch (error) {
-      console.error(error);
-      toast({
-        title: "Visa scenario not saved",
-        description: "We could not update the saved visa scenario.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsPending(false);
-    }
+    await onSelectScenario?.(nextScenario.id);
   };
 
   if (!activeScenario) {
@@ -150,7 +118,7 @@ export function TripPlanVisaScenarios({
             </Badge>
           </div>
         </div>
-        {canNavigate ? (
+        {canShowControls ? (
           <div className="flex shrink-0 items-center gap-2">
             <Button
               type="button"
@@ -183,7 +151,7 @@ export function TripPlanVisaScenarios({
         {scenarios.length > 1
           ? editable
             ? isPending
-              ? "Saving selection..."
+              ? "Updating scenario..."
               : `${resolvedIndex + 1} of ${scenarios.length} saved scenarios`
             : `${scenarios.length} saved scenarios available`
           : "Single saved scenario"}
