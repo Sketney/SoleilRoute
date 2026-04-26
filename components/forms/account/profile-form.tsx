@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -25,17 +24,17 @@ export function ProfileForm({
   displayName?: string;
   avatarUrl?: string;
 }) {
-  const router = useRouter();
   const { toast } = useToast();
   const t = useTranslations();
   const [isPending, startTransition] = useTransition();
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
+  const [savedAvatarUrl, setSavedAvatarUrl] = useState<string | null>(avatarUrl ?? null);
   const avatarPreview = useMemo(() => {
     if (avatarFile) {
       return URL.createObjectURL(avatarFile);
     }
-    return avatarUrl ?? null;
-  }, [avatarFile, avatarUrl]);
+    return savedAvatarUrl;
+  }, [avatarFile, savedAvatarUrl]);
   const profileSchema = z.object({
     email: z.string().email(t.profileForm.validationEmail),
     displayName: z
@@ -86,7 +85,27 @@ export function ProfileForm({
         title: t.profileForm.toastSuccessTitle,
         description: t.profileForm.toastSuccessDescription,
       });
-      router.refresh();
+      const payload = (await response.json().catch(() => null)) as
+        | { email?: string; displayName?: string; avatarUrl?: string }
+        | null;
+      const nextEmail = payload?.email ?? values.email;
+      const nextDisplayName = payload?.displayName ?? values.displayName.trim();
+      const nextAvatarUrl = payload?.avatarUrl ?? savedAvatarUrl ?? "";
+      form.reset({
+        email: nextEmail,
+        displayName: nextDisplayName,
+      });
+      setAvatarFile(null);
+      setSavedAvatarUrl(nextAvatarUrl || null);
+      window.dispatchEvent(
+        new CustomEvent("soleilroute:profile-updated", {
+          detail: {
+            email: nextEmail,
+            displayName: nextDisplayName,
+            avatarUrl: nextAvatarUrl,
+          },
+        }),
+      );
     });
   };
 

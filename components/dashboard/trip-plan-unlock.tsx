@@ -21,19 +21,6 @@ export function TripPlanUnlockButton({
   const [readyPath, setReadyPath] = useState<Route | null>(null);
   const planPath = `/dashboard/trips/${tripId}/plan` as Route;
 
-  const openPlan = (path: Route, forceReloadDelayMs: number) => {
-    setReadyPath(path);
-    if (pathname === path) {
-      router.refresh();
-    } else {
-      router.push(path);
-    }
-
-    window.setTimeout(() => {
-      window.location.assign(path);
-    }, forceReloadDelayMs);
-  };
-
   const unlock = async () => {
     setPending(true);
     try {
@@ -47,7 +34,14 @@ export function TripPlanUnlockButton({
         title: "Full plan unlocked",
         description: "Your trip plan is ready. Opening it now.",
       });
-      openPlan(planPath, pathname === planPath ? 150 : 400);
+      setReadyPath(planPath);
+      if (pathname === planPath) {
+        router.replace(`${planPath}?unlocked=${Date.now()}` as Route, {
+          scroll: false,
+        });
+      } else {
+        router.push(planPath, { scroll: false });
+      }
     } catch (error) {
       console.error(error);
       toast({

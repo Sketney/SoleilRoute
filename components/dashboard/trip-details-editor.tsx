@@ -1,12 +1,12 @@
 "use client";
 
 import {
+  useEffect,
   useMemo,
   useState,
   useTransition,
   type ReactNode,
 } from "react";
-import { useRouter } from "next/navigation";
 import { useForm, type Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createTripFormSchema, type TripFormValues } from "@/lib/validators/trip";
@@ -44,28 +44,32 @@ import { useLocale, useTranslations } from "@/components/providers/app-providers
 
 type TripDetailsEditorProps = {
   tripId: string;
-  initialValues: {
-    name: string;
-    destinationCountry: string;
-    destinationCity: string;
-    startDate: string;
-    endDate: string;
-    totalBudget: number;
-    currency: string;
-    citizenship: string;
-    baseCurrency: string;
-    travelStyle: BudgetTier;
-    notes: string | null;
-  };
+  initialValues: TripDetailsSnapshot;
   readOnly?: boolean;
+  onUpdated?: (trip: TripDetailsSnapshot) => void;
+};
+
+export type TripDetailsSnapshot = {
+  name: string;
+  destinationCountry: string;
+  destinationCity: string;
+  startDate: string;
+  endDate: string;
+  totalBudget: number;
+  currency: string;
+  citizenship: string;
+  baseCurrency: string;
+  travelStyle: BudgetTier;
+  notes: string | null;
+  visaStatus?: string | null;
 };
 
 export function TripDetailsEditor({
   tripId,
   initialValues,
   readOnly = false,
+  onUpdated,
 }: TripDetailsEditorProps) {
-  const router = useRouter();
   const { toast } = useToast();
   const t = useTranslations();
   const { locale } = useLocale();
@@ -86,10 +90,8 @@ export function TripDetailsEditor({
     () => createTripFormSchema(t.tripForm.validation),
     [t],
   );
-
-  const form = useForm<TripFormValues>({
-    resolver: zodResolver(schema) as Resolver<TripFormValues>,
-    defaultValues: {
+  const formDefaults = useMemo(
+    () => ({
       name: initialValues.name,
       destinationCountry: initialValues.destinationCountry,
       destinationCity: initialValues.destinationCity,
@@ -101,8 +103,29 @@ export function TripDetailsEditor({
       baseCurrency: initialValues.baseCurrency,
       citizenship: initialValues.citizenship,
       notes: initialValues.notes ?? "",
-    },
+    }),
+    [
+      endDate,
+      initialValues.baseCurrency,
+      initialValues.citizenship,
+      initialValues.currency,
+      initialValues.destinationCity,
+      initialValues.destinationCountry,
+      initialValues.name,
+      initialValues.notes,
+      initialValues.totalBudget,
+      initialValues.travelStyle,
+      startDate,
+    ],
+  );
+
+  const form = useForm<TripFormValues>({
+    resolver: zodResolver(schema) as Resolver<TripFormValues>,
+    defaultValues: formDefaults,
   });
+  useEffect(() => {
+    form.reset(formDefaults);
+  }, [form, formDefaults]);
   const filteredCitizenships = countryOptions.filter((country) =>
     country.search.includes(citizenshipSearch.trim().toLowerCase()),
   );
@@ -132,13 +155,44 @@ export function TripDetailsEditor({
         if (!response.ok) {
           throw new Error("Failed to update trip");
         }
+        const payload = (await response.json()) as {
+          trip?: {
+            name: string;
+            destination_country: string;
+            destination_city: string;
+            start_date: string;
+            end_date: string;
+            total_budget: number;
+            currency: string;
+            citizenship: string;
+            base_currency: string;
+            budget_tier: BudgetTier;
+            notes: string | null;
+            visa_status?: string | null;
+          };
+        };
 
         toast({
           title: t.tripDetailsEditor.toastSuccessTitle,
           description: t.tripDetailsEditor.toastSuccessDescription,
         });
         setOpen(false);
-        router.refresh();
+        if (payload.trip) {
+          onUpdated?.({
+            name: payload.trip.name,
+            destinationCountry: payload.trip.destination_country,
+            destinationCity: payload.trip.destination_city,
+            startDate: payload.trip.start_date,
+            endDate: payload.trip.end_date,
+            totalBudget: payload.trip.total_budget,
+            currency: payload.trip.currency,
+            citizenship: payload.trip.citizenship,
+            baseCurrency: payload.trip.base_currency,
+            travelStyle: payload.trip.budget_tier,
+            notes: payload.trip.notes,
+            visaStatus: payload.trip.visa_status ?? "unknown",
+          });
+        }
       } catch (error) {
         console.error(error);
         toast({

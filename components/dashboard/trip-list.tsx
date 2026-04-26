@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
@@ -72,6 +72,7 @@ export function TripList({ trips }: { trips: DashboardTrip[] }) {
   const t = useTranslations();
   const [createOpen, setCreateOpen] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [deletedTripIds, setDeletedTripIds] = useState<string[]>([]);
   const visaLabels: Record<VisaStatus, string> = {
     unknown: t.visa.statuses.unknown,
     required: t.visa.statuses.required,
@@ -79,6 +80,10 @@ export function TripList({ trips }: { trips: DashboardTrip[] }) {
     not_required: t.visa.statuses.not_required,
     in_progress: t.visa.statuses.in_progress,
   };
+  const visibleTrips = useMemo(
+    () => trips.filter((trip) => !deletedTripIds.includes(trip.id)),
+    [deletedTripIds, trips],
+  );
 
   const handleDelete = async (tripId: string) => {
     const confirmed = window.confirm(t.tripList.confirmDelete);
@@ -100,7 +105,9 @@ export function TripList({ trips }: { trips: DashboardTrip[] }) {
         title: t.tripList.toastDeleteTitle,
         description: t.tripList.toastDeleteDescription,
       });
-      router.refresh();
+      setDeletedTripIds((current) =>
+        current.includes(tripId) ? current : [...current, tripId],
+      );
     } catch (error) {
       console.error(error);
       toast({
@@ -113,7 +120,7 @@ export function TripList({ trips }: { trips: DashboardTrip[] }) {
     }
   };
 
-  if (trips.length === 0) {
+  if (visibleTrips.length === 0) {
     return (
       <Card className="border-border/70">
         <CardContent className="flex flex-col items-center justify-center gap-4 py-12 text-center">
@@ -151,7 +158,7 @@ export function TripList({ trips }: { trips: DashboardTrip[] }) {
 
   return (
     <div className="grid gap-4 lg:grid-cols-2">
-      {trips.map((trip) => {
+      {visibleTrips.map((trip) => {
         const progress = Math.min(
           Math.round((trip.paidAmount / trip.totalBudget) * 100),
           100,

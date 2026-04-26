@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { DashboardHeader } from "@/components/layout/dashboard-header";
 import { useTranslations } from "@/components/providers/app-providers";
@@ -15,6 +16,28 @@ export function DashboardHeaderRoute({
 }: DashboardHeaderRouteProps) {
   const pathname = usePathname() ?? "";
   const t = useTranslations();
+  const [profileEmail, setProfileEmail] = useState(email);
+
+  useEffect(() => {
+    setProfileEmail(email);
+  }, [email]);
+
+  useEffect(() => {
+    const handleProfileUpdated = (event: Event) => {
+      const detail = (event as CustomEvent<{ email?: string }>).detail;
+      if (detail?.email) {
+        setProfileEmail(detail.email);
+      }
+    };
+
+    window.addEventListener("soleilroute:profile-updated", handleProfileUpdated);
+    return () => {
+      window.removeEventListener(
+        "soleilroute:profile-updated",
+        handleProfileUpdated,
+      );
+    };
+  }, []);
 
   const headerCopy = (() => {
     if (pathname.startsWith("/dashboard/budget")) {
@@ -79,7 +102,7 @@ export function DashboardHeaderRoute({
 
   return (
     <DashboardHeader
-      email={email}
+      email={profileEmail}
       showNotifications={showNotifications}
       title={headerCopy.title}
       subtitle={headerCopy.subtitle}
