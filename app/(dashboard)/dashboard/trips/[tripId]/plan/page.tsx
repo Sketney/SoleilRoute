@@ -20,6 +20,7 @@ import { buildPlanSnapshot } from "@/lib/services/full-plan/build-plan-snapshot"
 import { getVisaRequirement } from "@/lib/services/visa";
 import { formatCurrency, formatDateRange } from "@/lib/utils";
 import {
+  canEditTrip,
   getTripAccess,
   getTripPlan,
   listBudgetItems,
@@ -50,6 +51,7 @@ export default async function TripPlanPage({
   }
 
   const hasAccess = await hasTripPlanAccessForUser(session.user, access.trip.id);
+  const canPersistVisaScenario = hasAccess && canEditTrip(access.role);
   const storedPlan = hasAccess ? await getTripPlan(access.trip.id) : null;
   const plan =
     storedPlan?.status === "full"
@@ -109,7 +111,7 @@ export default async function TripPlanPage({
               tripId={access.trip.id}
               scenarios={plan.visaScenarios}
               activeScenarioId={plan.activeVisaScenarioId}
-              editable={hasAccess}
+              editable={canPersistVisaScenario}
             />
             <CardTitle>Visa snapshot</CardTitle>
           </CardHeader>

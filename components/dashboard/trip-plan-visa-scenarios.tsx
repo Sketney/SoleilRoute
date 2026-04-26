@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -13,7 +13,7 @@ type VisaScenarioOption = Pick<
   "id" | "label" | "isDefault"
 >;
 
-function getScenarioKindLabel(scenario: VisaScenarioOption) {
+export function getScenarioKindLabel(scenario: VisaScenarioOption) {
   const haystack = `${scenario.id} ${scenario.label}`.toLowerCase();
 
   if (haystack.includes("digital-nomad") || haystack.includes("digital nomad")) {
@@ -41,6 +41,32 @@ function getScenarioKindLabel(scenario: VisaScenarioOption) {
   return scenario.isDefault ? "Default scenario" : "Alternate scenario";
 }
 
+export function getActiveVisaScenario(
+  scenarios: VisaScenarioOption[],
+  activeScenarioId: string | null,
+) {
+  if (activeScenarioId) {
+    const activeScenario = scenarios.find((scenario) => scenario.id === activeScenarioId);
+    if (activeScenario) {
+      return activeScenario;
+    }
+  }
+
+  return scenarios[0] ?? null;
+}
+
+export function isVisaScenarioSelectionEnabled({
+  editable,
+  scenarios,
+  isPending,
+}: {
+  editable: boolean;
+  scenarios: VisaScenarioOption[];
+  isPending: boolean;
+}) {
+  return editable && scenarios.length > 1 && !isPending;
+}
+
 export function TripPlanVisaScenarios({
   tripId,
   scenarios,
@@ -54,24 +80,20 @@ export function TripPlanVisaScenarios({
 }) {
   const router = useRouter();
   const { toast } = useToast();
-  const initialScenarioId = useMemo(() => {
-    if (activeScenarioId && scenarios.some((scenario) => scenario.id === activeScenarioId)) {
-      return activeScenarioId;
-    }
-
-    return scenarios[0]?.id ?? null;
-  }, [activeScenarioId, scenarios]);
   const [isPending, setIsPending] = useState(false);
-  const [selectedScenarioId, setSelectedScenarioId] = useState(initialScenarioId);
-
-  useEffect(() => {
-    setSelectedScenarioId(initialScenarioId);
-  }, [initialScenarioId]);
-
-  const activeIndex = scenarios.findIndex((scenario) => scenario.id === selectedScenarioId);
+  const activeScenario = useMemo(
+    () => getActiveVisaScenario(scenarios, activeScenarioId),
+    [activeScenarioId, scenarios],
+  );
+  const activeIndex = activeScenario
+    ? scenarios.findIndex((scenario) => scenario.id === activeScenario.id)
+    : -1;
   const resolvedIndex = activeIndex >= 0 ? activeIndex : 0;
-  const activeScenario = scenarios[resolvedIndex] ?? null;
-  const canNavigate = editable && scenarios.length > 1 && activeScenario !== null;
+  const canNavigate = isVisaScenarioSelectionEnabled({
+    editable,
+    scenarios,
+    isPending,
+  });
 
   const selectScenario = async (offset: number) => {
     if (!canNavigate || isPending || !activeScenario) {
@@ -80,12 +102,10 @@ export function TripPlanVisaScenarios({
 
     const nextIndex = (resolvedIndex + offset + scenarios.length) % scenarios.length;
     const nextScenario = scenarios[nextIndex];
-    if (!nextScenario || nextScenario.id === selectedScenarioId) {
+    if (!nextScenario || nextScenario.id === activeScenario.id) {
       return;
     }
 
-    const previousScenarioId = selectedScenarioId;
-    setSelectedScenarioId(nextScenario.id);
     setIsPending(true);
 
     try {
@@ -104,7 +124,6 @@ export function TripPlanVisaScenarios({
       router.refresh();
     } catch (error) {
       console.error(error);
-      setSelectedScenarioId(previousScenarioId);
       toast({
         title: "Visa scenario not saved",
         description: "We could not update the saved visa scenario.",
@@ -154,6 +173,10 @@ export function TripPlanVisaScenarios({
               <ChevronRight className="h-4 w-4" />
             </Button>
           </div>
+        ) : scenarios.length > 1 ? (
+          <Badge variant="outline" className="shrink-0">
+            Read only
+          </Badge>
         ) : null}
       </div>
       <p className="mt-2 text-xs text-muted-foreground">
@@ -162,7 +185,7 @@ export function TripPlanVisaScenarios({
             ? isPending
               ? "Saving selection..."
               : `${resolvedIndex + 1} of ${scenarios.length} saved scenarios`
-            : `${scenarios.length} saved scenarios`
+            : `${scenarios.length} saved scenarios available`
           : "Single saved scenario"}
       </p>
     </div>

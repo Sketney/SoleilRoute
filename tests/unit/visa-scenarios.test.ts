@@ -5,6 +5,10 @@ import { buildPlanSnapshot } from "@/lib/services/full-plan/build-plan-snapshot"
 import { buildVisaScenarios } from "@/lib/services/full-plan/visa-scenarios/build-scenarios";
 import { projectVisaScenario } from "@/lib/services/full-plan/visa-scenarios/project-scenario";
 import {
+  getActiveVisaScenario,
+  isVisaScenarioSelectionEnabled,
+} from "@/components/dashboard/trip-plan-visa-scenarios";
+import {
   normalizeTripPlanSnapshot,
   selectActiveVisaScenario,
 } from "@/server/db/trip-plans";
@@ -225,6 +229,31 @@ describe("visa scenarios in full plan snapshots", () => {
     expect(activeScenario?.label).toBe("Business visit");
     expect(activeScenario?.visa).toEqual(selected.visa);
     expect(activeScenario?.timeline).toEqual(selected.timeline);
+  });
+
+  it("keeps the switcher read-only for viewers and displays the saved active scenario", () => {
+    const snapshot = buildPlanSnapshot({
+      trip,
+      visa,
+      budgetItems,
+      generatedAt: "2026-04-25T12:00:00.000Z",
+      reason: "purchase",
+    });
+
+    expect(
+      isVisaScenarioSelectionEnabled({
+        editable: false,
+        scenarios: snapshot.visaScenarios,
+        isPending: false,
+      }),
+    ).toBe(false);
+
+    const displayedScenario = getActiveVisaScenario(
+      snapshot.visaScenarios,
+      "indonesia-business",
+    );
+
+    expect(displayedScenario?.label).toBe("Business visit");
   });
 
   it("rejects selecting a scenario that does not exist on the saved snapshot", () => {
