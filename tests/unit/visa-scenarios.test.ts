@@ -26,6 +26,14 @@ const trip: TripRecord = {
   created_at: "2026-04-25T09:00:00.000Z",
 };
 
+const uncatalogedTrip: TripRecord = {
+  ...trip,
+  id: "trip-2",
+  name: "Santiago trip",
+  destination_country: "Chile",
+  destination_city: "Santiago",
+};
+
 const visa: VisaRequirement = {
   citizenship: "China",
   destination: "Indonesia",
@@ -73,6 +81,33 @@ describe("visa scenarios in full plan snapshots", () => {
     expect(
       scenarios[1]?.timeline.some((item) => item.title === "Prepare remote work eligibility documents"),
     ).toBe(true);
+  });
+
+  it("keeps alternate curated scenario visa details conservative when exact facts are unknown", () => {
+    const scenarios = buildVisaScenarios({
+      trip,
+      visa,
+      generatedAt: "2026-04-25T12:00:00.000Z",
+    });
+
+    expect(scenarios[1]?.id).toBe("indonesia-digital-nomad");
+    expect(scenarios[1]?.visa).toMatchObject({
+      type: "Remote worker / digital nomad pathway",
+      required: null,
+      validity: null,
+      processingTime: "Check official guidance",
+      applicationUrl: null,
+      embassyUrl: "https://example.test/embassy",
+    });
+    expect(scenarios[2]?.id).toBe("indonesia-business");
+    expect(scenarios[2]?.visa).toMatchObject({
+      type: "Business visit visa / eVisa",
+      required: null,
+      validity: null,
+      processingTime: "Check official guidance",
+      applicationUrl: null,
+      embassyUrl: "https://example.test/embassy",
+    });
   });
 
   it("projects the default active scenario to top-level fields with a stable id", () => {
@@ -127,21 +162,22 @@ describe("visa scenarios in full plan snapshots", () => {
     );
   });
 
-  it("creates a usable fallback scenario when visa data is unavailable", () => {
+  it("creates a usable fallback scenario for an uncataloged destination when visa data is unavailable", () => {
     const snapshot = buildPlanSnapshot({
-      trip,
+      trip: uncatalogedTrip,
       visa: null,
       budgetItems,
       generatedAt: "2026-04-25T12:00:00.000Z",
       reason: "purchase",
     });
 
-    expect(snapshot.visaScenarios).toHaveLength(3);
+    expect(snapshot.visaScenarios).toHaveLength(1);
 
     const [scenario] = snapshot.visaScenarios;
 
     expect(snapshot.activeVisaScenarioId).toBe(scenario.id);
-    expect(scenario.label).toBe("Tourist / short stay");
+    expect(scenario.id).toBe("default");
+    expect(scenario.label).toBe("Entry requirements");
     expect(snapshot.visa).toEqual(scenario.visa);
     expect(snapshot.documents).toEqual(scenario.documents);
     expect(snapshot.timeline).toEqual(scenario.timeline);

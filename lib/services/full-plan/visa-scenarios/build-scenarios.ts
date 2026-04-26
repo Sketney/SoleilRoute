@@ -6,6 +6,7 @@ import { generateTimelinePlan } from "@/lib/services/full-plan/generate-timeline
 import {
   getCuratedVisaScenarioCatalog,
   type CuratedVisaScenarioKind,
+  type CuratedVisaScenarioTemplate,
 } from "@/lib/services/full-plan/visa-scenarios/catalog";
 import type { TripPlanVisaScenario } from "@/lib/services/full-plan/visa-scenarios/types";
 
@@ -33,6 +34,32 @@ function buildVisaDetails(
     embassyUrl: visa?.embassyUrl ?? null,
     applicationUrl: visa?.applicationUrl ?? null,
     notes: visa?.notes ?? null,
+  };
+}
+
+function buildScenarioVisaDetails(
+  baseVisaDetails: TripPlanVisaDetails,
+  scenario: CuratedVisaScenarioTemplate,
+) {
+  if (scenario.kind === "tourist") {
+    return {
+      ...baseVisaDetails,
+      type: scenario.visaTypeOverride ?? baseVisaDetails.type,
+      notes: joinNotes(baseVisaDetails.notes, scenario.notesAppend),
+    };
+  }
+
+  return {
+    ...baseVisaDetails,
+    required: scenario.requiredOverride ?? null,
+    type: scenario.visaTypeOverride ?? baseVisaDetails.type,
+    validity: scenario.validityOverride ?? null,
+    processingTime:
+      scenario.processingTimeOverride ??
+      (baseVisaDetails.embassyUrl ? "Check official guidance" : null),
+    embassyUrl: scenario.embassyUrlOverride ?? baseVisaDetails.embassyUrl,
+    applicationUrl: scenario.applicationUrlOverride ?? null,
+    notes: joinNotes(baseVisaDetails.notes, scenario.notesAppend),
   };
 }
 
@@ -92,11 +119,7 @@ export function buildVisaScenarios({
       id: buildScenarioId(trip.destination_country, scenario.kind),
       label: scenario.label,
       isDefault: index === 0,
-      visa: {
-        ...baseVisaDetails,
-        type: scenario.visaTypeOverride ?? baseVisaDetails.type,
-        notes: joinNotes(baseVisaDetails.notes, scenario.notesAppend),
-      },
+      visa: buildScenarioVisaDetails(baseVisaDetails, scenario),
       documents: generateDocumentChecklist({
         trip,
         visa,
