@@ -24,6 +24,7 @@ import {
   getTripPlan,
   listBudgetItems,
 } from "@/server/db";
+import { TripPlanVisaScenarios } from "@/components/dashboard/trip-plan-visa-scenarios";
 import { TripPlanUnlockButton } from "@/components/dashboard/trip-plan-unlock";
 import { VisaIssueReport } from "@/components/dashboard/visa-issue-report";
 import type { TripPlanSnapshot } from "@/lib/services/full-plan/types";
@@ -103,7 +104,13 @@ export default async function TripPlanPage({
 
       <div className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
         <Card className="border-border/70">
-          <CardHeader>
+          <CardHeader className="space-y-4">
+            <TripPlanVisaScenarios
+              tripId={access.trip.id}
+              scenarios={plan.visaScenarios}
+              activeScenarioId={plan.activeVisaScenarioId}
+              editable={hasAccess}
+            />
             <CardTitle>Visa snapshot</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 text-sm">

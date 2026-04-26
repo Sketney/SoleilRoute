@@ -208,6 +208,25 @@ describe("visa scenarios in full plan snapshots", () => {
     );
   });
 
+  it("keeps the selected scenario label addressable from the active scenario id", () => {
+    const snapshot = buildPlanSnapshot({
+      trip,
+      visa,
+      budgetItems,
+      generatedAt: "2026-04-25T12:00:00.000Z",
+      reason: "purchase",
+    });
+
+    const selected = selectActiveVisaScenario(snapshot, "indonesia-business");
+    const activeScenario = selected.visaScenarios.find(
+      (scenario) => scenario.id === selected.activeVisaScenarioId,
+    );
+
+    expect(activeScenario?.label).toBe("Business visit");
+    expect(activeScenario?.visa).toEqual(selected.visa);
+    expect(activeScenario?.timeline).toEqual(selected.timeline);
+  });
+
   it("rejects selecting a scenario that does not exist on the saved snapshot", () => {
     const snapshot = buildPlanSnapshot({
       trip,

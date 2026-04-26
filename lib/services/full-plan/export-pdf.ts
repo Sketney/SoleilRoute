@@ -54,12 +54,15 @@ function formatDate(value: string | null) {
 }
 
 function buildTextLines(plan: TripPlanSnapshot) {
+  const activeScenario =
+    plan.visaScenarios.find((scenario) => scenario.id === plan.activeVisaScenarioId) ?? null;
   const lines: string[] = [
     "Full trip plan",
     `${plan.trip.name} - ${plan.trip.destination}`,
     `${formatDate(plan.trip.dates.start)} to ${formatDate(plan.trip.dates.end)}`,
     `Citizenship: ${plan.trip.citizenship}`,
     `Generated: ${formatDate(plan.generatedAt)} | Version: ${plan.version}`,
+    activeScenario ? `Active visa scenario: ${activeScenario.label}` : "",
     "",
     "Visa",
     `Required: ${plan.visa.required === null ? "Unknown" : plan.visa.required ? "Yes" : "No"}`,
