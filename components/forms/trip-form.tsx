@@ -13,9 +13,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import {
   budgetCategories,
-  supportedCitizenships,
   supportedCurrencies,
 } from "@/lib/constants";
+import { getCountryOptions } from "@/lib/countries";
 import { publicEnv } from "@/lib/env";
 import { TripFormValues, createTripFormSchema } from "@/lib/validators/trip";
 import type { BudgetTier } from "@/lib/budget-planner-data";
@@ -33,7 +33,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { refreshUnreadCount } from "@/lib/notifications-store";
-import { useTranslations } from "@/components/providers/app-providers";
+import { useLocale, useTranslations } from "@/components/providers/app-providers";
 
 interface TripFormProps {
   onSuccess?: () => void;
@@ -48,6 +48,7 @@ export function TripForm({
 }: TripFormProps) {
   const { toast } = useToast();
   const t = useTranslations();
+  const { locale } = useLocale();
   const router = useRouter();
   const schema = useMemo(
     () => createTripFormSchema(t.tripForm.validation),
@@ -56,6 +57,8 @@ export function TripForm({
   const resolvedSubmitLabel = submitLabel ?? t.tripForm.submitDefault;
   const [isPending, startTransition] = useTransition();
   const [citizenshipSearch, setCitizenshipSearch] = useState("");
+  const [destinationCountrySearch, setDestinationCountrySearch] = useState("");
+  const countryOptions = useMemo(() => getCountryOptions(locale), [locale]);
   const tierOptions: Array<{ value: BudgetTier; label: string }> = [
     { value: "budget", label: t.budgetPlanner.tiers.budget.label },
     { value: "mid", label: t.budgetPlanner.tiers.mid.label },
@@ -82,8 +85,11 @@ export function TripForm({
     resolver: zodResolver(schema) as Resolver<TripFormValues>,
     defaultValues,
   });
-  const filteredCitizenships = supportedCitizenships.filter((country) =>
-    country.toLowerCase().includes(citizenshipSearch.trim().toLowerCase()),
+  const filteredCitizenships = countryOptions.filter((country) =>
+    country.search.includes(citizenshipSearch.trim().toLowerCase()),
+  );
+  const filteredDestinationCountries = countryOptions.filter((country) =>
+    country.search.includes(destinationCountrySearch.trim().toLowerCase()),
   );
   useEffect(() => {
     form.reset(defaultValues);
@@ -178,8 +184,8 @@ export function TripForm({
               <SelectSeparator />
               {filteredCitizenships.length ? (
                 filteredCitizenships.map((country) => (
-                  <SelectItem key={country} value={country}>
-                    {country}
+                  <SelectItem key={country.code} value={country.name}>
+                    {country.name}
                   </SelectItem>
                 ))
               ) : (
@@ -194,11 +200,43 @@ export function TripForm({
           label={t.tripForm.fields.destinationCountryLabel}
           error={form.formState.errors.destinationCountry?.message}
         >
-          <Input
-            placeholder={t.tripForm.placeholders.destinationCountry}
-            data-testid="trip-destination-country"
-            {...form.register("destinationCountry")}
-          />
+          <Select
+            value={form.watch("destinationCountry")}
+            onValueChange={(value) => {
+              form.setValue("destinationCountry", value);
+              setDestinationCountrySearch("");
+            }}
+          >
+            <SelectTrigger data-testid="trip-destination-country">
+              <SelectValue placeholder={t.tripForm.placeholders.destinationCountry} />
+            </SelectTrigger>
+            <SelectContent>
+              <div className="px-2 pt-2">
+                <Input
+                  value={destinationCountrySearch}
+                  onChange={(event) => setDestinationCountrySearch(event.target.value)}
+                  onKeyDown={(event) => event.stopPropagation()}
+                  onPointerDown={(event) => event.stopPropagation()}
+                  placeholder={t.tripForm.placeholders.searchCountries}
+                  data-testid="trip-destination-country-search"
+                  className="h-8"
+                  autoFocus
+                />
+              </div>
+              <SelectSeparator />
+              {filteredDestinationCountries.length ? (
+                filteredDestinationCountries.map((country) => (
+                  <SelectItem key={country.code} value={country.name}>
+                    {country.name}
+                  </SelectItem>
+                ))
+              ) : (
+                <div className="px-2 py-2 text-xs text-muted-foreground">
+                  {t.budgetPlanner.noMatches}
+                </div>
+              )}
+            </SelectContent>
+          </Select>
         </FormField>
         <FormField
           label={t.tripForm.fields.destinationCityLabel}

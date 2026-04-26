@@ -265,6 +265,7 @@ const countryAliases: Record<string, string> = {
   "czech republic": "CZ",
   "democratic republic of the congo": "CD",
   "hong kong": "HK",
+  "indonesia (bali)": "ID",
   "ivory coast": "CI",
   laos: "LA",
   macau: "MO",

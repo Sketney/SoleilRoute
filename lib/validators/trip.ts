@@ -1,5 +1,6 @@
 import { z } from "zod";
 import type { BudgetTier } from "@/lib/budget-planner-data";
+import { countryCodeToName, countryNameToCode } from "@/lib/countries";
 
 export type TripFormValidationMessages = {
   nameMin: string;
@@ -13,9 +14,11 @@ export type TripFormValidationMessages = {
   totalBudgetPositive: string;
   currencyLength: string;
   citizenshipRequired: string;
+  citizenshipInvalid?: string;
   baseCurrencyLength: string;
   travelStyleRequired: string;
   endDateAfterStart: string;
+  destinationCountryInvalid?: string;
 };
 
 const defaultMessages: TripFormValidationMessages = {
@@ -30,23 +33,52 @@ const defaultMessages: TripFormValidationMessages = {
   totalBudgetPositive: "Budget must be greater than zero.",
   currencyLength: "Currency must be a 3-letter ISO code.",
   citizenshipRequired: "Please enter your citizenship.",
+  citizenshipInvalid: "Select a supported citizenship from the list.",
   baseCurrencyLength: "Base currency must be a 3-letter ISO code.",
   travelStyleRequired: "Travel style is required.",
   endDateAfterStart: "End date should be after the start date.",
+  destinationCountryInvalid: "Select a supported destination country from the list.",
 };
+
+function createCountryFieldSchema(requiredMessage: string, invalidMessage: string) {
+  return z
+    .string()
+    .min(2, requiredMessage)
+    .transform((value) => value.trim())
+    .superRefine((value, context) => {
+      if (!countryNameToCode(value)) {
+        context.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: invalidMessage,
+        });
+      }
+    })
+    .transform((value) => {
+      const code = countryNameToCode(value);
+      return code ? countryCodeToName(code) ?? value : value;
+    });
+}
 
 export function createTripFormSchema(
   messages: Partial<TripFormValidationMessages> = {},
 ) {
   const text = { ...defaultMessages, ...messages };
+  const destinationCountryRequired: string =
+    text.destinationCountryRequired ?? "Destination country is required.";
+  const destinationCountryInvalid: string =
+    text.destinationCountryInvalid ?? "Select a supported destination country from the list.";
+  const citizenshipRequired: string =
+    text.citizenshipRequired ?? "Please enter your citizenship.";
+  const citizenshipInvalid: string =
+    text.citizenshipInvalid ?? "Select a supported citizenship from the list.";
 
   return z
     .object({
       name: z.string().min(3, text.nameMin),
-      destinationCountry: z
-        .string()
-        .min(2, text.destinationCountryRequired)
-        .transform((value) => value.trim()),
+      destinationCountry: createCountryFieldSchema(
+        destinationCountryRequired,
+        destinationCountryInvalid,
+      ),
       destinationCity: z
         .string()
         .min(2, text.destinationCityRequired)
@@ -69,7 +101,10 @@ export function createTripFormSchema(
         .string()
         .length(3, text.currencyLength)
         .transform((value) => value.toUpperCase()),
-      citizenship: z.string().min(2, text.citizenshipRequired),
+      citizenship: createCountryFieldSchema(
+        citizenshipRequired,
+        citizenshipInvalid,
+      ),
       baseCurrency: z
         .string()
         .length(3, text.baseCurrencyLength)

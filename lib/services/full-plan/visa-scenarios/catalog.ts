@@ -1,3 +1,5 @@
+import { countryCodeToName, countryNameToCode } from "@/lib/countries";
+
 export type CuratedVisaScenarioKind =
   | "tourist"
   | "digital_nomad"
@@ -95,7 +97,9 @@ const catalog: Record<string, CuratedVisaScenarioTemplate[]> = {
 };
 
 function normalizeCountry(country: string) {
-  return country.trim().toLowerCase();
+  const code = countryNameToCode(country);
+  const canonical = code ? countryCodeToName(code) ?? country : country;
+  return canonical.trim().toLowerCase();
 }
 
 export function getCuratedVisaScenarioCatalog(country: string) {
