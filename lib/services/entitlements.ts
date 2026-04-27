@@ -57,10 +57,10 @@ export async function hasTripPlanAccess(userId: string, tripId: string) {
 }
 
 export async function hasTripPlanAccessForUser(
-  user: { id: string; is_admin?: boolean | null },
+  user: { id: string; is_admin?: boolean | null; is_moderator?: boolean | null },
   tripId: string,
 ) {
-  if (user.is_admin) {
+  if (user.is_admin || user.is_moderator) {
     return true;
   }
   return hasTripPlanAccess(user.id, tripId);

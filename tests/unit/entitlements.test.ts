@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   evaluateTripPlanAccess,
+  hasTripPlanAccessForUser,
   type EntitlementSnapshot,
 } from "@/lib/services/entitlements";
 
@@ -65,5 +66,18 @@ describe("entitlement evaluation", () => {
     };
 
     expect(evaluateTripPlanAccess(snapshot, "trip-1", now)).toBe(false);
+  });
+
+  it("allows moderators to access any full trip plan without payment", async () => {
+    await expect(
+      hasTripPlanAccessForUser(
+        {
+          id: "moderator-1",
+          is_admin: false,
+          is_moderator: true,
+        },
+        "trip-1",
+      ),
+    ).resolves.toBe(true);
   });
 });
